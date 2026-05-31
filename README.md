@@ -57,8 +57,7 @@ An interactive study guide for the **Claude Developer Certification** exam with 
 ├── 3_Simulation/           # UI mockups and design vision
 │   ├── README.md           # Stage overview
 │   └── user_experience.md  # UX mockups and documentation
-├── 4_Formula/              # Exam questions, and checklists (Concepts in Azure)
-│   ├── exam/               # Exam question notes
+├── 4_Formula/              # Checklists (Concepts and Exam Questions in Azure)
 │   ├── DEPLOYMENT_CHECKLIST.md
 │   ├── INDEX_STRUCTURE.md
 │   ├── PRO_EXAM_QUICK_START.md

@@ -23,7 +23,7 @@ This document outlines the measurable goals for the **Claude Developer Certifica
 
 * **KR 2.1:** Create and integrate **100 descriptive visual mnemonics/emojis** mapped to each question to leverage the Memory Palace technique.
 * **KR 2.2:** Build an interactive **SVG-based Mindmap** that traces conceptual relationships between key certification areas (e.g., how prompt caching connects to context window management).
-* **KR 2.3:** Maintain detailed concept study guides under `4_Formula/concepts/` covering 100% of core topics (MCP, Claude Code, Spaced Memory).
+* **KR 2.3:** Maintain detailed concept study guides in Azure Blob Storage covering 100% of core topics (MCP, Claude Code, Spaced Memory).
 
 ---
 

@@ -26,7 +26,7 @@ This file serves as a foundational mandate for Gemini CLI and other AI tools wor
   - `5_Symbols/data/`: Raw data — `5_Symbols/data/exam.json`, `5_Symbols/data/exam_source.pdf`.
   - `5_Symbols/docs/`: Markdown files for detailed study content.
   - `exercises/`: Hands-on coding challenges.
-  - `4_Formula/`: Concepts (`concepts/`), exam questions (`exam/`). Memory cards stored in Azure Blob Storage.
+  - `4_Formula/`: Concepts stored in Azure Blob Storage, exam questions (`exam/`). Memory cards stored in Azure Blob Storage.
   - `5_Symbols/pages/`: Auxiliary HTML pages (`dictionary.html`, `markdown_renderer.html`, `memory_cards.html`).
   - `5_Symbols/scripts/`: Utility scripts.
   - `claude.md`, `gemini.md`, `mimo.md`: AI-specific guideline files in project root.

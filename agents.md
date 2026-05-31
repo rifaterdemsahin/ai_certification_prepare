@@ -50,7 +50,7 @@ Interactive study guide for the **Claude Developer Certification** exam. Single-
 - **Docs Directory:** Keep study materials in `5_Symbols/docs/` organized by competency.
 - **Exercises:** Add hands-on challenges to the `exercises/` folder.
 - **Formula:** Concept explanations and exam questions live in `4_Formula/`.
-  - `4_Formula/concepts/`
+  - Concept explanations stored in Azure Blob Storage.
   - `4_Formula/exam/`
   - Memory cards stored in Azure Blob Storage.
 - **Pages:** Auxiliary HTML pages in `5_Symbols/pages/`.

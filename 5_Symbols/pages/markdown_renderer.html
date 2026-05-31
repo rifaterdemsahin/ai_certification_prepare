@@ -257,21 +257,24 @@
             ],
             memory: [],
             concepts: [
-                { id: 'agentic-ai', title: 'Agentic AI', file: '../../4_Formula/concepts/agentic-ai.md' },
-                { id: 'agentic-loop', title: 'Agentic Loop', file: '../../4_Formula/concepts/agentic-loop.md' },
-                { id: '10-tips-save-tokens', title: '10 Tips to Save Tokens', file: '../../4_Formula/concepts/10-tips-save-tokens.md' },
-                { id: 'chain-of-thought', title: 'Chain of Thought', file: '../../4_Formula/concepts/chain-of-thought.md' },
-                { id: 'claude-code', title: 'Claude Code', file: '../../4_Formula/concepts/claude-code.md' },
-                { id: 'llm-context-size', title: 'LLM Context Size', file: '../../4_Formula/concepts/llm-context-size.md' },
-                { id: 'mcp', title: 'MCP (Model Context Protocol)', file: '../../4_Formula/concepts/mcp.md' },
-                { id: 'mcp-before-after', title: 'MCP Before/After', file: '../../4_Formula/concepts/mcp-before-after.md' },
-                { id: 'prompt-engineering', title: 'Prompt Engineering', file: '../../4_Formula/concepts/prompt-engineering.md' },
-                { id: 'reliability', title: 'Reliability', file: '../../4_Formula/concepts/reliability.md' },
-                { id: 'validation-loops', title: 'Validation Loops', file: '../../4_Formula/concepts/validation-loops.md' },
-                { id: 'skills-location', title: 'Skills Location', file: '../../4_Formula/concepts/skills-location.md' },
-                { id: 'coordinator-subagent', title: 'Coordinator-Subagent', file: '../../4_Formula/concepts/coordinator-subagent.md' },
-                { id: 'long-term-memory', title: 'Long-Term Memory', file: '../../4_Formula/concepts/long-term-memory.md' },
-                { id: 'llm-evolution', title: 'LLM Evolution', file: '../../4_Formula/concepts/llm-evolution.md' },
+                { id: 'agentic-ai', title: 'Agentic AI', file: 'https://claudecertstore.blob.core.windows.net/concepts/agentic-ai.md' },
+                { id: 'agentic-loop', title: 'Agentic Loop', file: 'https://claudecertstore.blob.core.windows.net/concepts/agentic-loop.md' },
+                { id: '10-tips-save-tokens', title: '10 Tips to Save Tokens', file: 'https://claudecertstore.blob.core.windows.net/concepts/10-tips-save-tokens.md' },
+                { id: 'chain-of-thought', title: 'Chain of Thought', file: 'https://claudecertstore.blob.core.windows.net/concepts/chain-of-thought.md' },
+                { id: 'claude-code', title: 'Claude Code', file: 'https://claudecertstore.blob.core.windows.net/concepts/claude-code.md' },
+                { id: 'cloudflare-worker-update', title: 'Cloudflare Worker Update', file: 'https://claudecertstore.blob.core.windows.net/concepts/cloudflare-worker-update.md' },
+                { id: 'coordinator-subagent', title: 'Coordinator-Subagent', file: 'https://claudecertstore.blob.core.windows.net/concepts/coordinator-subagent.md' },
+                { id: 'llm-context-size', title: 'LLM Context Size', file: 'https://claudecertstore.blob.core.windows.net/concepts/llm-context-size.md' },
+                { id: 'llm-evolution', title: 'LLM Evolution', file: 'https://claudecertstore.blob.core.windows.net/concepts/llm-evolution.md' },
+                { id: 'long-term-memory', title: 'Long-Term Memory', file: 'https://claudecertstore.blob.core.windows.net/concepts/long-term-memory.md' },
+                { id: 'mcp', title: 'MCP (Model Context Protocol)', file: 'https://claudecertstore.blob.core.windows.net/concepts/mcp.md' },
+                { id: 'mcp-before-after', title: 'MCP Before/After', file: 'https://claudecertstore.blob.core.windows.net/concepts/mcp-before-after.md' },
+                { id: 'mnemonic-generation-formula', title: 'Mnemonic Gen Formula', file: 'https://claudecertstore.blob.core.windows.net/concepts/mnemonic-generation-formula.md' },
+                { id: 'prompt-engineering', title: 'Prompt Engineering', file: 'https://claudecertstore.blob.core.windows.net/concepts/prompt-engineering.md' },
+                { id: 'reliability', title: 'Reliability', file: 'https://claudecertstore.blob.core.windows.net/concepts/reliability.md' },
+                { id: 'skills-location', title: 'Skills Location', file: 'https://claudecertstore.blob.core.windows.net/concepts/skills-location.md' },
+                { id: 'swe-bench', title: 'SWE-bench', file: 'https://claudecertstore.blob.core.windows.net/concepts/swe-bench.md' },
+                { id: 'validation-loops', title: 'Validation Loops', file: 'https://claudecertstore.blob.core.windows.net/concepts/validation-loops.md' },
             ],
             exam: [
                 { id: 'CAT01-Q001', title: 'Q001 - Agentic Architecture', file: '../../4_Formula/exam/CAT01-Q001.md' },
@@ -336,7 +339,7 @@
                 }
 
                 // Add check off checkbox for core concepts
-                if (filePath.includes('4_Formula/concepts/')) {
+                if (filePath.includes('4_Formula/concepts/') || filePath.includes('claudecertstore.blob.core.windows.net/concepts/')) {
                     const conceptId = filePath.split('/').pop().replace('.md', '');
                     const cookieMatch = document.cookie.split(';').find(c => c.trim().startsWith('claude_cert_mastered_concepts='));
                     let checked = [];

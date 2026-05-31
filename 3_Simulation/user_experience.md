@@ -38,7 +38,7 @@ The Memory Palace Mindmap provides a high-level interactive semantic web, linkin
 * **HOW do you use it?**
   1. **Explore the Web:** Pan and zoom around the mindmap to trace links.
   2. **Inspect Relationships:** Hover over nodes to highlight connections and display a quick-summary modal explaining the dependency.
-  3. **Deep Dive:** Double-click any concept node (e.g., "MCP Clients") to jump straight to the detailed markdown study guide in `4_Formula/concepts/`.
+  3. **Deep Dive:** Double-click any concept node (e.g., "MCP Clients") to jump straight to the detailed markdown study guide hosted on Azure.
 
 ---
 

@@ -630,6 +630,102 @@
                 opacity: 1;
             }
         }
+
+        /* Canvas Add Items Bar */
+        .canvas-add-bar {
+            width: 100%;
+            max-width: 680px;
+            margin-top: 32px;
+            padding: 20px 24px;
+            background: rgba(30, 41, 59, 0.55);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+
+        .canvas-add-bar h3 {
+            margin: 0 0 16px;
+            font-size: 0.9em;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .canvas-add-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .canvas-add-grid { grid-template-columns: 1fr; }
+        }
+
+        .canvas-add-group {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .canvas-add-group label {
+            font-size: 0.78em;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Standalone transition node card */
+        .transition-story-card {
+            width: 100%;
+            background: rgba(245, 158, 11, 0.04);
+            border: 1px dashed rgba(245, 158, 11, 0.35);
+            border-radius: 14px;
+            padding: 20px 20px 12px;
+            box-sizing: border-box;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .transition-story-card:hover {
+            background: rgba(245, 158, 11, 0.09);
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        .transition-story-card.selected {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25), 0 4px 14px rgba(245, 158, 11, 0.12);
+        }
+
+        .transition-story-card .transition-narrative-quote {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            font-size: 2.2em;
+            color: rgba(245, 158, 11, 0.25);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .transition-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(245, 158, 11, 0.12);
+        }
+
+        .transition-card-label {
+            font-size: 0.72em;
+            color: var(--accent-orange);
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -653,7 +749,44 @@
             <!-- Empty state when no nodes are on canvas -->
             <div class="empty-state" id="empty-state" style="display:none;">
                 <h3>Your Study Story is empty</h3>
-                <p>Use the selector options in the right-hand panel to pick memory card questions, core concepts, or create personal objectives to structure your sequential story path.</p>
+                <p>Use the Add Items bar below to pick memory card questions, core concepts, create personal objectives, or add connective transitions to structure your story.</p>
+            </div>
+
+            <!-- Canvas Add Items Bar (vertical canvas placement) -->
+            <div class="canvas-add-bar">
+                <h3>➕ Add Items to Outline</h3>
+                <div class="canvas-add-grid">
+                    <div class="canvas-add-group">
+                        <label for="concept-picker">Add Study Concept (Analyse)</label>
+                        <select class="form-select" id="concept-picker">
+                            <option value="">-- Choose Concept --</option>
+                        </select>
+                        <button class="form-btn form-btn-secondary" onclick="addConceptNode()">
+                            ➕ Add Concept to Story
+                        </button>
+                    </div>
+                    <div class="canvas-add-group">
+                        <label for="question-picker">Add Exam Question (Remember)</label>
+                        <select class="form-select" id="question-picker">
+                            <option value="">-- Choose Question --</option>
+                        </select>
+                        <button class="form-btn form-btn-secondary" onclick="addQuestionNode()">
+                            ➕ Add Question to Story
+                        </button>
+                    </div>
+                    <div class="canvas-add-group">
+                        <label>Add Personal Target (Create)</label>
+                        <button class="form-btn form-btn-primary" onclick="addCustomNode()">
+                            🎨 Create Custom Personal Card
+                        </button>
+                    </div>
+                    <div class="canvas-add-group">
+                        <label>Add Connective Transition (Connect)</label>
+                        <button class="form-btn form-btn-orange" onclick="addTransitionNode()">
+                            ✍️ Add Connective Transition
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -750,41 +883,6 @@
                     </button>
                     <button class="form-btn form-btn-danger" onclick="deleteActiveTransition()" title="Remove this transition text box">
                         🗑️ Clear Transition
-                    </button>
-                </div>
-            </div>
-
-            <!-- Item Addition picker -->
-            <div class="sidebar-section">
-                <h3>➕ Add Items to Outline</h3>
-                
-                <!-- Concept Card Node Creator -->
-                <div class="form-group" style="margin-bottom:16px;">
-                    <label for="concept-picker">Add Study Concept (Analyse)</label>
-                    <select class="form-select" id="concept-picker">
-                        <option value="">-- Choose Concept --</option>
-                    </select>
-                    <button class="form-btn form-btn-secondary" style="width:100%; margin-top:8px;" onclick="addConceptNode()">
-                        ➕ Add Concept to Story
-                    </button>
-                </div>
-
-                <!-- Question Node Creator -->
-                <div class="form-group" style="margin-bottom:16px;">
-                    <label for="question-picker">Add Exam Question (Remember)</label>
-                    <select class="form-select" id="question-picker">
-                        <option value="">-- Choose Question --</option>
-                    </select>
-                    <button class="form-btn form-btn-secondary" style="width:100%; margin-top:8px;" onclick="addQuestionNode()">
-                        ➕ Add Question to Story
-                    </button>
-                </div>
-
-                <!-- Custom Personal Node Creator -->
-                <div>
-                    <label>Add Personal Target (Create)</label>
-                    <button class="form-btn form-btn-primary" style="width:100%; margin-top:8px;" onclick="addCustomNode()">
-                        🎨 Create Custom Personal Card
                     </button>
                 </div>
             </div>
@@ -984,6 +1082,70 @@
                     }
                 }
 
+                if (node.type === 'transition') {
+                    // Standalone connective transition bubble card
+                    const tCard = document.createElement('div');
+                    tCard.id = `node-card-${node.id}`;
+                    tCard.className = 'transition-story-card';
+                    if (selectedNodeId === node.id) tCard.classList.add('selected');
+
+                    const tQuote = document.createElement('span');
+                    tQuote.className = 'transition-narrative-quote';
+                    tQuote.innerHTML = '"';
+                    tCard.appendChild(tQuote);
+
+                    const tContent = document.createElement('p');
+                    tContent.className = 'transition-narrative-content';
+                    tContent.textContent = node.notes || 'Click to write connective narrative...';
+                    tCard.appendChild(tContent);
+
+                    const tFooter = document.createElement('div');
+                    tFooter.className = 'transition-card-footer';
+
+                    const tLabel = document.createElement('span');
+                    tLabel.className = 'transition-card-label';
+                    tLabel.textContent = '✍️ Connective Transition';
+                    tFooter.appendChild(tLabel);
+
+                    const tActionsDiv = document.createElement('div');
+                    tActionsDiv.style.display = 'flex';
+                    tActionsDiv.style.gap = '4px';
+
+                    const tUpBtn = document.createElement('button');
+                    tUpBtn.className = 'action-icon-btn';
+                    tUpBtn.innerHTML = '🔼';
+                    tUpBtn.title = 'Move Up';
+                    tUpBtn.disabled = index === 0;
+                    tUpBtn.addEventListener('click', (e) => { e.stopPropagation(); moveNode(index, index - 1); });
+                    tActionsDiv.appendChild(tUpBtn);
+
+                    const tDownBtn = document.createElement('button');
+                    tDownBtn.className = 'action-icon-btn';
+                    tDownBtn.innerHTML = '🔽';
+                    tDownBtn.title = 'Move Down';
+                    tDownBtn.disabled = index === storyData.nodes.length - 1;
+                    tDownBtn.addEventListener('click', (e) => { e.stopPropagation(); moveNode(index, index + 1); });
+                    tActionsDiv.appendChild(tDownBtn);
+
+                    const tEditBtn = document.createElement('button');
+                    tEditBtn.className = 'action-icon-btn';
+                    tEditBtn.innerHTML = '✏️';
+                    tEditBtn.title = 'Edit Transition';
+                    tEditBtn.addEventListener('click', (e) => { e.stopPropagation(); selectNode(node.id); });
+                    tActionsDiv.appendChild(tEditBtn);
+
+                    const tDelBtn = document.createElement('button');
+                    tDelBtn.className = 'action-icon-btn delete-btn';
+                    tDelBtn.innerHTML = '🗑️';
+                    tDelBtn.title = 'Delete';
+                    tDelBtn.addEventListener('click', (e) => { e.stopPropagation(); deleteNode(node.id); });
+                    tActionsDiv.appendChild(tDelBtn);
+
+                    tFooter.appendChild(tActionsDiv);
+                    tCard.appendChild(tFooter);
+                    tCard.addEventListener('click', () => selectNode(node.id));
+                    nodeWrapper.appendChild(tCard);
+                } else {
                 // Node Card
                 const card = document.createElement('div');
                 card.id = `node-card-${node.id}`;
@@ -1179,6 +1341,7 @@
                 });
 
                 nodeWrapper.appendChild(card);
+                } // end else (regular card)
                 timelineContainer.appendChild(nodeWrapper);
             });
         }
@@ -1219,7 +1382,11 @@
                     document.getElementById('edit-node-id').value = node.id;
                     document.getElementById('edit-node-title').value = node.title;
                     document.getElementById('edit-node-notes').value = node.notes || '';
-                    
+
+                    // Update notes label for transition type
+                    const notesLabel = document.querySelector('label[for="edit-node-notes"]');
+                    if (notesLabel) notesLabel.textContent = node.type === 'transition' ? 'Transition Narrative Text' : 'Personalized Narrative / Notes';
+
                     const qCtrls = document.getElementById('question-only-controls');
                     if (node.type === 'question') {
                         qCtrls.style.display = 'block';
@@ -1261,15 +1428,20 @@
                 // Live updates to the card content
                 const card = document.getElementById(`node-card-${id}`);
                 if (card) {
-                    const titleEl = card.querySelector('.card-title');
-                    if (titleEl) titleEl.textContent = node.title;
+                    if (node.type === 'transition') {
+                        const transContent = card.querySelector('.transition-narrative-content');
+                        if (transContent) transContent.textContent = node.notes || 'Click to write connective narrative...';
+                    } else {
+                        const titleEl = card.querySelector('.card-title');
+                        if (titleEl) titleEl.textContent = node.title;
 
-                    const noteEl = card.querySelector('.narrative-text');
-                    if (noteEl) noteEl.textContent = node.notes || 'Click to write narrative study notes for this node...';
+                        const noteEl = card.querySelector('.narrative-text');
+                        if (noteEl) noteEl.textContent = node.notes || 'Click to write narrative study notes for this node...';
 
-                    if (node.type === 'question') {
-                        const checkEl = card.querySelector('.card-checkbox');
-                        if (checkEl) checkEl.checked = node.checked || false;
+                        if (node.type === 'question') {
+                            const checkEl = card.querySelector('.card-checkbox');
+                            if (checkEl) checkEl.checked = node.checked || false;
+                        }
                     }
                 }
                 saveStoryQuietly();
@@ -1484,7 +1656,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
-            
+            logToDebugConsole(`[ADD] Concept node added: "${name}" (${val})`, 'info');
             conceptPicker.value = "";
             saveStoryQuietly();
         }
@@ -1524,7 +1696,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
-
+            logToDebugConsole(`[ADD] Question node added: "${newNode.title}" (${fullQId})`, 'info');
             questionPicker.value = "";
             saveStoryQuietly();
         }
@@ -1541,6 +1713,23 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
+            logToDebugConsole('[ADD] Custom personal card created', 'info');
+            saveStoryQuietly();
+        }
+
+        function addTransitionNode() {
+            const newNode = {
+                id: generateUniqueId(),
+                type: 'transition',
+                title: 'Connective Transition',
+                notes: 'Write the connective narrative that bridges your story here...',
+                color: 'orange'
+            };
+
+            storyData.nodes.push(newNode);
+            renderStoryFeed();
+            selectNode(newNode.id);
+            logToDebugConsole(`[ADD] Connective transition node added [id: ${newNode.id}]`, 'info');
             saveStoryQuietly();
         }
 

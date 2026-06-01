@@ -24,7 +24,8 @@ const PAGES = [
     'prompt_caching.html',
     'resources.html',
     'swe_bench.html',
-    'mcp-before-after.html'
+    'mcp-before-after.html',
+    'token_use_and_types.html'
 ];
 
 console.log('🚀 Starting migration of analysis pages to Azure...');

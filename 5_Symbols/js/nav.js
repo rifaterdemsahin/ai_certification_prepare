@@ -62,6 +62,7 @@
                 { emoji: '💬', label: 'Multi-Turn', href: 'analyse_renderer.html?page=multi_turn.html' },
                 { emoji: '🧩', label: 'Reasoning', href: 'analyse_renderer.html?page=structured_reasoning.html' },
                 { emoji: '💾', label: 'Prompt Caching', href: 'analyse_renderer.html?page=prompt_caching.html' },
+                { emoji: '🪙', label: 'Token Use & Cost', href: 'analyse_renderer.html?page=token_use_and_types.html' },
 
                 // Group 3: Tools & Workflows
                 { isHeader: true, label: '🖥️ Tools & Workflows' },

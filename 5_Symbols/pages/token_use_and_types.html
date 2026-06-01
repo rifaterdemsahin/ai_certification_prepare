@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Token use types, pricing, caching optimizations, input bottlenecks, and RAG architectures for Claude LLMs.">
+    <title>Token Use & Cost Optimization — Claude Dev Cert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪙</text></svg>">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .token-hero {
+            text-align: center;
+            padding: 40px 24px;
+            background: linear-gradient(135deg, rgba(56,189,248,0.08) 0%, rgba(16,185,129,0.08) 100%);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 32px;
+        }
+        .token-hero h2 {
+            font-size: 1.8em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .token-hero p {
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .token-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        .token-section h3 {
+            color: var(--accent-blue);
+            margin-bottom: 16px;
+            font-size: 1.25em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .token-section p, .token-section li {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        .token-section ul { margin: 8px 0 8px 20px; }
+        .token-section li { margin-bottom: 8px; }
+
+        /* SVG Visual styling */
+        .visual-container {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .visual-svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Token Table styling */
+        .token-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9em;
+        }
+        .token-table th, .token-table td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+        .token-table th {
+            background: rgba(255,255,255,0.03);
+            color: var(--accent-blue);
+        }
+        .token-table tr:hover {
+            background: rgba(255,255,255,0.01);
+        }
+
+        /* Key Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .metric-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-blue);
+        }
+        .metric-val {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 4px;
+        }
+        .metric-label {
+            font-size: 0.9em;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .metric-desc {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🪙 Token Use, Caching & RAG Dynamics</h1>
+        <p>A deep-dive review of token lifecycle, bottlenecks, caching savings, and context optimization strategies.</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="token-hero">
+            <h2>Understanding the Claude Token Lifecycle</h2>
+            <p>Every interaction with Claude models involves token exchange. Maximizing speed while minimizing costs requires mastering caching boundaries, payload structures, and context footprint reduction.</p>
+        </div>
+
+        <div class="token-section">
+            <h3>📊 Token Types Visual Representation</h3>
+            <p>Visualizing the anatomy of an agentic LLM request: notice how Cache Hits dramatically reduce processed input payload charges.</p>
+            
+            <div class="visual-container">
+                <svg class="visual-svg" width="700" height="340" viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background Grid -->
+                    <rect width="700" height="340" fill="#0f172a" rx="10"/>
+                    <line x1="50" y1="280" x2="650" y2="280" stroke="#334155" stroke-width="2"/>
+                    <line x1="50" y1="40" x2="50" y2="280" stroke="#334155" stroke-width="2"/>
+                    
+                    <!-- X Axis Labels -->
+                    <text x="140" y="305" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Input (Standard)</text>
+                    <text x="300" y="305" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Input (Cached Write)</text>
+                    <text x="460" y="305" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Input (Cache Read)</text>
+                    <text x="600" y="305" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Output (Gen)</text>
+                    
+                    <!-- Bars -->
+                    <!-- Standard Input Bar (100% cost) -->
+                    <rect x="100" y="80" width="80" height="200" fill="#38bdf8" rx="4"/>
+                    <text x="140" y="180" fill="#0f172a" font-family="sans-serif" font-weight="bold" font-size="14" text-anchor="middle">$3.00</text>
+                    <text x="140" y="70" fill="#38bdf8" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">100% Cost</text>
+                    
+                    <!-- Cache Write Bar (125% cost once) -->
+                    <rect x="260" y="30" width="80" height="250" fill="#fbbf24" rx="4"/>
+                    <text x="300" y="150" fill="#0f172a" font-family="sans-serif" font-weight="bold" font-size="14" text-anchor="middle">$3.75</text>
+                    <text x="300" y="20" fill="#fbbf24" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">125% (Write)</text>
+                    
+                    <!-- Cache Read Bar (10% cost multi-use) -->
+                    <rect x="420" y="260" width="80" height="20" fill="#10b981" rx="4"/>
+                    <text x="460" y="250" fill="#10b981" font-family="sans-serif" font-weight="bold" font-size="14" text-anchor="middle">$0.30</text>
+                    <text x="460" y="235" fill="#10b981" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">10% (Read Hit)</text>
+                    
+                    <!-- Output Bar (Standard output cost) -->
+                    <rect x="560" y="100" width="80" height="180" fill="#a855f7" rx="4"/>
+                    <text x="600" y="190" fill="#0f172a" font-family="sans-serif" font-weight="bold" font-size="14" text-anchor="middle">$15.00</text>
+                    <text x="600" y="90" fill="#a855f7" font-family="sans-serif" font-weight="bold" font-size="12" text-anchor="middle">Output (High)</text>
+                    
+                    <!-- Y Axis Guide lines -->
+                    <line x1="50" y1="80" x2="650" y2="80" stroke="#1e293b" stroke-dasharray="4"/>
+                    <line x1="50" y1="260" x2="650" y2="260" stroke="#1e293b" stroke-dasharray="4"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="token-section">
+            <h3>💡 Why Prompt Caching Matters</h3>
+            <p>Prompt Caching allows users to flag static context (such as system instructions, document repositories, or multi-turn agent conversation history) to prevent Claude from re-processing the same tokens repeatedly. Cache hits represent a massive shift in performance and cost.</p>
+            <ul>
+                <li><strong>90% Cost Reduction:</strong> While standard input tokens cost $3.00 per million (on Claude 3.5 Sonnet), reading cached tokens only costs $0.30 per million.</li>
+                <li><strong>Latency Optimization:</strong> Pre-processed tokens skip the LLM evaluation phase, cutting Time-to-First-Token (TTFT) by up to 2x - 10x. This is critical for real-time chat widgets and fast agent execution loops.</li>
+                <li><strong>Caching Mechanics:</strong> Elements must be marked with <code>"type": "ephemeral"</code> in the API payload. Cache lasts 5 minutes and is refreshed automatically on any hit. Minimum cache sizes apply (e.g., 1,000 tokens for Sonnet/Opus).</li>
+            </ul>
+        </div>
+
+        <div class="token-section">
+            <h3>⚠️ Why Input Tokens Could Be a Bottleneck</h3>
+            <p>Relying solely on packing information into the prompt context creates systemic architectural bottlenecks:</p>
+            <ul>
+                <li><strong>Linear Scaling Costs:</strong> In multi-turn agent loops (such as Claude Code or software development loops), sending the entire file collection in each turn causes the input payload to scale linearly with the number of turns, quickly producing massive developer bills.</li>
+                <li><strong>Time-to-First-Token (TTFT):</strong> Even without cache, massive context windows take several seconds to ingest. For agentic systems making 20+ sequential tool calls, the execution time multiplies.</li>
+                <li><strong>Attention Degradation:</strong> Although Claude supports up to 200,000 tokens, placing crucial instructions or documents inside a massive prompt risks "lost in the middle" attention drops, yielding suboptimal tool selections.</li>
+            </ul>
+        </div>
+
+        <div class="token-section">
+            <h3>⚙️ Why RAG is Crucial</h3>
+            <p>Retrieval-Augmented Generation (RAG) acts as the filter between a vast document store and the LLM's finite context budget. Rather than passing everything, a vector database index resolves user queries and extracts only the top-k most relevant text chunks.</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-val">10x - 100x</div>
+                    <div class="metric-label">Input Size Reduction</div>
+                    <div class="metric-desc">RAG extracts only key pieces of information, keeping prompt length low.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-val">99%</div>
+                    <div class="metric-label">Less Hallucination</div>
+                    <div class="metric-desc">Grounds replies in real, fetched reference material.</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-val">Predictable</div>
+                    <div class="metric-label">Cost Profiles</div>
+                    <div class="metric-desc">Controls billing scales even with petabytes of enterprise data.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="token-section">
+            <h3>💵 Estimated Costs & Caching Projections</h3>
+            <p>Comparison table of token pricing schemas across Claude models (Pricing expressed per 1 Million Tokens):</p>
+            
+            <table class="token-table">
+                <thead>
+                    <tr>
+                        <th>Model Name</th>
+                        <th>Standard Input</th>
+                        <th>Cache Write (Setup)</th>
+                        <th>Cache Read (Hit)</th>
+                        <th>Standard Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Claude 3.5 Sonnet</strong></td>
+                        <td>$3.00</td>
+                        <td>$3.75</td>
+                        <td>$0.30</td>
+                        <td>$15.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude 3.5 Haiku</strong></td>
+                        <td>$0.80</td>
+                        <td>$1.00</td>
+                        <td>$0.08</td>
+                        <td>$4.00</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Claude 3 Opus</strong></td>
+                        <td>$15.00</td>
+                        <td>$18.75</td>
+                        <td>$1.50</td>
+                        <td>$75.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Cost Projection Experiment</h3>
+            <p>Suppose you run an agentic software assistant that processes <strong>100,000 tokens</strong> of codebase context, performing <strong>10 sequential chat modifications</strong> (turns) on Claude 3.5 Sonnet:</p>
+            <ul>
+                <li><strong>Scenario A: Standard (No Cache):</strong> 10 turns x 100k input = 1,000,000 input tokens. <br><strong>Cost: 1.0M * $3.00 = $3.00</strong></li>
+                <li><strong>Scenario B: With Prompt Caching:</strong> 1 write setup (100k * $3.75 = $0.375) + 9 read hits (900k * $0.30 = $0.270). <br><strong>Cost: $0.375 + $0.270 = $0.645</strong></li>
+                <li><strong>Net Savings:</strong> <strong>78.5% cost reduction</strong> & massive reduction in request latencies!</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

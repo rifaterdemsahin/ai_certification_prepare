@@ -681,6 +681,19 @@
             <p class="subtitle">Master the Claude Developer Certification with 57 advanced questions covering multi-agent orchestration, error handling, and Claude Code configuration. Each question includes visual diagrams to reinforce concepts.</p>
         </header>
 
+        <!-- Prominent High-Contrast View Mode Selector -->
+        <div class="top-mode-selector" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; background: var(--bg-secondary); border: 2px solid var(--border); border-radius: 12px; padding: 20px; align-items: center; box-shadow: 0 8px 30px rgba(0,0,0,0.3); flex-wrap: wrap;">
+            <span style="font-weight: 700; font-size: 1.2em; display: flex; align-items: center; gap: 8px; color: var(--text-primary);">
+                🧠 Choose Layout:
+            </span>
+            <button id="topModeScroll" onclick="setViewMode('scroll')" style="padding: 16px 32px; font-size: 1.1em; font-weight: 800; border-radius: 8px; border: 3px solid var(--accent-blue); background: transparent; color: var(--accent-blue); cursor: pointer; transition: all 0.3s; letter-spacing: 0.5px;">
+                ☰ Scroll Mode (All Questions)
+            </button>
+            <button id="topModeSlideshow" onclick="setViewMode('slideshow')" style="padding: 16px 32px; font-size: 1.1em; font-weight: 800; border-radius: 8px; border: 3px solid var(--accent-purple); background: transparent; color: var(--accent-purple); cursor: pointer; transition: all 0.3s; letter-spacing: 0.5px;">
+                ▶ Slideshow Mode (One by One)
+            </button>
+        </div>
+
         <!-- Progress Stats -->
         <div class="stats">
             <div class="stat-card">
@@ -854,7 +867,7 @@
                 }
                 
                 console.log('Rendering questions...');
-                renderQuestions();
+                setViewMode(viewMode);
                 updateStats();
                 populateScenarioFilter();
                 console.log('✓ Data loaded successfully');
@@ -883,8 +896,36 @@
 
         function setViewMode(mode) {
             viewMode = mode;
-            document.getElementById('modeScroll').classList.toggle('active', mode === 'scroll');
-            document.getElementById('modeSlideshow').classList.toggle('active', mode === 'slideshow');
+            
+            // Sync bottom/filter buttons if they exist
+            const modeScroll = document.getElementById('modeScroll');
+            const modeSlideshow = document.getElementById('modeSlideshow');
+            if (modeScroll) modeScroll.classList.toggle('active', mode === 'scroll');
+            if (modeSlideshow) modeSlideshow.classList.toggle('active', mode === 'slideshow');
+            
+            // Sync top buttons with high contrast colors
+            const topScroll = document.getElementById('topModeScroll');
+            const topSlideshow = document.getElementById('topModeSlideshow');
+            if (topScroll && topSlideshow) {
+                if (mode === 'scroll') {
+                    topScroll.style.background = 'var(--accent-blue)';
+                    topScroll.style.color = '#0f172a';
+                    topScroll.style.boxShadow = '0 0 15px rgba(56, 189, 248, 0.4)';
+                    
+                    topSlideshow.style.background = 'transparent';
+                    topSlideshow.style.color = 'var(--accent-purple)';
+                    topSlideshow.style.boxShadow = 'none';
+                } else {
+                    topScroll.style.background = 'transparent';
+                    topScroll.style.color = 'var(--accent-blue)';
+                    topScroll.style.boxShadow = 'none';
+                    
+                    topSlideshow.style.background = 'var(--accent-purple)';
+                    topSlideshow.style.color = '#ffffff';
+                    topSlideshow.style.boxShadow = '0 0 15px rgba(168, 85, 247, 0.4)';
+                }
+            }
+
             if (mode === 'slideshow') {
                 currentSlideIndex = 0;
             }

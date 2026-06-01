@@ -23,6 +23,8 @@
 
 
 ## ✅ Done
+- [x] Update CLAUDE.md as single source of truth: fix question count (124), expand Azure container map (3→7), rebuild directory layout, add data-loading pattern and Cloudflare Workers section (`f800847`)
+- [x] Align antigravity.md: remove generic template language, add deduplication + agent-file protocol, delegate shared rules to CLAUDE.md (`3b7aa85`)
 - [x] Update bmad.html with dual meaning (Breakthrough Method Agile Delivery + Build Model Apply Deliver), upload to Azure, add Azure upload skill to claude.md, gitignore backups
 - [x] Create a task to backup the data that is in the system, define the formula document in [backup_system_data.md](file:///Users/rifaterdemsahin/projects/claude_certification_exam/4_Formula/backup_system_data.md) and implement the Python utility in [backup_data.py](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/scripts/backup_data.py)
 - [x] Hide already used concepts, questions, and memory cards from the "Add Items to Outline" select pickers in the Visual Story Writer (`story.html`) and dynamically refresh them.

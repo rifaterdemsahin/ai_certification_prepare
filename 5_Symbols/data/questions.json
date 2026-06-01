@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-05-31T10:58:54.259Z",
+  "updatedAt": "2026-06-01T18:54:47.000Z",
   "questions": [
     {
       "id": 1,
@@ -1854,6 +1854,45 @@
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q100_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q100.md",
       "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'observability' in agent systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+    },
+    {
+      "id": 101,
+      "category": 1,
+      "question": "What is SWE-bench and how is it used to evaluate AI coding agents?",
+      "answer": "SWE-bench is a benchmark of real GitHub issues from popular Python repos; it measures an AI agent's ability to autonomously produce correct code patches, making it the standard for evaluating practical software engineering capability.",
+      "concepts": [
+        "agentic-architecture",
+        "benchmarking"
+      ],
+      "uid": "CAT01-Q101",
+      "youtubeShortUrl": "",
+      "audioUrl": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q101.mp3",
+      "imageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q101_v1.png",
+      "googleImageUrl": "https://www.google.com/search?tbm=isch&q=What%20is%20SWE-bench%20and%20how%20is%20it%20used%20to%20evaluate%20AI%20coding%20agents%3F%20SWE-bench%20is%20a%20benchmark%20of%20real%20GitHub%20issues%20from%20popular%20Python%20repos%3B%20it%20measures%20an%20AI%20agent%27s%20ability%20to%20autonomously%20produce%20correct%20code%20patches%2C%20making%20it%20the%20standard%20for%20evaluating%20practical%20software%20engineering%20capability.%20claude%20llm",
+      "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20SWE-bench%20and%20how%20is%20it%20used%20to%20evaluate%20AI%20coding%20agents%3F%20tutorial",
+      "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q101_v1.png",
+      "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q101.md",
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is SWE-bench and how is it used to evaluate AI coding agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+    },
+    {
+      "id": 124,
+      "category": 2,
+      "question": "What is 'function calling' capability in Claude's API and how does it enable tool use?",
+      "answer": "Function calling lets Claude output structured JSON specifying a tool name and arguments; the caller executes the tool and returns the result, enabling Claude to access external data and take real-world actions.",
+      "concepts": [
+        "tool-use",
+        "function-calling",
+        "mcp"
+      ],
+      "uid": "CAT02-Q124",
+      "youtubeShortUrl": "",
+      "audioUrl": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q124.mp3",
+      "imageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q124_v1.png",
+      "googleImageUrl": "https://www.google.com/search?tbm=isch&q=What%20is%20%27function%20calling%27%20capability%20in%20Claude%27s%20API%20and%20how%20does%20it%20enable%20tool%20use%3F%20Function%20calling%20lets%20Claude%20output%20structured%20JSON%20specifying%20a%20tool%20name%20and%20arguments%3B%20the%20caller%20executes%20the%20tool%20and%20returns%20the%20result%2C%20enabling%20Claude%20to%20access%20external%20data%20and%20take%20real-world%20actions.%20claude%20llm",
+      "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20%27function%20calling%27%20capability%20in%20Claude%27s%20API%20and%20how%20does%20it%20enable%20tool%20use%3F%20tutorial",
+      "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q124_v1.png",
+      "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q124.md",
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'function calling' capability in Claude's API and how does it enable tool use?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
     }
   ],
   "categories": {

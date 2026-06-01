@@ -35,7 +35,9 @@ module.exports = async function (context, req) {
         const mime = contentType || 'image/png';
         const ext = mime.split('/')[1].replace('jpeg', 'jpg').split('+')[0] || 'png';
         const cleanUsername = (username || 'anon').toLowerCase().replace(/[^a-z0-9]/g, '_');
-        const filename = `story-img-${cleanUsername}-${Date.now()}.${ext}`;
+        // Unique filename: username + timestamp (ms) + 8 random alphanumeric chars
+        const rand = Math.random().toString(36).substr(2, 8);
+        const filename = `story-img-${cleanUsername}-${Date.now()}-${rand}.${ext}`;
 
         const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
         const containerClient = blobServiceClient.getContainerClient("story-images");

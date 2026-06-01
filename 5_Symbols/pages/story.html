@@ -1344,13 +1344,9 @@
                     showToast(`Image uploaded to Azure: ${truncateText(node.title, 30)}`);
 
                 } catch (err) {
-                    // Fallback: keep base64 locally so the image isn't lost
-                    node.image = ev.target.result;
-                    renderStoryFeed();
-                    refreshTransitionImgSection(node);
-                    saveStoryQuietly();
-                    logToDebugConsole(`[PASTE] ⚠ Azure upload failed (${err.message}) — stored as base64 temporarily`, 'info');
-                    showToast('Image saved locally — Azure upload failed');
+                    // Never store base64 — surface the error so the user knows to retry
+                    logToDebugConsole(`[PASTE] ✖ Azure upload failed (${err.message}) — image not attached`, 'info');
+                    showToast('Image upload failed — please retry (check Azure connection)');
                 }
             };
             reader.readAsDataURL(file);
@@ -2276,7 +2272,16 @@ Make the tone professional, reflective, and tailored for a developer setting up 
 
         // Quota-safe localStorage writer: tries full save, falls back to image-free save
         function persistStory(quiet) {
-            const payload = JSON.stringify(storyData);
+            // Safety net: never persist base64 images — only Azure blob URL references allowed
+            const safeNodes = storyData.nodes.map(n => {
+                if (n.image && n.image.startsWith('data:')) {
+                    logToDebugConsole(`[PERSIST] Stripped base64 image from node "${truncateText(n.title, 28)}" — upload to Azure first`, 'info');
+                    const { image, ...rest } = n;
+                    return rest;
+                }
+                return n;
+            });
+            const payload = JSON.stringify({ ...storyData, nodes: safeNodes });
             try {
                 localStorage.setItem('claude_cert_story_feed_data', payload);
                 if (!quiet) logToDebugConsole('Saved story to localStorage.', 'azure-success');

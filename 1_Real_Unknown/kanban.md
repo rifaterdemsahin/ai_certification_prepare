@@ -24,6 +24,10 @@
 
 
 ## ✅ Done
+- [x] Add top-down visual study story writer with AI text generator and JSON saving (`5408808`)
+- [x] Migrate exam question markdown files to Azure Blob Storage and update references (`d9e1d4c`)
+- [x] Migrate core concept markdown files to Azure Blob Storage and update references (`b2014d7`)
+- [x] File removal for the assets (`00863ff`)
 - [x] Add Generate the audio files upload to azure and add Kokoro audio play button to pro-exam.html > https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/pro-exam.html
 - [x] Add Category selection + 🤖 Generate Template button + 📋 Copy AI Prompt button to analyse_renderer.html new-page creation form
 - [x] Update remember.html: show Azure memory palace images when answer revealed, improved ⬅️/👁️/➡️ nav buttons with icons, 🔊 audio play button scaffold

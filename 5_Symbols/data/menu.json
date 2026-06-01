@@ -59,6 +59,7 @@
     "label": "🔍 4. Evaluate",
     "sublabel": "Collaborate",
     "items": [
+      { "emoji": "🎓", "label": "Evaluate Certificates", "href": "evaluate_certificates.html" },
       { "emoji": "💬", "label": "Discussion Board", "href": "understand.html" },
       { "emoji": "📊", "label": "Pricing", "href": "claude_pricing.html" },
       { "emoji": "🎮", "label": "Multiplayer", "href": "multiplayer.html" }

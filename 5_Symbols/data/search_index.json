@@ -31,6 +31,7 @@
   { "title": "Performance Statistics", "desc": "Review statistics, error metrics, and recommendations based on study progress.", "href": "analyse.html" },
   { "title": "Discussion Board", "desc": "Collaborate and discuss tricky exam scenarios with other developers.", "href": "understand.html" },
   { "title": "Claude Pricing Metrics", "desc": "Detailed cost charts, context budgets, and caching returns.", "href": "claude_pricing.html" },
+  { "title": "Evaluate AI Certifications", "desc": "Detailed landscape comparison of major cloud and developer certifications, including Anthropic's Claude Developer & Architect credentials.", "href": "evaluate_certificates.html" },
   { "title": "Multiplayer Mode", "desc": "Cooperative learning dashboard with real-time MQTT message sync.", "href": "multiplayer.html" },
   { "title": "Vote for Videos", "desc": "Community upvoting system for ranking video tutorials and mnemonics.", "href": "create.html" },
   { "title": "Creator Workspace", "desc": "Developer page for recording video scripts, mnemonics, and assets.", "href": "creator.html" },

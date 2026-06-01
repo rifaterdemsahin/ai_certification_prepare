@@ -16,6 +16,15 @@
     </header>
 
     <div class="container">
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <span>Filter:</span>
+            <button class="filter-btn active" id="filter-all" onclick="setFilter('all')">All</button>
+            <button class="filter-btn" id="filter-unmastered" onclick="setFilter('unmastered')">Unmastered</button>
+            <button class="filter-btn" id="filter-mastered" onclick="setFilter('mastered')">Mastered</button>
+            <button class="reset-btn" onclick="resetMastery()" style="margin-left: auto;">🗑️ Reset Mastery</button>
+        </div>
+
         <div class="remember-container">
             <div id="remember-content"></div>
         </div>
@@ -40,16 +49,96 @@
     <script src="../js/utils.js"></script>
     <script>
         function initRemember() {
+            state.filter = 'all';
             state.rememberIndex = 0;
             state.showRememberAnswer = false;
             renderRemember();
         }
 
+        function getFilteredQuestions() {
+            if (state.filter === 'mastered') {
+                return questionsData.filter(q => state.progress[q.id]);
+            } else if (state.filter === 'unmastered') {
+                return questionsData.filter(q => !state.progress[q.id]);
+            }
+            return questionsData;
+        }
+
+        function setFilter(filterType) {
+            state.filter = filterType;
+            state.rememberIndex = 0;
+            state.showRememberAnswer = false;
+            
+            // Update active class on filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const btnType = btn.id.replace('filter-', '');
+                btn.classList.toggle('active', btnType === filterType);
+            });
+            
+            renderRemember();
+        }
+
+        function toggleMastery(id) {
+            if (state.progress[id]) {
+                delete state.progress[id];
+            } else {
+                state.progress[id] = true;
+                showMasteredReward();
+            }
+            saveProgress(state.progress);
+            renderRemember();
+        }
+
+        function showMasteredReward() {
+            const reward = document.createElement('div');
+            reward.className = 'mastered-reward';
+            reward.innerHTML = `
+                <div class="mastered-reward-inner">
+                    <div class="emoji">🎉</div>
+                    <div>Question Mastered!</div>
+                </div>
+            `;
+            document.body.appendChild(reward);
+            setTimeout(() => reward.remove(), 1200);
+        }
+
+        function resetMastery() {
+            if (confirm('Are you sure you want to reset all mastered progress?')) {
+                state.progress = {};
+                saveProgress(state.progress);
+                state.rememberIndex = 0;
+                state.showRememberAnswer = false;
+                renderRemember();
+            }
+        }
+
         function renderRemember() {
             const container = document.getElementById('remember-content');
-            const q = questionsData[state.rememberIndex];
+            const filtered = getFilteredQuestions();
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="remember-card fade-in" style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 3em; margin-bottom: 20px;">🎉</div>
+                        <h3>No questions found!</h3>
+                        <p style="color: var(--text-secondary); margin-top: 10px; margin-bottom: 20px;">
+                            ${state.filter === 'unmastered' 
+                                ? 'Congratulations! You have mastered all questions under this view.' 
+                                : 'No questions match the current filter.'}
+                        </p>
+                        <button class="mastery-btn" onclick="setFilter('all')">Show All Questions</button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (state.rememberIndex >= filtered.length) {
+                state.rememberIndex = 0;
+            }
+
+            const q = filtered[state.rememberIndex];
             const hint = questionHints[q.id];
-            const isLast = state.rememberIndex >= questionsData.length - 1;
+            const isLast = state.rememberIndex >= filtered.length - 1;
 
             const audioUrl = q.audioUrl || '';
             const audioBtn = audioUrl ? `
@@ -57,23 +146,33 @@
                     🔊 Play Audio
                 </button>` : '';
 
+            const isMastered = !!state.progress[q.id];
+            const masteryBtn = `
+                <button class="mastery-btn ${isMastered ? 'mastered' : ''}" onclick="event.stopPropagation(); toggleMastery('${q.id}')">
+                    ${isMastered ? '✅ Mastered' : '🎯 Mark Mastered'}
+                </button>
+            `;
+
             container.innerHTML = `
                 <div class="remember-card fade-in" onclick="toggleAnswer()">
                     <div class="quiz-meta">
                         <span class="card-category cat-${q.category}">${categories[q.category].name}</span>
-                        <span>${state.rememberIndex + 1} / ${questionsData.length}</span>
+                        <span>${state.rememberIndex + 1} / ${filtered.length}</span>
                     </div>
 
                     <div class="exam-progress-bar">
                         <div class="progress-label">Progress</div>
                         <div class="progress-track">
-                            <div class="progress-fill" style="width: ${(state.rememberIndex / questionsData.length) * 100}%"></div>
+                            <div class="progress-fill" style="width: ${(state.rememberIndex / filtered.length) * 100}%"></div>
                         </div>
                     </div>
 
                     <div class="remember-question">${escapeHtml(q.question)}</div>
 
-                    ${audioBtn}
+                    <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                        ${audioBtn}
+                        ${masteryBtn}
+                    </div>
 
                     ${state.showRememberAnswer ? `
                         <div class="remember-answer">${escapeHtml(q.answer)}</div>
@@ -131,7 +230,10 @@
 
         function nextRemember() {
             stopAudio();
-            if (state.rememberIndex < questionsData.length - 1) {
+            const filtered = getFilteredQuestions();
+            if (filtered.length === 0) return;
+
+            if (state.rememberIndex < filtered.length - 1) {
                 state.rememberIndex++;
                 state.showRememberAnswer = false;
             } else {

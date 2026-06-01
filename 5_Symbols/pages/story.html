@@ -1167,6 +1167,7 @@
         // Story Structure state
         let storyData = {
             username: "Claude Scholar",
+            startNodeId: null,
             nodes: []
         };
 
@@ -2296,15 +2297,23 @@ Make the tone professional, reflective, and tailored for a developer setting up 
         // Quota-safe localStorage writer: tries full save, falls back to image-free save
         function persistStory(quiet) {
             // Safety net: never persist base64 images — only Azure blob URL references allowed
-            const safeNodes = storyData.nodes.map(n => {
-                if (n.image && n.image.startsWith('data:')) {
-                    logToDebugConsole(`[PERSIST] Stripped base64 image from node "${truncateText(n.title, 28)}" — upload to Azure first`, 'info');
-                    const { image, ...rest } = n;
-                    return rest;
+            // Update node connections and set startNodeId
+            const safeNodes = storyData.nodes.map((n, idx) => {
+                const nodeCopy = { ...n };
+                if (nodeCopy.image && nodeCopy.image.startsWith('data:')) {
+                    logToDebugConsole(`[PERSIST] Stripped base64 image from node "${truncateText(nodeCopy.title, 28)}" — upload to Azure first`, 'info');
+                    delete nodeCopy.image;
                 }
-                return n;
+                const nextNode = storyData.nodes[idx + 1];
+                nodeCopy.next = nextNode ? nextNode.id : null;
+                return nodeCopy;
             });
-            const payload = JSON.stringify({ ...storyData, nodes: safeNodes });
+            
+            const startNodeId = storyData.nodes.length > 0 ? storyData.nodes[0].id : null;
+            storyData.startNodeId = startNodeId;
+            storyData.nodes = safeNodes;
+
+            const payload = JSON.stringify(storyData);
             try {
                 localStorage.setItem('claude_cert_story_feed_data', payload);
                 if (!quiet) logToDebugConsole('Saved story to localStorage.', 'azure-success');
@@ -2313,7 +2322,14 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             } catch (e) {
                 if (e.name === 'QuotaExceededError' || e.code === 22 || e.code === 1014) {
                     // Strip images and retry
-                    const slim = { ...storyData, nodes: storyData.nodes.map(n => { const c = { ...n }; delete c.image; return c; }) };
+                    const slimNodes = storyData.nodes.map((n, idx) => {
+                        const c = { ...n };
+                        delete c.image;
+                        const nextNode = storyData.nodes[idx + 1];
+                        c.next = nextNode ? nextNode.id : null;
+                        return c;
+                    });
+                    const slim = { ...storyData, startNodeId, nodes: slimNodes };
                     try {
                         localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(slim));
                         logToDebugConsole('[SAVE] Images omitted from cache — payload too large for localStorage.', 'info');
@@ -2347,6 +2363,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
                 try {
                     const data = JSON.parse(stored);
                     storyData.username = data.username || "Claude Scholar";
+                    storyData.startNodeId = data.startNodeId || null;
                     storyData.nodes = data.nodes || [];
                     
                     usernameInput.value = storyData.username;
@@ -2629,6 +2646,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
                 const data = await response.json();
                 
                 storyData.username = data.username || "Claude Scholar";
+                storyData.startNodeId = data.startNodeId || null;
                 storyData.nodes = data.nodes || [];
                 
                 usernameInput.value = storyData.username;

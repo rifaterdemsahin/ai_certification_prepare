@@ -27,19 +27,20 @@ Two copies always exist — one local (fast, offline-capable), one in Azure (dur
 ```json
 {
   "username": "Rifat Erdem Sahin",
+  "startNodeId": "node-1780337108535-l85db6nji",
   "nodes": [ ...array of node objects... ]
 }
 ```
 
 ### Node Types
 
-| type         | what it is                        | key fields                        |
-|--------------|-----------------------------------|-----------------------------------|
-| `concept`    | A core study concept (Analyse)    | `refId`, `title`, `referenceText` |
-| `question`   | An exam question (Remember)       | `refId`, `checked`                |
-| `memory-card`| A memory card (Understand)        | `qNum`, `referenceText`           |
-| `transition` | Connective narrative between nodes| `notes`, `image` (blob URL)       |
-| `custom`     | Free-form personal objective      | `title`, `notes`                  |
+| type         | what it is                        | key fields                                     |
+|--------------|-----------------------------------|------------------------------------------------|
+| `concept`    | A core study concept (Analyse)    | `refId`, `title`, `referenceText`, `next`      |
+| `question`   | An exam question (Remember)       | `refId`, `checked`, `next`                     |
+| `memory-card`| A memory card (Understand)        | `qNum`, `referenceText`, `next`                |
+| `transition` | Connective narrative between nodes| `notes`, `image` (blob URL), `next`            |
+| `custom`     | Free-form personal objective      | `title`, `notes`, `next`                       |
 
 ### Full Node Example
 
@@ -50,7 +51,8 @@ Two copies always exist — one local (fast, offline-capable), one in Azure (dur
   "title": "Connective Transition",
   "notes": "Write the connective narrative that bridges your story here...",
   "color": "orange",
-  "image": "https://claudecertstore.blob.core.windows.net/story-images/story-img-rifat_erdem_sahin-1780337113812-utraro7d.png"
+  "image": "https://claudecertstore.blob.core.windows.net/story-images/story-img-rifat_erdem_sahin-1780337113812-utraro7d.png",
+  "next": "node-1780337171135-8v6l5q4p1"
 }
 ```
 

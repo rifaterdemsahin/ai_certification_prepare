@@ -145,7 +145,15 @@
     }
 
     function isActive(href) {
-        return getCurrentPage() === href;
+        if (!href || href.startsWith('http')) return false;
+        const currentPage = getCurrentPage();
+        const currentFull = window.location.pathname.split('/').pop() + window.location.search;
+        // Exact match (including query string) or base filename match
+        return currentFull === href || currentPage === href.split('?')[0];
+    }
+
+    function groupHasActive(group) {
+        return group.items.some(item => !item.isHeader && !item.isDivider && isActive(item.href));
     }
 
     function getDebugUrl(item) {
@@ -264,8 +272,9 @@
 
         // Bloom taxonomy dropdowns
         navItems.forEach(group => {
+            const parentActive = groupHasActive(group) ? ' active-group' : '';
             html += '<div class="nav-dropdown">';
-            html += '<button class="nav-dropdown-btn">' + group.label + ' <span class="nav-sublabel">' + group.sublabel + '</span></button>';
+            html += '<button class="nav-dropdown-btn' + parentActive + '">' + group.label + ' <span class="nav-sublabel">' + group.sublabel + '</span></button>';
             html += '<div class="nav-dropdown-content">';
             group.items.forEach(item => {
                 if (item.isHeader) {
@@ -517,6 +526,15 @@
         }
         .nav-dropdown-btn:hover {
             background: rgba(255,255,255,0.08);
+        }
+        .nav-dropdown-btn.active-group {
+            color: var(--accent-blue, #38bdf8);
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+        .nav-dropdown-btn.active-group .nav-sublabel {
+            color: var(--accent-blue, #38bdf8);
+            opacity: 0.7;
         }
         .nav-sublabel {
             font-size: 0.85em;
@@ -956,8 +974,9 @@
 
         let html = '';
         menuData.forEach(group => {
+            const parentActive = groupHasActive(group) ? ' active-group' : '';
             html += '<div class="nav-dropdown">';
-            html += '<button class="nav-dropdown-btn">' + group.label + ' <span class="nav-sublabel">' + group.sublabel + '</span></button>';
+            html += '<button class="nav-dropdown-btn' + parentActive + '">' + group.label + ' <span class="nav-sublabel">' + group.sublabel + '</span></button>';
             html += '<div class="nav-dropdown-content">';
             group.items.forEach(item => {
                 if (item.isHeader) {

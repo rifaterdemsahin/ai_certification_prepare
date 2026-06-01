@@ -23,6 +23,8 @@
 
 
 ## ✅ Done
+- [x] Highlight active menu group in navbar — active-group CSS on dropdown button, isActive handles query params, renderMenu updated (`077a3cc`+)
+- [x] Fix menu.json trailing comma bug and add missing Story Canvas entry to Create menu
 - [x] Move quick_memory, add_memory_card, and analyse_renderer?action=new into ⚙️ Admin group under Create menu; remove from Remember and Analyse menus; upload menu.json to Azure
 - [x] Add top-down visual study story writer with AI text generator and JSON saving (`5408808`)
 - [x] Migrate exam question markdown files to Azure Blob Storage and update references (`d9e1d4c`)

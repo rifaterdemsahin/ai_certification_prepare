@@ -52,7 +52,7 @@
       { "emoji": "🔗", "label": "AI Weak Links", "href": "https://youtu.be/xBpGn3BDcOY?t=1974", "external": true },
       { "emoji": "🪐", "label": "Jupiter Labs AI Code", "href": "https://youtu.be/uWXgHi9m-GY?t=395", "external": true },
       { "emoji": "🧘", "label": "AI Mental Health", "href": "https://youtu.be/Ykvf3MunGf8", "external": true },
-      { "emoji": "🌍", "label": "World Model (Gemini)", "href": "https://www.youtube.com/watch?v=KUyRq7szZsM", "external": true },
+      { "emoji": "🌍", "label": "World Model (Gemini)", "href": "https://www.youtube.com/watch?v=KUyRq7szZsM", "external": true }
     ]
   },
   {
@@ -72,6 +72,7 @@
       { "emoji": "🎬", "label": "Creator", "href": "creator.html" },
       { "emoji": "🏛️", "label": "Tactics", "href": "tactics.html" },
       { "emoji": "🎧", "label": "Multi-Media Learning", "href": "multi_media_learning.html" },
+      { "emoji": "📖", "label": "Story Canvas", "href": "story.html" },
       { "emoji": "📝", "label": "Prompts", "href": "markdown_renderer.html?url=../../prompts.md&title=Prompts" },
       { "emoji": "📦", "label": "GitHub Repo", "href": "https://github.com/rifaterdemsahin/claude_certification_exam", "external": true },
       { "isHeader": true, "label": "⚙️ Admin" },

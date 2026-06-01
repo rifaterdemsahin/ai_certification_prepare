@@ -120,6 +120,106 @@
             background: var(--border);
             margin: 32px 0;
         }
+
+        /* Stance / Philosophy section */
+        .stance-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .stance-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-green));
+        }
+        .stance-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .stance-icon {
+            font-size: 2em;
+        }
+        .stance-header h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        .stance-lead {
+            font-size: 1.15em;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .stance-body > p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        .stance-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stance-pillar {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .stance-pillar:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+        .pillar-icon {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        .stance-pillar h3 {
+            font-size: 0.95em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+        .stance-pillar p {
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin: 0;
+        }
+        .stance-quote {
+            border-left: 3px solid var(--accent-purple);
+            margin: 0;
+            padding: 16px 20px;
+            background: rgba(168,85,247,0.06);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 1em;
+            line-height: 1.7;
+        }
+        .stance-quote cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-size: 0.85em;
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -151,6 +251,60 @@
                 </a>
             </div>
         </div>
+
+        <!-- Philosophy: Stance on Certification -->
+        <div class="stance-section">
+            <div class="stance-header">
+                <span class="stance-icon">🔄</span>
+                <h2>A Changed Stance on Certification</h2>
+            </div>
+            <div class="stance-body">
+                <p class="stance-lead">
+                    Rifat didn't start here to collect a certificate and move on. He started here because he was afraid of the exam.
+                </p>
+                <p>
+                    That fear became the engine. Instead of treating certification as a finish line — something you pass once, frame on the wall, and forget — he shifted to a completely different model: <strong>continuous certification</strong>. The goal is not a credential. The goal is the habit of showing up, studying, and staying current in a field that rewrites itself every few months.
+                </p>
+                <div class="stance-pillars">
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">😰</div>
+                        <h3>Fear as Fuel</h3>
+                        <p>The anxiety of sitting an AI exam is real. Rather than avoiding it, Rifat chose to walk toward it repeatedly — using the discomfort of testing as proof that he is still growing, not coasting.</p>
+                    </div>
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">🔁</div>
+                        <h3>Continuous, Not One-Off</h3>
+                        <p>Certifications expire. Skills drift. The commitment is to re-certify, re-study, and rebuild understanding whenever the landscape shifts — treating AI credentials the way software treats version numbers: always incrementing.</p>
+                    </div>
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">🧠</div>
+                        <h3>AI Skills + Self-Learning Skills Together</h3>
+                        <p>Every certification cycle trains two things at once: the AI content itself, and the meta-skill of learning how to learn. The study app, the memory cards, the practice exams — they are as much about building a learning system as they are about passing a test.</p>
+                    </div>
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">🚀</div>
+                        <h3>Breaking Out of Fixed Roles</h3>
+                        <p>Developer. Ops. DevOps. SRE. These were real roles — and real limitations. The AI era doesn't reward those who master a fixed identity. It rewards those who can move fluidly between problem spaces. Rifat is deliberately refusing to be pinned to any single lane.</p>
+                    </div>
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">🌱</div>
+                        <h3>Transformation as Self-Care</h3>
+                        <p>Staying relevant is not just a career strategy — it is a form of looking after yourself. Getting stuck in a role the world has moved past is stressful. Continuously learning with AI is how Rifat keeps his work meaningful, his options open, and his energy directed forward.</p>
+                    </div>
+                    <div class="stance-pillar">
+                        <div class="pillar-icon">🤝</div>
+                        <h3>Learning With AI, Not Just About AI</h3>
+                        <p>The distinction matters. Not studying AI as an outside observer, but using AI tools — Claude, Gemini, Kimi, DeepSeek — as active partners in the learning process itself. The certification is a waypoint. The partnership with AI is ongoing.</p>
+                    </div>
+                </div>
+                <blockquote class="stance-quote">
+                    "I don't want to be a Dev who learned AI. I don't want to be an Ops person who learned AI. I want to be someone who transforms with AI — and builds the habit of never stopping that transformation."
+                    <cite>— Rifat Erdem Sahin</cite>
+                </blockquote>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
 
         <!-- AI & Career Development -->
         <div class="video-section">

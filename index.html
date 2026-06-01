@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Developer Certification - 100 Question Mastery</title>
+    <title>Claude Developer Certification - Study Mastery</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
     <link rel="stylesheet" href="5_Symbols/css/styles.css">
@@ -172,23 +172,23 @@
     <script src="5_Symbols/js/nav.js"></script>
     <header class="app-header">
         <h1>Claude Developer Certification</h1>
-        <p>100 Question Mastery with Visual Hints & Memory Aids</p>
+        <p id="header-subtitle">Question Mastery with Visual Hints & Memory Aids</p>
         <p style="margin-top:8px;font-size:0.85em;color:var(--accent-yellow);">🔨 Building the tools is the way to learn while creating the notes — that is the active self-learning process</p>
     </header>
 
     <div class="container">
         <!-- Stats Overview -->
         <div class="stats-grid">
-            <div class="stat-card"><div class="stat-number" id="total-count">100</div><div class="stat-label">Total Questions</div></div>
+            <div class="stat-card"><div class="stat-number" id="total-count">—</div><div class="stat-label">Total Questions</div></div>
             <div class="stat-card"><div class="stat-number" id="mastered-count">0</div><div class="stat-label">Mastered</div></div>
             <div class="stat-card"><div class="stat-number" id="completion-pct">0%</div><div class="stat-label">Completion</div></div>
-            <div class="stat-card"><div class="stat-number" id="remaining-count">100</div><div class="stat-label">Remaining</div></div>
+            <div class="stat-card"><div class="stat-number" id="remaining-count">—</div><div class="stat-label">Remaining</div></div>
         </div>
 
         <!-- Progress Section -->
         <div class="progress-section">
             <h2>Overall Progress</h2>
-            <div class="progress-text" id="progress-text">0 of 100 mastered (0%)</div>
+            <div class="progress-text" id="progress-text">Loading...</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
             </div>
@@ -206,7 +206,7 @@
                     <div>
                         <div style="font-size:1.5em; margin-bottom:8px;">🧠 1. Remember</div>
                         <strong>Memory Cards Mastered</strong>
-                        <p id="tracker-remember-label" style="font-size:1.1em; color:var(--accent-blue); font-weight:bold; margin-top:8px;">0 / 100 Mastered</p>
+                        <p id="tracker-remember-label" style="font-size:1.1em; color:var(--accent-blue); font-weight:bold; margin-top:8px;">0 / — Mastered</p>
                         <span style="font-size:0.75em; color:var(--text-muted);">Automatically calculated from memory cards marked as 'Correct'.</span>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
                 <div class="check-item">
                     <div class="check-box" id="chk1">☐</div>
                     <div class="check-label">
-                        <strong>All 100 Memory Cards Mastered</strong>
+                        <strong id="chk1-label">All Memory Cards Mastered</strong>
                         <span>Every card in the app shows the green "Mastered" badge. No gaps.</span>
                     </div>
                 </div>
@@ -467,6 +467,9 @@
             const total = questionsData.length;
             const percentage = Math.round((totalMastered / total) * 100);
 
+            document.title = `Claude Developer Certification - ${total} Question Mastery`;
+            document.getElementById('header-subtitle').textContent = `${total} Question Mastery with Visual Hints & Memory Aids`;
+            document.getElementById('chk1-label').textContent = `All ${total} Memory Cards Mastered`;
             document.getElementById('total-count').textContent = total;
             document.getElementById('mastered-count').textContent = totalMastered;
             document.getElementById('completion-pct').textContent = percentage + '%';
@@ -564,7 +567,7 @@
             const analyseCount = getAnalyseCount();
 
             // Update Remember label
-            document.getElementById('tracker-remember-label').textContent = `${rememberCount} / 100 Mastered`;
+            document.getElementById('tracker-remember-label').textContent = `${rememberCount} / ${questionsData.length} Mastered`;
             
             // Update Understand label
             document.getElementById('tracker-understand-label').textContent = `${tracker.understand || 0} Exams`;
@@ -648,7 +651,7 @@
         // Tactics: auto-check readiness boxes based on progress
         try {
             const totalMastered = Object.keys(state.progress).length;
-            if (totalMastered >= 100) {
+            if (totalMastered >= questionsData.length) {
                 const chk1 = document.getElementById('chk1');
                 if (chk1) { chk1.textContent = '✓'; chk1.classList.add('done'); }
             }

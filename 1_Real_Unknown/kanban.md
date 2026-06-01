@@ -23,6 +23,8 @@
 
 
 ## ✅ Done
+- [x] Update bmad.html with dual meaning (Breakthrough Method Agile Delivery + Build Model Apply Deliver), upload to Azure, add Azure upload skill to claude.md, gitignore backups
+- [x] Create a task to backup the data that is in the system, define the formula document in [backup_system_data.md](file:///Users/rifaterdemsahin/projects/claude_certification_exam/4_Formula/backup_system_data.md) and implement the Python utility in [backup_data.py](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/scripts/backup_data.py)
 - [x] Hide already used concepts, questions, and memory cards from the "Add Items to Outline" select pickers in the Visual Story Writer (`story.html`) and dynamically refresh them.
 - [x] Highlight active menu group in navbar — active-group CSS on dropdown button, isActive handles query params, renderMenu updated (`077a3cc`+)
 - [x] Fix menu.json trailing comma bug and add missing Story Canvas entry to Create menu

@@ -161,6 +161,47 @@ Run these checks regularly to keep the project healthy:
 - [ ] Add new errors in Semblance — `6_Semblance` (error logs, workarounds, gap analysis)
 - [ ] Update the tests folder — `7_Testing_Known` (validation checklists, test scripts, outcome confirmation)
 
+## Azure Asset Management
+
+### Storage Account
+- **Account:** `claudecertstore` (Azure Storage)
+- **Key retrieval:** `az storage account keys list --account-name claudecertstore --query "[0].value" -o tsv`
+
+### Uploading Files to Azure Blob Storage (Skill)
+
+Use this pattern whenever you need to upload HTML pages, images, or other assets:
+
+```bash
+STORAGE_KEY=$(az storage account keys list --account-name claudecertstore --query "[0].value" -o tsv)
+az storage blob upload \
+  --account-name claudecertstore \
+  --account-key "$STORAGE_KEY" \
+  --container-name <container-name> \
+  --name <blob-name> \
+  --file <local-file-path> \
+  --content-type "text/html" \
+  --overwrite
+```
+
+**Container map:**
+| Container | Purpose | Example blob |
+|---|---|---|
+| `analyse-pages` | Dynamic analysis HTML pages served via `analyse_renderer.html` | `bmad.html` |
+| `memory-cards` | Markdown memory cards | `MEM-Q001.md` |
+| `memory-images` | Images for memory cards | `IMG-Q001.png` |
+
+### Binary & Large File Convention
+
+**Never embed binaries or large data in git.** Use Azure Blob Storage and reference by URL:
+- ❌ Don't commit image files, audio files, or large JSON blobs to git
+- ✅ Upload to Azure Blob Storage and reference the public URL
+- ✅ In JSON data files, store only the URL string: `"imageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/IMG-Q001.png"`
+- ✅ In HTML, use `<img src="https://claudecertstore.blob.core.windows.net/...">` directly
+
+### Backups
+
+Local backup snapshots (under `5_Symbols/data/backups/`) are **gitignored** — they are local working copies only. The source of truth for Azure-hosted content is Azure Blob Storage, not git.
+
 ## Don'ts
 
 - Don't introduce build tools (npm, webpack, vite)
@@ -168,3 +209,4 @@ Run these checks regularly to keep the project healthy:
 - Don't add external dependencies without CDN approval
 - Don't break the single-file architecture
 - Don't modify cookie structure without migration plan
+- Don't commit binary files, images, audio, or local backup snapshots to git — use Azure Blob Storage

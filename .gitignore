@@ -47,3 +47,7 @@ test-results/
 .antigravitycli/
 .grok/
 
+# Azure asset backups (local only — source of truth is Azure Blob Storage)
+5_Symbols/data/backups/
+
+1_Real_Unknown/kanban.md

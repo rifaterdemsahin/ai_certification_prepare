@@ -597,6 +597,151 @@
             100% { opacity: 0; transform: translateY(10px); }
         }
 
+        /* Story Images Column */
+        .story-images-column {
+            width: 270px;
+            height: calc(100vh - 48px);
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            z-index: 9;
+            position: sticky;
+            top: 48px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .images-col-header {
+            padding: 14px 14px 10px;
+            border-bottom: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.7);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        .images-col-header h3 {
+            margin: 0 0 5px;
+            font-size: 0.85em;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .images-col-hint {
+            font-size: 0.72em;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .image-slots-list {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .story-image-slot {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: rgba(30, 41, 59, 0.4);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .story-image-slot:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+
+        .story-image-slot.active {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
+        .image-slot-label {
+            padding: 6px 9px;
+            font-size: 0.72em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        .story-image-slot.active .image-slot-label {
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.06);
+        }
+
+        .story-image-thumb {
+            width: 100%;
+            height: 115px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-slot-paste-zone {
+            height: 72px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.74em;
+            color: var(--text-secondary);
+            opacity: 0.55;
+            transition: opacity 0.2s;
+        }
+
+        .story-image-slot.active .image-slot-paste-zone {
+            opacity: 1;
+            color: var(--accent-blue);
+        }
+
+        .image-slot-paste-zone .paste-icon {
+            font-size: 1.5em;
+        }
+
+        .image-slot-del-btn {
+            position: absolute;
+            top: 26px;
+            right: 4px;
+            background: rgba(10, 14, 28, 0.75);
+            border: none;
+            border-radius: 6px;
+            color: var(--text-secondary);
+            font-size: 0.78em;
+            cursor: pointer;
+            padding: 3px 5px;
+            opacity: 0;
+            transition: opacity 0.2s, color 0.2s;
+        }
+
+        .story-image-slot:hover .image-slot-del-btn {
+            opacity: 1;
+        }
+
+        .image-slot-del-btn:hover {
+            color: var(--accent-red);
+        }
+
+        .image-col-empty {
+            padding: 28px 14px;
+            text-align: center;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            opacity: 0.7;
+        }
+
         /* Responsive layout mapping */
         @media (max-width: 900px) {
             .story-app {
@@ -610,6 +755,9 @@
             }
             .story-feed {
                 height: auto;
+            }
+            .story-images-column {
+                display: none;
             }
         }
 
@@ -790,6 +938,17 @@
             </div>
         </div>
 
+        <!-- Story Images Column -->
+        <div class="story-images-column" id="story-images-column">
+            <div class="images-col-header">
+                <h3>🖼️ Story Images</h3>
+                <div class="images-col-hint">Click a node, then paste an image (Ctrl+V)</div>
+            </div>
+            <div class="image-slots-list" id="story-image-slots">
+                <!-- Slots rendered by JS -->
+            </div>
+        </div>
+
         <!-- Sidebar Picker & Node Editor -->
         <div class="sidebar">
             
@@ -959,6 +1118,104 @@
             // Load saved story
             loadStory();
         });
+
+        // Paste image handler — attaches clipboard image to the selected node
+        document.addEventListener('paste', (e) => {
+            const items = Array.from(e.clipboardData?.items || []);
+            const imageItem = items.find(item => item.type.startsWith('image/'));
+            if (!imageItem) return;
+            e.preventDefault();
+
+            if (!selectedNodeId) {
+                logToDebugConsole('[PASTE] No node selected — click a story node first', 'info');
+                showToast('Select a story node first, then paste image (Ctrl+V)');
+                return;
+            }
+
+            const node = storyData.nodes.find(n => n.id === selectedNodeId);
+            if (!node) return;
+
+            const file = imageItem.getAsFile();
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                node.image = ev.target.result;
+                renderImageColumn();
+                saveStoryQuietly();
+                const kb = Math.round(ev.target.result.length / 1024);
+                logToDebugConsole(`[PASTE] Image stored on "${truncateText(node.title, 28)}" (${kb} KB base64)`, 'info');
+                showToast(`Image attached to: ${truncateText(node.title, 30)}`);
+            };
+            reader.readAsDataURL(file);
+        });
+
+        // Image column renderer — mirrors node order with image slots
+        function renderImageColumn() {
+            const slotsEl = document.getElementById('story-image-slots');
+            if (!slotsEl) return;
+            slotsEl.innerHTML = '';
+
+            const contentNodes = storyData.nodes.filter(n => n.type !== 'transition');
+            if (contentNodes.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'image-col-empty';
+                empty.textContent = 'Add story nodes to attach images to each step of your narrative.';
+                slotsEl.appendChild(empty);
+                return;
+            }
+
+            let displayIndex = 0;
+            storyData.nodes.forEach((node) => {
+                if (node.type === 'transition') return;
+                displayIndex++;
+
+                const slot = document.createElement('div');
+                slot.className = 'story-image-slot';
+                if (selectedNodeId === node.id) slot.classList.add('active');
+                slot.dataset.nodeId = node.id;
+                slot.addEventListener('click', () => selectNode(node.id));
+
+                const label = document.createElement('div');
+                label.className = 'image-slot-label';
+                label.textContent = `${displayIndex}. ${truncateText(node.title, 24)}`;
+                slot.appendChild(label);
+
+                if (node.image) {
+                    const img = document.createElement('img');
+                    img.src = node.image;
+                    img.className = 'story-image-thumb';
+                    img.alt = node.title;
+                    slot.appendChild(img);
+
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'image-slot-del-btn';
+                    delBtn.title = 'Remove image';
+                    delBtn.innerHTML = '🗑️';
+                    delBtn.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        delete node.image;
+                        renderImageColumn();
+                        saveStoryQuietly();
+                        logToDebugConsole(`[IMG] Image removed from "${node.title}"`, 'info');
+                    });
+                    slot.appendChild(delBtn);
+                } else {
+                    const zone = document.createElement('div');
+                    zone.className = 'image-slot-paste-zone';
+                    const icon = document.createElement('span');
+                    icon.className = 'paste-icon';
+                    icon.textContent = selectedNodeId === node.id ? '📋' : '🖼️';
+                    const hint = document.createElement('span');
+                    hint.textContent = selectedNodeId === node.id ? 'Ctrl+V to paste image' : 'Click → Ctrl+V';
+                    zone.appendChild(icon);
+                    zone.appendChild(hint);
+                    slot.appendChild(zone);
+                }
+
+                slotsEl.appendChild(slot);
+            });
+        }
 
         // 1. Initializers
         function initConceptPicker() {
@@ -1348,6 +1605,8 @@
                 } // end else (regular card)
                 timelineContainer.appendChild(nodeWrapper);
             });
+
+            renderImageColumn();
         }
 
         // 3. Node list reordering and selection mechanics
@@ -1408,6 +1667,8 @@
                         }
                     });
 
+                    renderImageColumn();
+
                     // Scroll editor into view on mobile screens
                     if (window.innerWidth <= 900) {
                         editorSection.scrollIntoView({ behavior: 'smooth' });
@@ -1415,6 +1676,7 @@
                 }
             } else {
                 editorSection.style.display = 'none';
+                renderImageColumn();
             }
         }
 

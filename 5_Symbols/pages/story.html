@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Story Writer - Claude Developer Certification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-app {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 48px);
+            position: relative;
+        }
+
+        /* Left/Center Vertical Story Area */
+        .story-feed {
+            flex: 1;
+            padding: 40px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #0b0f19;
+            box-sizing: border-box;
+        }
+
+        /* Greeting & Header */
+        .feed-header {
+            width: 100%;
+            max-width: 680px;
+            margin-bottom: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feed-header h2 {
+            margin: 0;
+            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .user-profile-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .user-profile-bar span {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .username-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed var(--accent-blue);
+            color: var(--accent-blue);
+            font-size: 0.95em;
+            font-weight: 600;
+            outline: none;
+            flex: 1;
+            padding: 2px 4px;
+        }
+
+        /* Vertical timeline stack */
+        .story-timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 680px;
+        }
+
+        .story-node-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .story-arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid var(--border);
+            margin: 12px 0;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        /* Node Cards */
+        .story-card {
+            width: 100%;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+            border-left: 5px solid var(--border);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .story-card:hover {
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.12);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .story-card.selected {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25), 0 12px 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-type-badge {
+            font-size: 0.75em;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+
+        .card-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        /* Narrative blocks */
+        .card-narrative-section {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .narrative-label {
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-orange);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .narrative-text {
+            font-size: 0.92em;
+            color: var(--text-primary);
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Reference block (collapsible details) */
+        .card-ref-details {
+            background: rgba(15, 23, 42, 0.3);
+            border-left: 3px solid var(--border);
+            border-radius: 4px;
+            padding: 10px 14px;
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+        }
+
+        .ref-label {
+            font-weight: 600;
+            font-size: 0.8em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* Footer buttons inside node card */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
+            margin-top: 12px;
+        }
+
+        .card-left-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .card-checkbox {
+            width: 15px;
+            height: 15px;
+            accent-color: var(--accent-green);
+            cursor: pointer;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .action-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-icon-btn:hover {
+            color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        .action-icon-btn.delete-btn:hover {
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.12);
+        }
+
+        .action-icon-btn:disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+        }
+
+        /* Color Coding Themes */
+        .card-theme-blue { border-left-color: var(--accent-blue); }
+        .card-theme-green { border-left-color: var(--accent-green); }
+        .card-theme-yellow { border-left-color: var(--accent-yellow); }
+        .card-theme-purple { border-left-color: var(--accent-purple); }
+        .card-theme-orange { border-left-color: var(--accent-orange); }
+        .card-theme-red { border-left-color: var(--accent-red); }
+
+        /* Story Transition Connectors */
+        .story-transition-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .transition-narrative-bubble {
+            background: rgba(245, 158, 11, 0.04);
+            border: 1px dashed rgba(245, 158, 11, 0.25);
+            border-radius: 12px;
+            padding: 12px 18px;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        .transition-narrative-bubble:hover {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: var(--accent-orange);
+            transform: scale(1.01);
+        }
+
+        .transition-narrative-bubble.selected {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25), 0 4px 12px rgba(245, 158, 11, 0.15);
+        }
+
+        .transition-narrative-quote {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            font-size: 2.2em;
+            color: rgba(245, 158, 11, 0.25);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .transition-narrative-content {
+            font-size: 0.88em;
+            color: var(--text-primary);
+            line-height: 1.45;
+            margin: 0;
+            font-style: italic;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .transition-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 4px;
+            margin-top: 6px;
+            border-top: 1px solid rgba(245, 158, 11, 0.08);
+            padding-top: 4px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .transition-narrative-bubble:hover .transition-actions {
+            opacity: 1;
+        }
+
+        .story-transition-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .add-transition-btn {
+            background: transparent;
+            border: 1px dashed var(--border);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .add-transition-btn:hover {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+            background: rgba(245, 158, 11, 0.04);
+            transform: translateY(-1px);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px dashed var(--border);
+            border-radius: 16px;
+            max-width: 500px;
+            margin-top: 40px;
+        }
+
+        .empty-state h3 {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Sidebar Panel (RHS Picker & Editor) */
+        .sidebar {
+            width: 380px;
+            height: 100%;
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+            overflow-y: auto;
+            position: sticky;
+            top: 48px;
+        }
+
+        .sidebar-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1.05em;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Form elements */
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.85em;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-color-picker {
+            display: flex;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.15s, border-color 0.15s;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.15);
+        }
+
+        .color-dot.active {
+            border-color: #fff;
+            transform: scale(1.1);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .form-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .form-btn-primary {
+            background: var(--accent-blue);
+            color: #0f172a;
+        }
+
+        .form-btn-primary:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        }
+
+        .form-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .form-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .form-btn-danger:hover {
+            background: var(--accent-red);
+            color: #fff;
+        }
+
+        .form-btn-orange {
+            background: var(--accent-orange);
+            color: #0f172a;
+        }
+
+        .form-btn-orange:hover {
+            opacity: 0.9;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Top Save Actions feedback block */
+        .toast-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--accent-green);
+            color: #0f172a;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+            z-index: 10000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: none;
+            animation: fadeInOut 2.5s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            15% { opacity: 1; transform: translateY(0); }
+            85% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(10px); }
+        }
+
+        /* Responsive layout mapping */
+        @media (max-width: 900px) {
+            .story-app {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--border);
+                position: static;
+            }
+            .story-feed {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+
+    <div class="story-app">
+        <!-- Feed Vertical Study Outline -->
+        <div class="story-feed">
+            <div class="feed-header">
+                <h2>📖 Personalized Visual Story Writer</h2>
+                <div class="user-profile-bar">
+                    <span>✍️ Story Writer:</span>
+                    <input type="text" id="username-input" class="username-input" placeholder="Your Name" oninput="onUsernameChange(this.value)">
+                </div>
+            </div>
+
+            <div class="story-timeline" id="story-timeline">
+                <!-- Node items will be generated here -->
+            </div>
+
+            <!-- Empty state when no nodes are on canvas -->
+            <div class="empty-state" id="empty-state" style="display:none;">
+                <h3>Your Study Story is empty</h3>
+                <p>Use the selector options in the right-hand panel to pick memory card questions, core concepts, or create personal objectives to structure your sequential story path.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Picker & Node Editor -->
+        <div class="sidebar">
+            
+            <!-- Global Story Actions -->
+            <div class="sidebar-section">
+                <h3>💾 Story Actions</h3>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="display:flex; gap:8px;">
+                        <button class="form-btn form-btn-primary" onclick="saveStory()" title="Save current story to LocalStorage">
+                            💾 Save Story
+                        </button>
+                        <button class="form-btn form-btn-secondary" onclick="loadStory()" title="Reload last saved story from LocalStorage">
+                            🔄 Load Story
+                        </button>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="form-btn form-btn-secondary" onclick="exportStoryJSON()" title="Export story structure as JSON file">
+                            📤 Export JSON
+                        </button>
+                        <button class="form-btn form-btn-secondary" onclick="triggerImport()" title="Import story structure from JSON file">
+                            📥 Import JSON
+                        </button>
+                        <input type="file" id="json-file-input" style="display:none;" accept=".json" onchange="importStoryJSON(event)">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Node Editor -->
+            <div class="sidebar-section" id="editor-section" style="display:none;">
+                <h3>✏️ Edit Selected Node</h3>
+                <input type="hidden" id="edit-node-id">
+                
+                <div class="form-group">
+                    <label for="edit-node-title">Item Title</label>
+                    <input type="text" class="form-input" id="edit-node-title" oninput="updateNodeFromForm()">
+                </div>
+                
+                <div class="form-group">
+                    <label for="edit-node-notes">Personalized Narrative / Notes</label>
+                    <textarea class="form-textarea" id="edit-node-notes" placeholder="How does this relate to your learning story? Write your personal context here..." oninput="updateNodeFromForm()"></textarea>
+                </div>
+
+                <div class="form-group" id="question-only-controls" style="display:none;">
+                    <label class="card-checkbox-label">
+                        <input type="checkbox" class="card-checkbox" id="edit-node-checked" onchange="updateNodeFromForm()">
+                        <span>Mark Question as Checked Off</span>
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label>Card Color Accent</label>
+                    <div class="form-color-picker" id="color-picker">
+                        <div class="color-dot node-theme-blue" data-color="blue" onclick="setNodeColor('blue')"></div>
+                        <div class="color-dot node-theme-green" data-color="green" onclick="setNodeColor('green')"></div>
+                        <div class="color-dot node-theme-yellow" data-color="yellow" onclick="setNodeColor('yellow')"></div>
+                        <div class="color-dot node-theme-purple" data-color="purple" onclick="setNodeColor('purple')"></div>
+                        <div class="color-dot node-theme-orange" data-color="orange" onclick="setNodeColor('orange')"></div>
+                        <div class="color-dot node-theme-red" data-color="red" onclick="setNodeColor('red')"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:16px;">
+                    <button class="form-btn form-btn-danger" style="width:100%;" onclick="deleteSelectedNode()">
+                        🗑️ Delete Item from Story
+                    </button>
+                </div>
+            </div>
+
+            <!-- Transition Block Editor -->
+            <div class="sidebar-section" id="transition-editor-section" style="display:none;">
+                <h3>✏️ Edit Connective Transition</h3>
+                <input type="hidden" id="edit-trans-source-id">
+                
+                <div style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 12px; background: rgba(15,23,42,0.45); padding: 10px; border-radius: 8px; border-left: 3.5px solid var(--accent-orange); line-height: 1.4;">
+                    <strong>Bridging Path:</strong><br>
+                    <span id="trans-source-title" style="color:var(--text-primary); font-weight:600;">Node A</span><br>
+                    <span style="color:var(--accent-orange); font-weight:bold; margin-right:4px;">↓</span> <span id="trans-target-title" style="color:var(--text-primary); font-weight:600;">Node B</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-trans-text">Transition Text Passage</label>
+                    <textarea class="form-textarea" id="edit-trans-text" placeholder="Write the connective story narrative that ties these two objectives together..." oninput="updateTransitionFromForm()"></textarea>
+                </div>
+
+                <div class="form-group" style="display:flex; flex-direction:column; gap:8px; margin-top:16px;">
+                    <button class="form-btn form-btn-orange" onclick="generateStoryAI()" title="Auto-draft connective narrative based on node titles">
+                        🪄 AI Draft Story Passage
+                    </button>
+                    <button class="form-btn form-btn-secondary" onclick="copyClaudeCopilotPrompt()" title="Copy high quality Prompt for Claude web assistant">
+                        📋 Copy Claude Prompt
+                    </button>
+                    <button class="form-btn form-btn-danger" onclick="deleteActiveTransition()" title="Remove this transition text box">
+                        🗑️ Clear Transition
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item Addition picker -->
+            <div class="sidebar-section">
+                <h3>➕ Add Items to Outline</h3>
+                
+                <!-- Concept Card Node Creator -->
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label for="concept-picker">Add Study Concept (Analyse)</label>
+                    <select class="form-select" id="concept-picker">
+                        <option value="">-- Choose Concept --</option>
+                    </select>
+                    <button class="form-btn form-btn-secondary" style="width:100%; margin-top:8px;" onclick="addConceptNode()">
+                        ➕ Add Concept to Story
+                    </button>
+                </div>
+
+                <!-- Question Node Creator -->
+                <div class="form-group" style="margin-bottom:16px;">
+                    <label for="question-picker">Add Exam Question (Remember)</label>
+                    <select class="form-select" id="question-picker">
+                        <option value="">-- Choose Question --</option>
+                    </select>
+                    <button class="form-btn form-btn-secondary" style="width:100%; margin-top:8px;" onclick="addQuestionNode()">
+                        ➕ Add Question to Story
+                    </button>
+                </div>
+
+                <!-- Custom Personal Node Creator -->
+                <div>
+                    <label>Add Personal Target (Create)</label>
+                    <button class="form-btn form-btn-primary" style="width:100%; margin-top:8px;" onclick="addCustomNode()">
+                        🎨 Create Custom Personal Card
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast feedback for save actions -->
+    <div class="toast-notification" id="toast-message">Story successfully saved!</div>
+
+    <!-- Scripts -->
+    <script src="../js/data.js"></script>
+    <script src="../js/state.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+        // Story Structure state
+        let storyData = {
+            username: "Claude Scholar",
+            nodes: []
+        };
+
+        let selectedNodeId = null;
+        let selectedTransitionSourceId = null;
+
+        // UI Targets
+        const timelineContainer = document.getElementById('story-timeline');
+        const emptyState = document.getElementById('empty-state');
+        const usernameInput = document.getElementById('username-input');
+        const editorSection = document.getElementById('editor-section');
+        const transitionEditorSection = document.getElementById('transition-editor-section');
+        const conceptPicker = document.getElementById('concept-picker');
+        const questionPicker = document.getElementById('question-picker');
+        const toast = document.getElementById('toast-message');
+
+        const CORE_CONCEPTS_INFO = {
+            "agentic-ai": "Agentic AI Overview: Building systems capable of planning, using tools, and working autonomously to achieve high-level goals.",
+            "agentic-loop": "Agentic Loop Pattern: The cyclic Perceive-Think-Act loop that defines active LLM systems instead of simple linear prompting.",
+            "10-tips-save-tokens": "Token Optimization: Practical tactics to minimize input context size, utilize prompt caching, and avoid excessive roundtrips.",
+            "chain-of-thought": "Chain of Thought: Forcing step-by-step reasoning (often hidden in tags) to improve calculation and orchestration outputs.",
+            "claude-code": "Claude Code CLI: Interactive command line tool using Plan and Act modes to make surgical edits directly in your files.",
+            "llm-context-size": "LLM Context Window Management: Strategies to prevent context bloat via vector stores (RAG) and compression algorithms.",
+            "mcp": "Model Context Protocol: Standard for exposing local/remote tools, resources, and prompt templates to LLM clients.",
+            "mcp-before-after": "MCP Architecture: Decoupling tool integration logic. Swapping servers without altering the agent's core instructions.",
+            "prompt-engineering": "Advanced Prompt Engineering: Structuring prompts with explicit XML tags, system messages, and JSON formatting constraints.",
+            "reliability": "AI Reliability Patterns: Circuit breakers, human handoff thresholds, and retry logic to create stable agent applications.",
+            "validation-loops": "Self-Correction Loops: LLM checks its own output or error messages and iterates to fix compilation errors automatically.",
+            "skills-location": "AI Skills Location Guidelines: Mapping directories, commands, and project context files in 5_Symbols/pages/skills.html.",
+            "coordinator-subagent": "Coordinator-Subagent Orchestration: Central supervisor agent breaking down workflows and delegating parts to sub-agents.",
+            "long-term-memory": "Long-Term Memory: Utilizing vector search, cookies, or database storage to persist context between separate sessions.",
+            "llm-evolution": "LLM Evolution: The historical progression from static text predictors to context-rich, multi-tool agent architectures."
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initConceptPicker();
+            initQuestionPicker();
+            
+            // Read username from cookie
+            const savedName = getCookie('claude_cert_username') || 'Claude Scholar';
+            storyData.username = savedName;
+            usernameInput.value = savedName;
+
+            // Load saved story
+            loadStory();
+        });
+
+        // 1. Initializers
+        function initConceptPicker() {
+            Object.keys(CORE_CONCEPTS_INFO).forEach(id => {
+                const option = document.createElement('option');
+                option.value = id;
+                const name = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                option.textContent = name;
+                conceptPicker.appendChild(option);
+            });
+        }
+
+        function initQuestionPicker() {
+            if (typeof questionsData !== 'undefined') {
+                questionsData.forEach(q => {
+                    const option = document.createElement('option');
+                    option.value = q.id;
+                    option.textContent = `Q${String(q.id).padStart(3, '0')}: ${truncateText(q.question, 45)}`;
+                    questionPicker.appendChild(option);
+                });
+            }
+        }
+
+        // Cookie Actions for Username
+        function onUsernameChange(name) {
+            storyData.username = name || 'Claude Scholar';
+            setCookie('claude_cert_username', storyData.username, 365);
+        }
+
+        // 2. Render Vertical List of Nodes
+        function renderStoryFeed() {
+            timelineContainer.innerHTML = '';
+            
+            if (storyData.nodes.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            emptyState.style.display = 'none';
+
+            storyData.nodes.forEach((node, index) => {
+                const nodeWrapper = document.createElement('div');
+                nodeWrapper.className = 'story-node-wrapper';
+
+                // Render Connective Transition element if not first node
+                if (index > 0) {
+                    const prevNode = storyData.nodes[index - 1];
+                    
+                    if (prevNode.transitionAfter) {
+                        // Render detailed text transition block
+                        const transBlock = document.createElement('div');
+                        transBlock.className = 'story-transition-block';
+
+                        const bubble = document.createElement('div');
+                        bubble.className = 'transition-narrative-bubble';
+                        if (selectedTransitionSourceId === prevNode.id) {
+                            bubble.classList.add('selected');
+                        }
+                        
+                        bubble.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            selectTransition(prevNode.id);
+                        });
+
+                        const quote = document.createElement('span');
+                        quote.className = 'transition-narrative-quote';
+                        quote.innerHTML = '“';
+                        bubble.appendChild(quote);
+
+                        const content = document.createElement('p');
+                        content.className = 'transition-narrative-content';
+                        content.textContent = prevNode.transitionAfter;
+                        bubble.appendChild(content);
+
+                        const transActions = document.createElement('div');
+                        transActions.className = 'transition-actions';
+
+                        const editTransBtn = document.createElement('button');
+                        editTransBtn.className = 'action-icon-btn';
+                        editTransBtn.innerHTML = '✏️';
+                        editTransBtn.title = 'Edit Transition text';
+                        editTransBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            selectTransition(prevNode.id);
+                        });
+                        transActions.appendChild(editTransBtn);
+
+                        const deleteTransBtn = document.createElement('button');
+                        deleteTransBtn.className = 'action-icon-btn delete-btn';
+                        deleteTransBtn.innerHTML = '🗑️';
+                        deleteTransBtn.title = 'Clear Transition passage';
+                        deleteTransBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            deleteTransition(prevNode.id);
+                        });
+                        transActions.appendChild(deleteTransBtn);
+
+                        bubble.appendChild(transActions);
+                        transBlock.appendChild(bubble);
+
+                        const arrow = document.createElement('div');
+                        arrow.className = 'story-arrow-down';
+                        transBlock.appendChild(arrow);
+                        
+                        nodeWrapper.appendChild(transBlock);
+                    } else {
+                        // Render hoverable placeholder button to add custom narrative part
+                        const placeholder = document.createElement('div');
+                        placeholder.className = 'story-transition-placeholder';
+
+                        const addBtn = document.createElement('button');
+                        addBtn.className = 'add-transition-btn';
+                        addBtn.textContent = '➕ Add narrative bridge...';
+                        addBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            selectTransition(prevNode.id);
+                        });
+                        
+                        placeholder.appendChild(addBtn);
+
+                        const arrow = document.createElement('div');
+                        arrow.className = 'story-arrow-down';
+                        placeholder.appendChild(arrow);
+
+                        nodeWrapper.appendChild(placeholder);
+                    }
+                }
+
+                // Node Card
+                const card = document.createElement('div');
+                card.id = `node-card-${node.id}`;
+                card.className = `story-card card-theme-${node.color}`;
+                if (selectedNodeId === node.id) {
+                    card.classList.add('selected');
+                }
+
+                // Add Card Header
+                const header = document.createElement('div');
+                header.className = 'card-header';
+                
+                const title = document.createElement('h4');
+                title.className = 'card-title';
+                title.textContent = node.title;
+                header.appendChild(title);
+
+                const meta = document.createElement('div');
+                meta.className = 'card-meta';
+
+                // Display unique URLs for concepts and cards
+                if (node.type === 'question') {
+                    const qIdNum = parseInt(node.refId.split('-Q')[1]);
+                    const refLink = document.createElement('a');
+                    refLink.href = `markdown_renderer.html?url=https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q${qIdNum}.md&title=Memory Card ${qIdNum}`;
+                    refLink.target = '_blank';
+                    refLink.style.fontSize = '0.75em';
+                    refLink.style.color = 'var(--accent-blue)';
+                    refLink.style.textDecoration = 'none';
+                    refLink.textContent = '🃏 Card Link';
+                    refLink.onclick = (e) => e.stopPropagation();
+                    meta.appendChild(refLink);
+                } else if (node.type === 'concept') {
+                    const refLink = document.createElement('a');
+                    refLink.href = `analyse_renderer.html?page=${node.refId}.html`;
+                    refLink.target = '_blank';
+                    refLink.style.fontSize = '0.75em';
+                    refLink.style.color = 'var(--accent-purple)';
+                    refLink.style.textDecoration = 'none';
+                    refLink.textContent = '📖 Concept Link';
+                    refLink.onclick = (e) => e.stopPropagation();
+                    meta.appendChild(refLink);
+                }
+
+                const badge = document.createElement('span');
+                badge.className = 'card-type-badge';
+                badge.textContent = node.type;
+                meta.appendChild(badge);
+                header.appendChild(meta);
+                card.appendChild(header);
+
+                // Narrative narrative text
+                const narrativeBox = document.createElement('div');
+                narrativeBox.className = 'card-narrative-section';
+                
+                const label = document.createElement('div');
+                label.className = 'narrative-label';
+                label.innerHTML = '✏️ Personal Narrative';
+                narrativeBox.appendChild(label);
+
+                const text = document.createElement('p');
+                text.className = 'narrative-text';
+                text.textContent = node.notes || 'Click to write narrative study notes for this node...';
+                narrativeBox.appendChild(text);
+                card.appendChild(narrativeBox);
+
+                // Collapsible Reference material details
+                if (node.type === 'question' && node.referenceText) {
+                    const refDiv = document.createElement('div');
+                    refDiv.className = 'card-ref-details';
+                    
+                    const lbl = document.createElement('span');
+                    lbl.className = 'ref-label';
+                    lbl.textContent = 'Exam Reference Answer:';
+                    refDiv.appendChild(lbl);
+
+                    const pText = document.createElement('span');
+                    pText.textContent = truncateText(node.referenceText, 140);
+                    refDiv.appendChild(pText);
+                    
+                    card.appendChild(refDiv);
+                } else if (node.type === 'concept' && node.referenceText) {
+                    const refDiv = document.createElement('div');
+                    refDiv.className = 'card-ref-details';
+                    
+                    const lbl = document.createElement('span');
+                    lbl.className = 'ref-label';
+                    lbl.textContent = 'Concept Details:';
+                    refDiv.appendChild(lbl);
+
+                    const pText = document.createElement('span');
+                    pText.textContent = truncateText(node.referenceText, 140);
+                    refDiv.appendChild(pText);
+                    
+                    card.appendChild(refDiv);
+                }
+
+                // Card Footer action row
+                const footer = document.createElement('div');
+                footer.className = 'card-footer';
+
+                const leftF = document.createElement('div');
+                leftF.className = 'card-left-footer';
+
+                if (node.type === 'question') {
+                    const checkLabel = document.createElement('label');
+                    checkLabel.className = 'card-checkbox-label';
+                    
+                    const chk = document.createElement('input');
+                    chk.type = 'checkbox';
+                    chk.className = 'card-checkbox';
+                    chk.checked = node.checked || false;
+                    chk.addEventListener('change', (e) => {
+                        node.checked = e.target.checked;
+                        saveStoryQuietly();
+                        
+                        // Keep global cookies sync
+                        try {
+                            const refQ = node.refId;
+                            if (refQ && typeof state !== 'undefined') {
+                                state.progress[refQ] = node.checked;
+                                saveProgress(state.progress);
+                                if (typeof updateDashboard === 'function') updateDashboard();
+                            }
+                        } catch(err) {}
+                    });
+                    
+                    checkLabel.appendChild(chk);
+                    
+                    const lblTxt = document.createElement('span');
+                    lblTxt.textContent = 'Checked Off (Mastered)';
+                    checkLabel.appendChild(lblTxt);
+                    
+                    leftF.appendChild(checkLabel);
+                }
+                footer.appendChild(leftF);
+
+                // Move actions and deleting inside card
+                const actions = document.createElement('div');
+                actions.className = 'card-actions';
+
+                // Move Up
+                const upBtn = document.createElement('button');
+                upBtn.className = 'action-icon-btn';
+                upBtn.innerHTML = '🔼';
+                upBtn.title = 'Move Up';
+                upBtn.disabled = index === 0;
+                upBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    moveNode(index, index - 1);
+                });
+                actions.appendChild(upBtn);
+
+                // Move Down
+                const downBtn = document.createElement('button');
+                downBtn.className = 'action-icon-btn';
+                downBtn.innerHTML = '🔽';
+                downBtn.title = 'Move Down';
+                downBtn.disabled = index === storyData.nodes.length - 1;
+                downBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    moveNode(index, index + 1);
+                });
+                actions.appendChild(downBtn);
+
+                // Edit
+                const editBtn = document.createElement('button');
+                editBtn.className = 'action-icon-btn';
+                editBtn.innerHTML = '✏️';
+                editBtn.title = 'Edit Details';
+                editBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    selectNode(node.id);
+                });
+                actions.appendChild(editBtn);
+
+                // Delete
+                const delBtn = document.createElement('button');
+                delBtn.className = 'action-icon-btn delete-btn';
+                delBtn.innerHTML = '🗑️';
+                delBtn.title = 'Delete from Story';
+                delBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteNode(node.id);
+                });
+                actions.appendChild(delBtn);
+
+                footer.appendChild(actions);
+                card.appendChild(footer);
+
+                card.addEventListener('click', () => {
+                    selectNode(node.id);
+                });
+
+                nodeWrapper.appendChild(card);
+                timelineContainer.appendChild(nodeWrapper);
+            });
+        }
+
+        // 3. Node list reordering and selection mechanics
+        function moveNode(fromIndex, toIndex) {
+            if (toIndex < 0 || toIndex >= storyData.nodes.length) return;
+            const element = storyData.nodes[fromIndex];
+            storyData.nodes.splice(fromIndex, 1);
+            storyData.nodes.splice(toIndex, 0, element);
+            
+            renderStoryFeed();
+            saveStoryQuietly();
+        }
+
+        function selectNode(nodeId) {
+            // Unselect transition
+            if (selectedTransitionSourceId) {
+                const prevTrans = document.querySelector('.transition-narrative-bubble.selected');
+                if (prevTrans) prevTrans.classList.remove('selected');
+                selectedTransitionSourceId = null;
+                transitionEditorSection.style.display = 'none';
+            }
+
+            if (selectedNodeId) {
+                const prevCard = document.getElementById(`node-card-${selectedNodeId}`);
+                if (prevCard) prevCard.classList.remove('selected');
+            }
+
+            selectedNodeId = nodeId;
+            if (nodeId) {
+                const node = storyData.nodes.find(n => n.id === nodeId);
+                if (node) {
+                    const card = document.getElementById(`node-card-${nodeId}`);
+                    if (card) card.classList.add('selected');
+                    
+                    editorSection.style.display = 'block';
+                    document.getElementById('edit-node-id').value = node.id;
+                    document.getElementById('edit-node-title').value = node.title;
+                    document.getElementById('edit-node-notes').value = node.notes || '';
+                    
+                    const qCtrls = document.getElementById('question-only-controls');
+                    if (node.type === 'question') {
+                        qCtrls.style.display = 'block';
+                        document.getElementById('edit-node-checked').checked = node.checked || false;
+                    } else {
+                        qCtrls.style.display = 'none';
+                    }
+
+                    // Highlight color picker active dot
+                    document.querySelectorAll('.color-dot').forEach(dot => {
+                        if (dot.dataset.color === node.color) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+
+                    // Scroll editor into view on mobile screens
+                    if (window.innerWidth <= 900) {
+                        editorSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            } else {
+                editorSection.style.display = 'none';
+            }
+        }
+
+        function updateNodeFromForm() {
+            const id = document.getElementById('edit-node-id').value;
+            const node = storyData.nodes.find(n => n.id === id);
+            if (node) {
+                node.title = document.getElementById('edit-node-title').value;
+                node.notes = document.getElementById('edit-node-notes').value;
+                
+                if (node.type === 'question') {
+                    node.checked = document.getElementById('edit-node-checked').checked;
+                }
+                
+                // Live updates to the card content
+                const card = document.getElementById(`node-card-${id}`);
+                if (card) {
+                    const titleEl = card.querySelector('.card-title');
+                    if (titleEl) titleEl.textContent = node.title;
+
+                    const noteEl = card.querySelector('.narrative-text');
+                    if (noteEl) noteEl.textContent = node.notes || 'Click to write narrative study notes for this node...';
+
+                    if (node.type === 'question') {
+                        const checkEl = card.querySelector('.card-checkbox');
+                        if (checkEl) checkEl.checked = node.checked || false;
+                    }
+                }
+                saveStoryQuietly();
+            }
+        }
+
+        function setNodeColor(colorName) {
+            const id = document.getElementById('edit-node-id').value;
+            const node = storyData.nodes.find(n => n.id === id);
+            if (node) {
+                node.color = colorName;
+                
+                const card = document.getElementById(`node-card-${id}`);
+                if (card) {
+                    card.className = `story-card card-theme-${colorName} selected`;
+                }
+
+                document.querySelectorAll('.color-dot').forEach(dot => {
+                    if (dot.dataset.color === colorName) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                saveStoryQuietly();
+            }
+        }
+
+        function deleteSelectedNode() {
+            if (selectedNodeId) {
+                deleteNode(selectedNodeId);
+                selectNode(null);
+            }
+        }
+
+        function deleteNode(id) {
+            storyData.nodes = storyData.nodes.filter(n => n.id !== id);
+            if (selectedNodeId === id) {
+                selectNode(null);
+            }
+            renderStoryFeed();
+            saveStoryQuietly();
+        }
+
+        // 4. Transition Connective Mechanics
+        function selectTransition(sourceId) {
+            // Unselect node
+            if (selectedNodeId) {
+                const prevCard = document.getElementById(`node-card-${selectedNodeId}`);
+                if (prevCard) prevCard.classList.remove('selected');
+                selectedNodeId = null;
+                editorSection.style.display = 'none';
+            }
+
+            if (selectedTransitionSourceId) {
+                const prevTrans = document.querySelector('.transition-narrative-bubble.selected');
+                if (prevTrans) prevTrans.classList.remove('selected');
+            }
+
+            selectedTransitionSourceId = sourceId;
+            const sourceIndex = storyData.nodes.findIndex(n => n.id === sourceId);
+            const targetNode = storyData.nodes[sourceIndex + 1];
+            const sourceNode = storyData.nodes[sourceIndex];
+
+            if (sourceNode && targetNode) {
+                // Style selected bubble in DOM
+                const bubble = document.querySelector(`#story-timeline .story-node-wrapper:nth-child(${sourceIndex + 2}) .transition-narrative-bubble`);
+                if (bubble) bubble.classList.add('selected');
+
+                transitionEditorSection.style.display = 'block';
+                document.getElementById('edit-trans-source-id').value = sourceId;
+                document.getElementById('trans-source-title').textContent = sourceNode.title;
+                document.getElementById('trans-target-title').textContent = targetNode.title;
+                document.getElementById('edit-trans-text').value = sourceNode.transitionAfter || '';
+
+                if (window.innerWidth <= 900) {
+                    transitionEditorSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        function updateTransitionFromForm() {
+            const sourceId = document.getElementById('edit-trans-source-id').value;
+            const sourceNode = storyData.nodes.find(n => n.id === sourceId);
+            if (sourceNode) {
+                const text = document.getElementById('edit-trans-text').value;
+                const wasEmpty = !sourceNode.transitionAfter;
+                sourceNode.transitionAfter = text;
+                
+                if (wasEmpty && text) {
+                    // Node changed from placeholder to bubble structure
+                    renderStoryFeed();
+                    // Keep focus selected
+                    selectTransition(sourceId);
+                } else {
+                    // Update live bubble text directly
+                    const sourceIndex = storyData.nodes.findIndex(n => n.id === sourceId);
+                    const bubbleText = document.querySelector(`#story-timeline .story-node-wrapper:nth-child(${sourceIndex + 2}) .transition-narrative-content`);
+                    if (bubbleText) bubbleText.textContent = text;
+                }
+                
+                saveStoryQuietly();
+            }
+        }
+
+        function deleteActiveTransition() {
+            const sourceId = document.getElementById('edit-trans-source-id').value;
+            deleteTransition(sourceId);
+        }
+
+        function deleteTransition(sourceId) {
+            const sourceNode = storyData.nodes.find(n => n.id === sourceId);
+            if (sourceNode) {
+                delete sourceNode.transitionAfter;
+                if (selectedTransitionSourceId === sourceId) {
+                    selectedTransitionSourceId = null;
+                    transitionEditorSection.style.display = 'none';
+                }
+                renderStoryFeed();
+                saveStoryQuietly();
+            }
+        }
+
+        // 5. AI Narrative Generative Draft & Copilot Prompter
+        function generateStoryAI() {
+            const sourceId = document.getElementById('edit-trans-source-id').value;
+            const sourceIndex = storyData.nodes.findIndex(n => n.id === sourceId);
+            const sourceNode = storyData.nodes[sourceIndex];
+            const targetNode = storyData.nodes[sourceIndex + 1];
+
+            if (!sourceNode || !targetNode) return;
+
+            // Tailored templates matching node categories
+            const templates = {
+                // Question to Concept map
+                'question_concept': [
+                    `Reviewing the specific exam parameters for ${sourceNode.title} triggered a need to study the structural blueprint of ${targetNode.title}. Deconstructing this connection is crucial for solving multi-agent design questions.`,
+                    `Memorizing ${sourceNode.title} led me directly to the core design specifications of ${targetNode.title}, bridging the gap between theoretical test answers and implementation workflows.`
+                ],
+                // Concept to Question validation
+                'concept_question': [
+                    `After clarifying the theoretical constraints of ${sourceNode.title}, I validated my understanding by tackling the mock certification scenario in ${targetNode.title}.`,
+                    `With the architecture of ${sourceNode.title} clear, testing my recall against the target question ${targetNode.title} ensures my knowledge holds up under exam pressures.`
+                ],
+                // Concept to Concept deep dive
+                'concept_concept': [
+                    `Breaking down the systems engineering of ${sourceNode.title} highlights a direct dependency on ${targetNode.title}. Analyzing these intersecting primitives is key to parsing the Orchestration section.`,
+                    `Understanding the parameter routing for ${sourceNode.title} forms a natural foundation for mastering ${targetNode.title}, creating a cohesive mental model of agent reliability.`
+                ],
+                // Fallbacks
+                'general': [
+                    `After configuring my study objectives for ${sourceNode.title}, the next logical step was incorporating ${targetNode.title} to expand my certification roadmap.`,
+                    `Connecting ${sourceNode.title} directly to ${targetNode.title} maps a clear progression path, moving from retention to structured architectural design.`
+                ]
+            };
+
+            let key = 'general';
+            if (sourceNode.type === 'question' && targetNode.type === 'concept') key = 'question_concept';
+            else if (sourceNode.type === 'concept' && targetNode.type === 'question') key = 'concept_question';
+            else if (sourceNode.type === 'concept' && targetNode.type === 'concept') key = 'concept_concept';
+
+            const matchPool = templates[key];
+            const resultText = matchPool[Math.floor(Math.random() * matchPool.length)];
+
+            document.getElementById('edit-trans-text').value = resultText;
+            updateTransitionFromForm();
+            showToast("AI Transition draft generated!");
+        }
+
+        function copyClaudeCopilotPrompt() {
+            const sourceId = document.getElementById('edit-trans-source-id').value;
+            const sourceIndex = storyData.nodes.findIndex(n => n.id === sourceId);
+            const sourceNode = storyData.nodes[sourceIndex];
+            const targetNode = storyData.nodes[sourceIndex + 1];
+
+            if (!sourceNode || !targetNode) return;
+
+            const prompt = `You are my study copilot for the Claude Developer Certification.
+I am writing a personalized narrative log mapping my study path. Help me write a transition passage (exactly 2 sentences, in the first person) that logically connects these two sequential objectives:
+
+1. Item A: "${sourceNode.title}" (${sourceNode.type === 'question' ? 'Exam Question' : 'Core Concept'})
+   Notes: "${sourceNode.notes || ''}"
+2. Item B: "${targetNode.title}" (${targetNode.type === 'question' ? 'Exam Question' : 'Core Concept'})
+   Notes: "${targetNode.notes || ''}"
+
+Make the tone professional, reflective, and tailored for a developer setting up robust agentic tool loops. Let it sound like a personal engineering journal entry.`;
+
+            navigator.clipboard.writeText(prompt).then(() => {
+                showToast("Claude prompt copied to clipboard!");
+            });
+        }
+
+        // 6. Creators for different card nodes
+        function addConceptNode() {
+            const val = conceptPicker.value;
+            if (!val) return alert("Select a concept from the list first.");
+
+            const name = conceptPicker.options[conceptPicker.selectedIndex].textContent;
+            const desc = CORE_CONCEPTS_INFO[val] || "";
+
+            const newNode = {
+                id: generateUniqueId(),
+                type: 'concept',
+                refId: val,
+                title: name,
+                notes: `Analyzing how ${name} connects to our implementation workflows.`,
+                referenceText: desc,
+                color: 'purple'
+            };
+
+            storyData.nodes.push(newNode);
+            renderStoryFeed();
+            selectNode(newNode.id);
+            
+            conceptPicker.value = "";
+            saveStoryQuietly();
+        }
+
+        function addQuestionNode() {
+            const qIdVal = questionPicker.value;
+            if (!qIdVal) return alert("Select a question from the list first.");
+
+            const qSelected = questionsData.find(q => q.id === parseInt(qIdVal));
+            if (!qSelected) return;
+
+            const categoryCode = `CAT${String(qSelected.category).padStart(2, '0')}`;
+            const fullQId = `${categoryCode}-Q${String(qSelected.id).padStart(3, '0')}`;
+
+            // Pre-check if already mastered in global cookies
+            let isChecked = false;
+            try {
+                if (state.progress && state.progress[fullQId]) {
+                    isChecked = true;
+                }
+            } catch(e) {}
+
+            const categoryColors = { 1: 'red', 2: 'blue', 3: 'green', 4: 'yellow', 5: 'purple' };
+            const nodeColor = categoryColors[qSelected.category] || 'blue';
+
+            const newNode = {
+                id: generateUniqueId(),
+                type: 'question',
+                refId: fullQId,
+                title: `Q${qSelected.id}: ${truncateText(qSelected.question, 40)}`,
+                notes: `Relating Q${qSelected.id} to practical developer workflows.`,
+                referenceText: qSelected.answer,
+                checked: isChecked,
+                color: nodeColor
+            };
+
+            storyData.nodes.push(newNode);
+            renderStoryFeed();
+            selectNode(newNode.id);
+
+            questionPicker.value = "";
+            saveStoryQuietly();
+        }
+
+        function addCustomNode() {
+            const newNode = {
+                id: generateUniqueId(),
+                type: 'custom',
+                title: 'My Custom prep objective',
+                notes: 'Write customized prompt testing details or your specific architecture project layouts...',
+                color: 'orange'
+            };
+
+            storyData.nodes.push(newNode);
+            renderStoryFeed();
+            selectNode(newNode.id);
+            saveStoryQuietly();
+        }
+
+        // 7. Saving, Loading, and JSON import/exports
+        function saveStory() {
+            localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
+            showToast("Story saved successfully!");
+        }
+
+        function saveStoryQuietly() {
+            localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
+        }
+
+        function loadStory() {
+            const stored = localStorage.getItem('claude_cert_story_feed_data');
+            if (stored) {
+                try {
+                    const data = JSON.parse(stored);
+                    storyData.username = data.username || "Claude Scholar";
+                    storyData.nodes = data.nodes || [];
+                    
+                    usernameInput.value = storyData.username;
+                    onUsernameChange(storyData.username);
+
+                    renderStoryFeed();
+                    selectNode(null);
+                    return;
+                } catch(e) {
+                    console.error("Failed loading saved story", e);
+                }
+            }
+            // Load default outline tutorial nodes
+            loadTutorialOutline();
+        }
+
+        function loadTutorialOutline() {
+            const tutorialNodes = [
+                {
+                    id: 't-rem',
+                    type: 'question',
+                    refId: 'CAT01-Q001',
+                    title: 'Q1: Stages of an Agentic Loop',
+                    notes: 'Foundational retention. The Perceive-Think-Act pattern represents the core loop structure.',
+                    referenceText: 'Perceive, Think, and Act. The agent observes its environment, reasons about the observation, and takes action.',
+                    checked: true,
+                    color: 'red',
+                    transitionAfter: 'After establishing this baseline of how an agent runs iteratively, I moved to study how to represent this loop visually.'
+                },
+                {
+                    id: 't-und',
+                    type: 'concept',
+                    refId: 'agentic-loop',
+                    title: 'Understand: Agentic Loop Pattern',
+                    notes: 'This loop makes prompts cyclical rather than linear, enabling continuous tools evaluation.',
+                    referenceText: 'Agentic Loop Pattern: The cyclic Perceive-Think-Act loop that defines active LLM systems instead of simple linear prompting.',
+                    color: 'green',
+                    transitionAfter: 'Understanding the loop led me to explore how model protocols separate tool registration parameters.'
+                },
+                {
+                    id: 't-an',
+                    type: 'concept',
+                    refId: 'mcp-before-after',
+                    title: 'Analyse: MCP Integrations',
+                    notes: 'Analyze model-context structures to decouple tools discovery interfaces.',
+                    referenceText: 'MCP Architecture: Decoupling tool integration logic. Swapping servers without altering the agent\'s core instructions.',
+                    color: 'blue',
+                    transitionAfter: 'Now that I understand the decoupled architecture, I want to write a custom tool script to practice this locally.'
+                },
+                {
+                    id: 't-cre',
+                    type: 'custom',
+                    title: 'My Custom Prep Objective',
+                    notes: 'Create a local project using CLAUDE.md guidelines and practice using custom slash commands to automate tests.',
+                    color: 'orange'
+                }
+            ];
+
+            storyData.nodes = tutorialNodes;
+            renderStoryFeed();
+            selectNode(null);
+            saveStoryQuietly();
+        }
+
+        // Export as JSON file
+        function exportStoryJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(storyData, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            const fileName = `story_${storyData.username.toLowerCase().replace(/[^a-z0-9]/g, '_')}.json`;
+            downloadAnchor.setAttribute("download", fileName);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Story exported as JSON file!");
+        }
+
+        function triggerImport() {
+            document.getElementById('json-file-input').click();
+        }
+
+        // Import from JSON file
+        function importStoryJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.username && Array.isArray(data.nodes)) {
+                        storyData = data;
+                        usernameInput.value = storyData.username;
+                        onUsernameChange(storyData.username);
+                        renderStoryFeed();
+                        selectNode(null);
+                        saveStoryQuietly();
+                        showToast("Story imported successfully!");
+                    } else {
+                        alert("Invalid JSON structure! File must contain 'username' string and 'nodes' array.");
+                    }
+                } catch(err) {
+                    alert("Failed to parse JSON file: " + err.message);
+                }
+            };
+            reader.readAsText(file);
+            // Reset input
+            event.target.value = '';
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.style.display = 'block';
+            
+            // Trigger animation restart
+            toast.style.animation = 'none';
+            toast.offsetHeight; // trigger reflow
+            toast.style.animation = 'fadeInOut 2.5s forwards';
+
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

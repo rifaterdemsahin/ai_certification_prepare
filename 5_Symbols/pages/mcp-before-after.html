@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Before and After Model Context Protocol (MCP) comparison. Learn how MCP standardizes agent integrations, eliminates custom glue code, and enables plug-and-play tools.">
+    <title>MCP Before & After — Claude Dev Cert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --border: #334155;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-green: #10b981;
+            --accent-yellow: #fbbf24;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 30px 16px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+            border-radius: 12px;
+        }
+        header h1 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        header p { color: var(--text-secondary); font-size: 1em; margin-top: 8px; }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .back-btn:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: border-color 0.3s;
+        }
+        .section:hover { border-color: var(--accent-blue); }
+        .section h2 {
+            font-size: 1.3em;
+            margin-bottom: 16px;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section h3 {
+            font-size: 1.1em;
+            margin: 16px 0 8px;
+            color: var(--accent-purple);
+        }
+        .section p { color: var(--text-secondary); margin-bottom: 12px; }
+        .section ul { margin-left: 20px; color: var(--text-secondary); }
+        .section li { margin-bottom: 8px; }
+        
+        /* Table Styling */
+        .compare-table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9em;
+        }
+        th, td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+        }
+        td:first-child {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        td:nth-child(2) {
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.02);
+        }
+        td:nth-child(3) {
+            color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.02);
+        }
+
+        /* Image Display */
+        .diagram-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .diagram-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .diagram-caption {
+            margin-top: 12px;
+            font-size: 0.8em;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .highlight-box {
+            background: rgba(245, 158, 11, 0.05);
+            border-left: 4px solid var(--accent-orange);
+            padding: 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+
+    <div class="container">
+        <a href="analyse.html" class="back-btn">← Back to Stats</a>
+
+        <header>
+            <h1>🔄 Before and After MCP</h1>
+            <p>Analyzing the Paradigm Shift to Model Context Protocol (MCP) Standardization</p>
+        </header>
+
+        <!-- Problem Section -->
+        <div class="section">
+            <h2>🚨 The Problem: Pre-MCP Integration Chaos</h2>
+            <p>Before the introduction of the Model Context Protocol, connecting LLMs to external systems, data sources, and engineering workflows was brittle, complex, and unscalable:</p>
+            <ul>
+                <li><strong>Bespoke Custom Implementations:</strong> Connecting to GitHub, Slack, databases, or local runtimes required unique authentication protocols, custom JSON parsers, and custom error handling loops.</li>
+                <li><strong>N×M Integration Bottleneck:</strong> Every unique model integration required custom orchestration. Integrating <code>N</code> models with <code>M</code> developer environments resulted in a complex grid of <code>N×M</code> integrations.</li>
+                <li><strong>Unstructured Context Passing:</strong> Systems lacked format schemas. Context and outputs were dumped directly into prompt windows as raw text blocks, causing token waste and high hallucination rates.</li>
+                <li><strong>Brittle Application Interfaces:</strong> Minor schema changes in underlying tool endpoints broke production pipelines, forcing regular prompt updates and code rewrites.</li>
+                <li><strong>Zero Introspection:</strong> Autonomous agents could not introspect runtimes at startup to verify tool capability catalogs dynamically.</li>
+            </ul>
+        </div>
+
+        <!-- Solution Section -->
+        <div class="section">
+            <h2>💡 The Solution: MCP Universal Interface</h2>
+            <p>MCP introduces a unified standard client-server adapter pattern, resembling "USB-C for artificial intelligence integrations":</p>
+            <ul>
+                <li><strong>Standardized Protocol Primitives:</strong> MCP exposes clear, schema-enforced standard structures across three core areas: <strong>Tools</strong> (executable operations), <strong>Resources</strong> (read-only datasets and contextual files), and <strong>Prompts</strong> (pre-packaged templated workflows).</li>
+                <li><strong>Decoupled Architecture (Plug-and-Play):</strong> Software applications, development packages, and databases run as isolated MCP servers. The LLM acts as the client, interacting with tool boundaries through a standardized, uniform interface.</li>
+                <li><strong>Dynamic Introspection:</strong> At session initialization, the client queries servers via simple handshake calls (e.g., <code>tools/list</code>), enabling models to discover capability schemas on the fly.</li>
+                <li><strong>Transport Layer Independence:</strong> The protocol remains agnostic of transport channels, running seamlessly over standard I/O streams (<code>stdio</code>) or network sockets (<code>SSE / HTTP</code>).</li>
+            </ul>
+        </div>
+
+        <!-- Diagram Section -->
+        <div class="section">
+            <h2>🎨 Visualizing the Inflection Point</h2>
+            <p>Standardizing tools decouple client models from custom API configurations:</p>
+            <div class="diagram-container">
+                <img src="https://claudecertstore.blob.core.windows.net/concepts/mcp-before-after.png" alt="Before vs After MCP Infrastructure Visual Diagram">
+                <div class="diagram-caption">Standardizing integrations swaps chaotic mesh mappings (left) for a clean client-server architecture (right).</div>
+            </div>
+        </div>
+
+        <!-- Side-by-Side Comparison -->
+        <div class="section">
+            <h2>📊 Before vs. After MCP Feature Analysis</h2>
+            <div class="compare-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Architectural Dimension</th>
+                            <th>Before MCP</th>
+                            <th>After MCP (Standardized)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Integration Effort</td>
+                            <td>Bespoke pipelines for every API</td>
+                            <td>Plug-and-play protocol adapters</td>
+                        </tr>
+                        <tr>
+                            <td>Scaling Complexity</td>
+                            <td>N×M custom adapter bridges</td>
+                            <td>Decoupled 1-to-Many routing</td>
+                        </tr>
+                        <tr>
+                            <td>Schema Validation</td>
+                            <td>Ad-hoc prompt rules & JSON dumps</td>
+                            <td>Enforced JSON Schema structures</td>
+                        </tr>
+                        <tr>
+                            <td>Runtime Discovery</td>
+                            <td>Hard-coded tool registry mappings</td>
+                            <td>Handshake-driven introspection</td>
+                        </tr>
+                        <tr>
+                            <td>Error Propagation</td>
+                            <td>Silent failures & text exceptions</td>
+                            <td>Structured error codes & fallback hooks</td>
+                        </tr>
+                        <tr>
+                            <td>Security Bounds</td>
+                            <td>Raw API tokens embedded in clients</td>
+                            <td>Unified local/remote server boundary controls</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Exam Relevance Section -->
+        <div class="section">
+            <h2>🎯 Certification Exam Relevance (CAT02)</h2>
+            <div class="highlight-box">
+                <p><strong>Competency Area 2: Tool Design & MCP Integration (18%)</strong></p>
+                <p>Understand the core benefits of standardized transport schemas. Be prepared to identify:
+                   <br>• The core architectural motivation behind the development of the Model Context Protocol.
+                   <br>• How dynamic server discovery (introspection) resolves scaling challenges for autonomous agent workflows.
+                   <br>• Transport layer requirements (stdio vs Server-Sent Events/SSE).
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

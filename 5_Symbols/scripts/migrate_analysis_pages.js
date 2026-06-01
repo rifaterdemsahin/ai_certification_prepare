@@ -23,7 +23,8 @@ const PAGES = [
     'mindmap.html',
     'prompt_caching.html',
     'resources.html',
-    'swe_bench.html'
+    'swe_bench.html',
+    'mcp-before-after.html'
 ];
 
 console.log('🚀 Starting migration of analysis pages to Azure...');

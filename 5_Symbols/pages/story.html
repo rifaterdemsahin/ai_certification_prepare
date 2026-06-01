@@ -820,6 +820,27 @@
             background: rgba(56, 189, 248, 0.15);
             border-color: var(--accent-blue);
         }
+
+        .memory-card-open-btn {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+            color: var(--accent-blue);
+            font-weight: 600;
+            font-size: 0.9em;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .memory-card-open-btn:hover {
+            background: rgba(56, 189, 248, 0.16);
+            border-color: var(--accent-blue);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -866,6 +887,15 @@
                         </select>
                         <button class="form-btn form-btn-secondary" onclick="addQuestionNode()">
                             ➕ Add Question to Story
+                        </button>
+                    </div>
+                    <div class="canvas-add-group">
+                        <label for="memory-card-picker">Add Memory Card (Study)</label>
+                        <select class="form-select" id="memory-card-picker">
+                            <option value="">-- Choose Question --</option>
+                        </select>
+                        <button class="form-btn form-btn-secondary" style="border-color:rgba(56,189,248,0.4); color:var(--accent-blue);" onclick="addMemoryCardNode()">
+                            🃏 Add Memory Card
                         </button>
                     </div>
                     <div class="canvas-add-group">
@@ -1040,6 +1070,7 @@
         const transitionEditorSection = document.getElementById('transition-editor-section');
         const conceptPicker = document.getElementById('concept-picker');
         const questionPicker = document.getElementById('question-picker');
+        const memoryCardPicker = document.getElementById('memory-card-picker');
         const toast = document.getElementById('toast-message');
 
         function refreshTransitionImgSection(node) {
@@ -1130,6 +1161,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             initConceptPicker();
             initQuestionPicker();
+            initMemoryCardPicker();
             
             // Read username from cookie
             const savedName = getCookie('claude_cert_username') || 'Claude Scholar';
@@ -1194,6 +1226,17 @@
                     option.value = q.id;
                     option.textContent = `Q${String(q.id).padStart(3, '0')}: ${truncateText(q.question, 45)}`;
                     questionPicker.appendChild(option);
+                });
+            }
+        }
+
+        function initMemoryCardPicker() {
+            if (typeof questionsData !== 'undefined') {
+                questionsData.forEach(q => {
+                    const option = document.createElement('option');
+                    option.value = q.id;
+                    option.textContent = `Q${String(q.id).padStart(3, '0')}: ${truncateText(q.question, 45)}`;
+                    memoryCardPicker.appendChild(option);
                 });
             }
         }
@@ -1398,8 +1441,8 @@
                 meta.className = 'card-meta';
 
                 // Display unique URLs for concepts and cards
-                if (node.type === 'question') {
-                    const qIdNum = parseInt(node.refId.split('-Q')[1]);
+                if (node.type === 'question' || node.type === 'memory-card') {
+                    const qIdNum = node.type === 'memory-card' ? node.qNum : parseInt(node.refId.split('-Q')[1]);
                     const refLink = document.createElement('a');
                     refLink.href = `markdown_renderer.html?url=https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q${qIdNum}.md&title=Memory Card ${qIdNum}`;
                     refLink.target = '_blank';
@@ -1428,19 +1471,37 @@
                 header.appendChild(meta);
                 card.appendChild(header);
 
-                // Narrative narrative text
+                // Narrative / memory-card section
                 const narrativeBox = document.createElement('div');
                 narrativeBox.className = 'card-narrative-section';
-                
-                const label = document.createElement('div');
-                label.className = 'narrative-label';
-                label.innerHTML = '✏️ Personal Narrative';
-                narrativeBox.appendChild(label);
 
-                const text = document.createElement('p');
-                text.className = 'narrative-text';
-                text.textContent = node.notes || 'Click to write narrative study notes for this node...';
-                narrativeBox.appendChild(text);
+                if (node.type === 'memory-card') {
+                    const mcLink = document.createElement('a');
+                    mcLink.href = `markdown_renderer.html?url=https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q${node.qNum}.md&title=Memory Card ${node.qNum}`;
+                    mcLink.target = '_blank';
+                    mcLink.className = 'memory-card-open-btn';
+                    mcLink.textContent = '🃏 Open Memory Card';
+                    mcLink.onclick = (e) => e.stopPropagation();
+                    narrativeBox.appendChild(mcLink);
+                    if (node.referenceText) {
+                        const qRef = document.createElement('p');
+                        qRef.className = 'narrative-text';
+                        qRef.style.fontStyle = 'normal';
+                        qRef.style.fontSize = '0.82em';
+                        qRef.textContent = truncateText(node.referenceText, 100);
+                        narrativeBox.appendChild(qRef);
+                    }
+                } else {
+                    const label = document.createElement('div');
+                    label.className = 'narrative-label';
+                    label.innerHTML = '✏️ Personal Narrative';
+                    narrativeBox.appendChild(label);
+
+                    const text = document.createElement('p');
+                    text.className = 'narrative-text';
+                    text.textContent = node.notes || 'Click to write narrative study notes for this node...';
+                    narrativeBox.appendChild(text);
+                }
                 card.appendChild(narrativeBox);
 
                 // Collapsible Reference material details
@@ -1972,6 +2033,34 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             renderStoryFeed();
             selectNode(newNode.id);
             logToDebugConsole(`[ADD] Connective transition node added [id: ${newNode.id}]`, 'info');
+            saveStoryQuietly();
+        }
+
+        function addMemoryCardNode() {
+            const qIdVal = memoryCardPicker.value;
+            if (!qIdVal) return alert('Select a question from the list first.');
+            const qSelected = questionsData.find(q => q.id === parseInt(qIdVal));
+            if (!qSelected) return;
+
+            const categoryCode = `CAT${String(qSelected.category).padStart(2, '0')}`;
+            const fullQId = `${categoryCode}-Q${String(qSelected.id).padStart(3, '0')}`;
+
+            const newNode = {
+                id: generateUniqueId(),
+                type: 'memory-card',
+                refId: fullQId,
+                qNum: qSelected.id,
+                title: `🃏 Memory Card Q${qSelected.id}`,
+                notes: `Reviewing memory card for Q${qSelected.id}.`,
+                referenceText: qSelected.question,
+                color: 'blue'
+            };
+
+            storyData.nodes.push(newNode);
+            renderStoryFeed();
+            selectNode(newNode.id);
+            logToDebugConsole(`[ADD] Memory card node added: Q${qSelected.id} (${fullQId})`, 'info');
+            memoryCardPicker.value = '';
             saveStoryQuietly();
         }
 

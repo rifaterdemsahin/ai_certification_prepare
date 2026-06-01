@@ -1354,7 +1354,12 @@
 
         // 1. Initializers
         function initConceptPicker() {
+            conceptPicker.innerHTML = '<option value="">-- Choose Concept --</option>';
+            const usedConceptRefIds = new Set(
+                storyData.nodes.filter(n => n.type === 'concept').map(n => n.refId)
+            );
             Object.keys(CORE_CONCEPTS_INFO).forEach(id => {
+                if (usedConceptRefIds.has(id)) return;
                 const option = document.createElement('option');
                 option.value = id;
                 const name = id.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -1364,8 +1369,15 @@
         }
 
         function initQuestionPicker() {
+            questionPicker.innerHTML = '<option value="">-- Choose Question --</option>';
+            const usedQuestionRefIds = new Set(
+                storyData.nodes.filter(n => n.type === 'question').map(n => n.refId)
+            );
             if (typeof questionsData !== 'undefined') {
                 questionsData.forEach(q => {
+                    const categoryCode = `CAT${String(q.category).padStart(2, '0')}`;
+                    const fullQId = `${categoryCode}-Q${String(q.id).padStart(3, '0')}`;
+                    if (usedQuestionRefIds.has(fullQId)) return;
                     const option = document.createElement('option');
                     option.value = q.id;
                     option.textContent = `Q${String(q.id).padStart(3, '0')}: ${truncateText(q.question, 45)}`;
@@ -1375,8 +1387,14 @@
         }
 
         function initMemoryCardPicker() {
+            memoryCardPicker.innerHTML = '<option value="">-- Choose Question --</option>';
+            const usedMemoryCardRefIds = new Set(
+                storyData.nodes.filter(n => n.type === 'memory-card').map(n => n.refId)
+            );
             if (typeof memoryCardsData !== 'undefined') {
                 memoryCardsData.forEach(mc => {
+                    const fullMcId = `MEM-Q${mc.padId}`;
+                    if (usedMemoryCardRefIds.has(fullMcId)) return;
                     const option = document.createElement('option');
                     option.value = mc.id;
                     option.textContent = `Q${mc.padId}: ${truncateText(mc.title, 45)}`;
@@ -1393,6 +1411,11 @@
 
         // 2. Render Vertical List of Nodes
         function renderStoryFeed() {
+            // Re-populate pickers dynamically to exclude already used nodes
+            initConceptPicker();
+            initQuestionPicker();
+            initMemoryCardPicker();
+
             timelineContainer.innerHTML = '';
             
             if (storyData.nodes.length === 0) {

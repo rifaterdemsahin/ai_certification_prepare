@@ -43,9 +43,9 @@ coverage/
 test-results/
 
 # Kilo/Claude local state
-#.claude/
-#.antigravitycli/
-#.grok/
+.claude/
+.antigravitycli/
+.grok/
 
 # Azure asset backups (local only — source of truth is Azure Blob Storage)
 5_Symbols/data/backups/

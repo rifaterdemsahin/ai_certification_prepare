@@ -1137,6 +1137,17 @@
                 </div>
             </div>
 
+            <!-- Maturity Board Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-section-toggle" onclick="toggleSection('maturity-board-body','maturity-board-chevron')">
+                    📊 Maturity Board
+                    <span class="toggle-chevron open" id="maturity-board-chevron">▼</span>
+                </h3>
+                <div class="collapsible-body" id="maturity-board-body">
+                    <div id="maturity-board-content" style="padding-top:4px;"></div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -1715,6 +1726,43 @@
                 } // end else (regular card)
                 timelineContainer.appendChild(nodeWrapper);
             });
+
+            renderMaturityBoard();
+        }
+
+        function renderMaturityBoard() {
+            const el = document.getElementById('maturity-board-content');
+            if (!el) return;
+
+            const totalRemember  = typeof questionsData   !== 'undefined' ? questionsData.length   : 0;
+            const totalUnderstand = typeof memoryCardsData !== 'undefined' ? memoryCardsData.length : 0;
+            const totalAnalyse   = Object.keys(CORE_CONCEPTS_INFO).length;
+
+            const usedRemember   = storyData.nodes.filter(n => n.type === 'question').length;
+            const usedUnderstand = storyData.nodes.filter(n => n.type === 'memory-card').length;
+            const usedAnalyse    = storyData.nodes.filter(n => n.type === 'concept').length;
+
+            const levels = [
+                { name: 'Remember',   emoji: '🧠', used: usedRemember,   total: totalRemember,   color: '#ef4444' },
+                { name: 'Understand', emoji: '💡', used: usedUnderstand, total: totalUnderstand, color: '#38bdf8' },
+                { name: 'Analyse',    emoji: '🔬', used: usedAnalyse,    total: totalAnalyse,    color: '#a855f7' }
+            ];
+
+            el.innerHTML = levels.map(({ name, emoji, used, total, color }) => {
+                const pct  = total > 0 ? Math.round((used / total) * 100) : 0;
+                const left = total - used;
+                return `
+                    <div style="margin-bottom:14px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                            <span style="font-size:0.83em;font-weight:700;color:${color};">${emoji} ${name}</span>
+                            <span style="font-size:0.74em;color:var(--text-secondary);">${used} used &nbsp;·&nbsp; <span style="color:${color};">${left} left</span></span>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.06);border-radius:6px;height:9px;overflow:hidden;">
+                            <div style="width:${pct}%;height:100%;background:${color};border-radius:6px;transition:width 0.4s ease;box-shadow:0 0 7px ${color}88;"></div>
+                        </div>
+                        <div style="font-size:0.7em;color:var(--text-secondary);margin-top:3px;text-align:right;opacity:0.7;">${pct}% of ${total} covered</div>
+                    </div>`;
+            }).join('');
         }
 
         // 3. Node list reordering and selection mechanics

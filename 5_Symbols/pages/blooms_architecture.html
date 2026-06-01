@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom's Learning Architecture | Claude Developer Certification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        :root {
+            --bloom-remember:  #38bdf8;
+            --bloom-understand:#a855f7;
+            --bloom-analyse:   #f59e0b;
+            --bloom-evaluate:  #ef4444;
+            --bloom-create:    #10b981;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 48px 24px 32px;
+            background: linear-gradient(135deg, rgba(56,189,248,0.06) 0%, rgba(168,85,247,0.06) 50%, rgba(16,185,129,0.06) 100%);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+        .page-hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--bloom-remember), var(--bloom-understand), var(--bloom-create));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+        .page-hero p {
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* ── Architecture overview diagram ── */
+        .arch-diagram-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 48px;
+            max-width: 860px;
+        }
+
+        /* ── Stage cards ── */
+        .stages {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            padding-bottom: 60px;
+        }
+
+        .stage-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            transition: box-shadow 0.3s;
+        }
+        .stage-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+
+        @media (max-width: 700px) {
+            .stage-card { grid-template-columns: 1fr; }
+        }
+
+        .stage-svg-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 28px;
+        }
+        .stage-svg-col svg { width: 220px; height: 220px; }
+
+        .stage-content {
+            padding: 28px 32px 28px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        @media (max-width: 700px) {
+            .stage-content { padding: 24px; }
+            .stage-svg-col svg { width: 180px; height: 180px; }
+        }
+
+        .stage-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+        .stage-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .stage-desc {
+            color: var(--text-secondary);
+            line-height: 1.75;
+            font-size: 0.96em;
+            margin-bottom: 16px;
+        }
+        .stage-mechanic {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .mechanic-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9em;
+            color: var(--text-primary);
+        }
+        .mechanic-item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        /* Stage colour themes */
+        .stage-remember  .stage-badge { background: rgba(56,189,248,0.12);  color: var(--bloom-remember);  border: 1px solid rgba(56,189,248,0.25); }
+        .stage-understand .stage-badge { background: rgba(168,85,247,0.12); color: var(--bloom-understand); border: 1px solid rgba(168,85,247,0.25); }
+        .stage-analyse   .stage-badge { background: rgba(245,158,11,0.12);  color: var(--bloom-analyse);   border: 1px solid rgba(245,158,11,0.25); }
+        .stage-evaluate  .stage-badge { background: rgba(239,68,68,0.12);   color: var(--bloom-evaluate);  border: 1px solid rgba(239,68,68,0.25); }
+        .stage-create    .stage-badge { background: rgba(16,185,129,0.12);  color: var(--bloom-create);    border: 1px solid rgba(16,185,129,0.25); }
+
+        .stage-remember  .stage-title { color: var(--bloom-remember);  }
+        .stage-understand .stage-title { color: var(--bloom-understand); }
+        .stage-analyse   .stage-title { color: var(--bloom-analyse);   }
+        .stage-evaluate  .stage-title { color: var(--bloom-evaluate);  }
+        .stage-create    .stage-title { color: var(--bloom-create);    }
+
+        .stage-remember  .dot { background: var(--bloom-remember);  }
+        .stage-understand .dot { background: var(--bloom-understand); }
+        .stage-analyse   .dot { background: var(--bloom-analyse);   }
+        .stage-evaluate  .dot { background: var(--bloom-evaluate);  }
+        .stage-create    .dot { background: var(--bloom-create);    }
+
+        /* connector arrow */
+        .connector {
+            display: flex;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.6em;
+            margin: -20px 0;
+        }
+
+        /* self-awareness callout */
+        .awareness-box {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            background: linear-gradient(135deg, rgba(56,189,248,0.07) 0%, rgba(16,185,129,0.07) 100%);
+            border: 1px solid rgba(56,189,248,0.2);
+            border-radius: 20px;
+            padding: 32px 36px;
+        }
+        .awareness-box h2 {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--accent-blue);
+        }
+        .awareness-box p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .awareness-box p:last-child { margin-bottom: 0; }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+
+    <div class="page-hero">
+        <h1>🧠 Bloom's Learning Architecture</h1>
+        <p>A self-aware study system built on Bloom's Taxonomy. Each stage has a role — memory cards anchor the foundation, questioning builds understanding, analysis draws the map, evaluation motivates, and story-writing holds it all together.</p>
+    </div>
+
+    <!-- ── Architecture overview SVG ── -->
+    <div class="arch-diagram-wrap">
+        <svg viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:860px;height:auto;">
+            <defs>
+                <linearGradient id="gRemember" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="gUnderstand" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#a855f7" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#9333ea" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="gAnalyse" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#d97706" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="gEvaluate" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ef4444" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#dc2626" stop-opacity="0.9"/>
+                </linearGradient>
+                <linearGradient id="gCreate" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#059669" stop-opacity="0.9"/>
+                </linearGradient>
+                <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#334155"/>
+                </marker>
+            </defs>
+
+            <!-- Background -->
+            <rect width="860" height="340" rx="16" fill="#1e293b"/>
+
+            <!-- Flow arrows -->
+            <line x1="155" y1="170" x2="195" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="315" y1="170" x2="355" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="475" y1="170" x2="515" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+            <line x1="635" y1="170" x2="675" y2="170" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+            <!-- Feedback loop arc above -->
+            <path d="M 760 90 Q 430 30 100 90" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4" fill="none" marker-end="url(#arrow)"/>
+            <text x="430" y="28" fill="#475569" font-family="Inter,sans-serif" font-size="11" text-anchor="middle">new cards added as loops back</text>
+
+            <!-- Stage 1: Remember -->
+            <rect x="20" y="110" width="135" height="120" rx="14" fill="url(#gRemember)"/>
+            <text x="87" y="147" fill="white" font-family="Inter,sans-serif" font-size="22" text-anchor="middle">🧠</text>
+            <text x="87" y="168" fill="white" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle">1. REMEMBER</text>
+            <text x="87" y="186" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Memory Cards</text>
+            <text x="87" y="200" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Back &amp; Forth</text>
+            <text x="87" y="214" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Grow the deck</text>
+
+            <!-- Stage 2: Understand -->
+            <rect x="200" y="110" width="135" height="120" rx="14" fill="url(#gUnderstand)"/>
+            <text x="267" y="147" fill="white" font-family="Inter,sans-serif" font-size="22" text-anchor="middle">❓</text>
+            <text x="267" y="168" fill="white" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle">2. UNDERSTAND</text>
+            <text x="267" y="186" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Question &amp; Recall</text>
+            <text x="267" y="200" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Correct answers</text>
+            <text x="267" y="214" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Reason it out</text>
+
+            <!-- Stage 3: Analyse -->
+            <rect x="360" y="110" width="135" height="120" rx="14" fill="url(#gAnalyse)"/>
+            <text x="427" y="147" fill="white" font-family="Inter,sans-serif" font-size="22" text-anchor="middle">🔗</text>
+            <text x="427" y="168" fill="white" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle">3. ANALYSE</text>
+            <text x="427" y="186" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Connect concepts</text>
+            <text x="427" y="200" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Draw the picture</text>
+            <text x="427" y="214" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Explain patterns</text>
+
+            <!-- Stage 4: Evaluate -->
+            <rect x="520" y="110" width="135" height="120" rx="14" fill="url(#gEvaluate)"/>
+            <text x="587" y="147" fill="white" font-family="Inter,sans-serif" font-size="22" text-anchor="middle">⚖️</text>
+            <text x="587" y="168" fill="white" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle">4. EVALUATE</text>
+            <text x="587" y="186" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Pros &amp; cons</text>
+            <text x="587" y="200" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Motivate yourself</text>
+            <text x="587" y="214" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Multi-concept link</text>
+
+            <!-- Stage 5: Create -->
+            <rect x="680" y="110" width="155" height="120" rx="14" fill="url(#gCreate)"/>
+            <text x="757" y="147" fill="white" font-family="Inter,sans-serif" font-size="22" text-anchor="middle">✍️</text>
+            <text x="757" y="168" fill="white" font-family="Inter,sans-serif" font-size="12" font-weight="700" text-anchor="middle">5. CREATE</text>
+            <text x="757" y="186" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Write the story</text>
+            <text x="757" y="200" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Weave all stages</text>
+            <text x="757" y="214" fill="rgba(255,255,255,0.8)" font-family="Inter,sans-serif" font-size="10" text-anchor="middle">Hold it together</text>
+
+            <!-- Bottom label -->
+            <text x="430" y="318" fill="#475569" font-family="Inter,sans-serif" font-size="11" text-anchor="middle">Self-aware learning loop — awareness of the process is the meta-skill</text>
+        </svg>
+    </div>
+
+    <div class="container">
+
+        <!-- Self-awareness callout -->
+        <div class="awareness-box">
+            <h2>🔮 The Meta-Skill: Being Aware of the Process</h2>
+            <p>Most learning happens to you. This system asks you to learn <em>about</em> learning. At each stage, you pause and ask: "Where am I in the loop? What does this stage demand? Am I recalling, connecting, or creating?" That awareness transforms passive study into active construction of knowledge.</p>
+            <p>Memory cards are not just flashcards — they are the living record of the loop. Every time you cycle through a stage and find a gap, a new card is born. The deck grows with your understanding, not against a fixed syllabus.</p>
+        </div>
+
+        <!-- Stage cards -->
+        <div class="stages">
+
+            <!-- ── REMEMBER ── -->
+            <div class="stage-card stage-remember">
+                <div class="stage-svg-col">
+                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0.08"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Background circle -->
+                        <circle cx="110" cy="110" r="100" fill="url(#cardGrad1)" stroke="#38bdf8" stroke-width="1" stroke-opacity="0.3"/>
+
+                        <!-- Card stack (3 layered cards) -->
+                        <!-- Card 3 (back) -->
+                        <rect x="55" y="80" width="110" height="75" rx="10" fill="#1e3a4a" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4" transform="rotate(-8,110,117)"/>
+                        <!-- Card 2 -->
+                        <rect x="55" y="80" width="110" height="75" rx="10" fill="#1e3a4a" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.65" transform="rotate(-3,110,117)"/>
+                        <!-- Card 1 (front) -->
+                        <rect x="55" y="80" width="110" height="75" rx="10" fill="#0f2a3a" stroke="#38bdf8" stroke-width="2"/>
+                        <!-- Card front content -->
+                        <text x="110" y="107" fill="#38bdf8" font-family="Inter,sans-serif" font-size="11" font-weight="700" text-anchor="middle">MEMORY CARD</text>
+                        <line x1="70" y1="115" x2="150" y2="115" stroke="#334155" stroke-width="1"/>
+                        <text x="110" y="133" fill="#94a3b8" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">Front: Question</text>
+                        <text x="110" y="147" fill="#64748b" font-family="Inter,sans-serif" font-size="8" text-anchor="middle">↻ flip for answer</text>
+
+                        <!-- Growing stack indicator -->
+                        <text x="110" y="185" fill="#38bdf8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" font-weight="600">+ new card each loop</text>
+
+                        <!-- Dots representing growing deck -->
+                        <circle cx="80" cy="170" r="4" fill="#38bdf8" opacity="0.9"/>
+                        <circle cx="93" cy="170" r="4" fill="#38bdf8" opacity="0.7"/>
+                        <circle cx="106" cy="170" r="4" fill="#38bdf8" opacity="0.5"/>
+                        <circle cx="119" cy="170" r="3" fill="#38bdf8" opacity="0.35"/>
+                        <circle cx="130" cy="170" r="2.5" fill="#38bdf8" opacity="0.2"/>
+
+                        <!-- Arrow cycling back -->
+                        <path d="M 148 95 Q 175 60 175 40 Q 175 25 158 25 Q 138 25 130 40" stroke="#38bdf8" stroke-width="1.5" fill="none" stroke-opacity="0.6" stroke-dasharray="4,3" marker-end="url(#arrowBlue)"/>
+                        <defs>
+                            <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8" opacity="0.6"/>
+                            </marker>
+                        </defs>
+                        <text x="175" y="22" fill="#38bdf8" font-family="Inter,sans-serif" font-size="8" opacity="0.7">loop</text>
+                    </svg>
+                </div>
+                <div class="stage-content">
+                    <div class="stage-badge">🧠 Stage 1 &nbsp;·&nbsp; Foundation</div>
+                    <div class="stage-title">Remember</div>
+                    <p class="stage-desc">The foundation of all learning. Memory cards create a living, growing library of facts, patterns, and associations. Each pass through the cycle adds new cards when gaps are found — the deck is never finished because learning never stops.</p>
+                    <div class="stage-mechanic">
+                        <div class="mechanic-item"><span class="dot"></span><span>Flip cards back and forth to build retrieval strength</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Add a new card every time you discover a gap</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Spaced repetition keeps old cards from decaying</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Awareness check: "Am I recognising or truly recalling?"</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector">↓</div>
+
+            <!-- ── UNDERSTAND ── -->
+            <div class="stage-card stage-understand">
+                <div class="stage-svg-col">
+                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#a855f7" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#9333ea" stop-opacity="0.08"/>
+                            </linearGradient>
+                            <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7"/>
+                            </marker>
+                        </defs>
+                        <circle cx="110" cy="110" r="100" fill="url(#cardGrad2)" stroke="#a855f7" stroke-width="1" stroke-opacity="0.3"/>
+
+                        <!-- Central brain/question node -->
+                        <circle cx="110" cy="110" r="26" fill="#2a1a4a" stroke="#a855f7" stroke-width="2"/>
+                        <text x="110" y="116" fill="#a855f7" font-family="Inter,sans-serif" font-size="18" text-anchor="middle">?</text>
+
+                        <!-- Question satellites -->
+                        <circle cx="110" cy="48" r="16" fill="#1e1a3a" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <text x="110" y="54" fill="#a855f7" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" opacity="0.8">Q</text>
+
+                        <circle cx="170" cy="85" r="16" fill="#1e1a3a" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <text x="170" y="91" fill="#a855f7" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" opacity="0.8">Q</text>
+
+                        <circle cx="170" cy="140" r="16" fill="#1e1a3a" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <text x="170" y="146" fill="#a855f7" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" opacity="0.8">R</text>
+
+                        <circle cx="50" cy="85" r="16" fill="#1e1a3a" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <text x="50" y="91" fill="#a855f7" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" opacity="0.8">Q</text>
+
+                        <circle cx="50" cy="140" r="16" fill="#1e1a3a" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.7"/>
+                        <text x="50" y="146" fill="#a855f7" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" opacity="0.8">R</text>
+
+                        <!-- Connecting arrows -->
+                        <line x1="110" y1="64" x2="110" y2="84" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowPurple)"/>
+                        <line x1="154" y1="90" x2="136" y2="100" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowPurple)"/>
+                        <line x1="154" y1="135" x2="136" y2="122" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowPurple)"/>
+                        <line x1="66" y1="90" x2="84" y2="100" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowPurple)"/>
+                        <line x1="66" y1="135" x2="84" y2="122" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.5" marker-end="url(#arrowPurple)"/>
+
+                        <!-- Labels -->
+                        <text x="110" y="186" fill="#a855f7" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" font-weight="600">Question → Recall → Reason</text>
+                        <text x="110" y="200" fill="#64748b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">Q = question  R = correct recall</text>
+                    </svg>
+                </div>
+                <div class="stage-content">
+                    <div class="stage-badge">❓ Stage 2 &nbsp;·&nbsp; Comprehension</div>
+                    <div class="stage-title">Understand</div>
+                    <p class="stage-desc">Questioning is the engine of understanding. You don't passively read — you interrogate. Can you recall the answer correctly? Can you reason through it without the card? This stage builds the mental model that makes the next stages possible.</p>
+                    <div class="stage-mechanic">
+                        <div class="mechanic-item"><span class="dot"></span><span>Ask "why does this work?" not just "what is this?"</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Correct recall strengthens the memory trace</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Reason through the answer before checking</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Awareness check: "Can I explain this in my own words?"</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector">↓</div>
+
+            <!-- ── ANALYSE ── -->
+            <div class="stage-card stage-analyse">
+                <div class="stage-svg-col">
+                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#d97706" stop-opacity="0.08"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="110" cy="110" r="100" fill="url(#cardGrad3)" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.3"/>
+
+                        <!-- Constellation of concepts -->
+                        <!-- Nodes -->
+                        <circle cx="110" cy="60" r="12" fill="#2a2010" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="60"  cy="95" r="12" fill="#2a2010" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="160" cy="95" r="12" fill="#2a2010" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="75"  cy="150" r="12" fill="#2a2010" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="145" cy="150" r="12" fill="#2a2010" stroke="#f59e0b" stroke-width="2"/>
+                        <circle cx="110" cy="175" r="14" fill="#2a2010" stroke="#f59e0b" stroke-width="2.5"/>
+
+                        <!-- Connections (all-to-all partial) -->
+                        <line x1="110" y1="60"  x2="60"  y2="95"  stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.5"/>
+                        <line x1="110" y1="60"  x2="160" y2="95"  stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.5"/>
+                        <line x1="60"  y1="95"  x2="160" y2="95"  stroke="#f59e0b" stroke-width="1"   stroke-opacity="0.35"/>
+                        <line x1="60"  y1="95"  x2="75"  y2="150" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.5"/>
+                        <line x1="160" y1="95"  x2="145" y2="150" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.5"/>
+                        <line x1="75"  y1="150" x2="145" y2="150" stroke="#f59e0b" stroke-width="1"   stroke-opacity="0.35"/>
+                        <line x1="75"  y1="150" x2="110" y2="175" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.6"/>
+                        <line x1="145" y1="150" x2="110" y2="175" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.6"/>
+                        <line x1="110" y1="60"  x2="75"  y2="150" stroke="#f59e0b" stroke-width="1"   stroke-opacity="0.2" stroke-dasharray="4,3"/>
+                        <line x1="110" y1="60"  x2="145" y2="150" stroke="#f59e0b" stroke-width="1"   stroke-opacity="0.2" stroke-dasharray="4,3"/>
+
+                        <!-- Node labels -->
+                        <text x="110" y="64"  fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">A</text>
+                        <text x="60"  y="99"  fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">B</text>
+                        <text x="160" y="99"  fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">C</text>
+                        <text x="75"  y="154" fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">D</text>
+                        <text x="145" y="154" fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">E</text>
+                        <text x="110" y="180" fill="#f59e0b" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">🖼</text>
+
+                        <!-- Top label -->
+                        <text x="110" y="32" fill="#f59e0b" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" font-weight="600">Many concepts → one picture</text>
+                    </svg>
+                </div>
+                <div class="stage-content">
+                    <div class="stage-badge">🔗 Stage 3 &nbsp;·&nbsp; Connection</div>
+                    <div class="stage-title">Analyse</div>
+                    <p class="stage-desc">Analysis is synthesis at scale. You take many separate understandings and draw the map that connects them. Patterns emerge. Dependencies become visible. The picture you draw here is the cognitive architecture of the domain — your own mental model.</p>
+                    <div class="stage-mechanic">
+                        <div class="mechanic-item"><span class="dot"></span><span>Group concepts by theme, dependency, or contrast</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Draw diagrams, mind maps, or architecture charts</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Explain how concept A causes or enables concept B</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Awareness check: "Can I see the whole picture at once?"</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector">↓</div>
+
+            <!-- ── EVALUATE ── -->
+            <div class="stage-card stage-evaluate">
+                <div class="stage-svg-col">
+                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cardGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#dc2626" stop-opacity="0.08"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="110" cy="110" r="100" fill="url(#cardGrad4)" stroke="#ef4444" stroke-width="1" stroke-opacity="0.3"/>
+
+                        <!-- Balance scale -->
+                        <!-- Fulcrum -->
+                        <polygon points="110,165 100,190 120,190" fill="#2a1515" stroke="#ef4444" stroke-width="1.5"/>
+                        <rect x="107" y="100" width="6" height="65" fill="#ef4444" opacity="0.6"/>
+
+                        <!-- Beam -->
+                        <line x1="55" y1="100" x2="165" y2="100" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
+
+                        <!-- Left pan: Pros -->
+                        <circle cx="55" cy="100" r="5" fill="#ef4444"/>
+                        <path d="M 30 100 Q 30 130 55 135 Q 80 130 80 100" fill="#1a2a1a" stroke="#10b981" stroke-width="1.5"/>
+                        <text x="55" y="122" fill="#10b981" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">PRO</text>
+                        <text x="55" y="133" fill="#10b981" font-family="Inter,sans-serif" font-size="8" text-anchor="middle">✓ ✓</text>
+
+                        <!-- Right pan: Cons -->
+                        <circle cx="165" cy="100" r="5" fill="#ef4444"/>
+                        <path d="M 140 100 Q 140 125 165 128 Q 190 125 190 100" fill="#2a1a1a" stroke="#ef4444" stroke-width="1.5"/>
+                        <text x="165" y="118" fill="#ef4444" font-family="Inter,sans-serif" font-size="9" text-anchor="middle">CON</text>
+                        <text x="165" y="128" fill="#ef4444" font-family="Inter,sans-serif" font-size="8" text-anchor="middle">✗ ✗</text>
+
+                        <!-- Motivation spark above -->
+                        <text x="110" y="55" fill="#ef4444" font-family="Inter,sans-serif" font-size="20" text-anchor="middle">⚡</text>
+                        <text x="110" y="75" fill="#ef4444" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" font-weight="600">Why does this matter?</text>
+
+                        <!-- Multi-concept arcs -->
+                        <path d="M 45 82 Q 110 55 175 82" stroke="#ef4444" stroke-width="1" fill="none" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+
+                        <text x="110" y="205" fill="#ef4444" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" font-weight="600">Motivation + Judgement + Connection</text>
+                    </svg>
+                </div>
+                <div class="stage-content">
+                    <div class="stage-badge">⚖️ Stage 4 &nbsp;·&nbsp; Judgement</div>
+                    <div class="stage-title">Evaluate</div>
+                    <p class="stage-desc">Evaluation is where motivation lives. You weigh the pros and cons, decide what matters, and connect insights across multiple analyses. Communicating your judgement — even to yourself — makes it real. This stage fuels the energy to reach the Create stage.</p>
+                    <div class="stage-mechanic">
+                        <div class="mechanic-item"><span class="dot"></span><span>State the pros and cons of each approach or concept</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Ask "why should I care?" — find the personal relevance</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Connect judgements across multiple analysis maps</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Awareness check: "Am I motivated to go further?"</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="connector">↓</div>
+
+            <!-- ── CREATE ── -->
+            <div class="stage-card stage-create">
+                <div class="stage-svg-col">
+                    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="cardGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="#059669" stop-opacity="0.08"/>
+                            </linearGradient>
+                            <!-- Thread gradients -->
+                            <linearGradient id="threadR" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <linearGradient id="threadU" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#a855f7" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <linearGradient id="threadA" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.2"/>
+                            </linearGradient>
+                            <linearGradient id="threadE" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
+                                <stop offset="100%" stop-color="#ef4444" stop-opacity="0.2"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="110" cy="110" r="100" fill="url(#cardGrad5)" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>
+
+                        <!-- Story scroll -->
+                        <rect x="60" y="55" width="100" height="115" rx="8" fill="#0f2a20" stroke="#10b981" stroke-width="1.5"/>
+                        <rect x="60" y="55" width="100" height="20"  rx="8" fill="#10b981" opacity="0.15"/>
+                        <text x="110" y="70" fill="#10b981" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" font-weight="700">THE STORY</text>
+
+                        <!-- Story lines with colour threads -->
+                        <rect x="70" y="82" width="80" height="5" rx="2.5" fill="url(#threadR)"/>
+                        <rect x="70" y="92" width="70" height="5" rx="2.5" fill="url(#threadU)"/>
+                        <rect x="70" y="102" width="80" height="5" rx="2.5" fill="url(#threadA)"/>
+                        <rect x="70" y="112" width="65" height="5" rx="2.5" fill="url(#threadE)"/>
+                        <!-- Weave pattern -->
+                        <rect x="70" y="122" width="80" height="5" rx="2.5" fill="url(#threadR)" opacity="0.7"/>
+                        <rect x="70" y="132" width="75" height="5" rx="2.5" fill="url(#threadA)" opacity="0.7"/>
+                        <rect x="70" y="142" width="80" height="5" rx="2.5" fill="url(#threadU)" opacity="0.6"/>
+                        <rect x="70" y="152" width="60" height="5" rx="2.5" fill="url(#threadE)" opacity="0.5"/>
+
+                        <!-- Legend below -->
+                        <circle cx="68"  cy="176" r="4" fill="#38bdf8"/>
+                        <text x="75" y="180" fill="#64748b" font-family="Inter,sans-serif" font-size="8">R</text>
+                        <circle cx="90"  cy="176" r="4" fill="#a855f7"/>
+                        <text x="97" y="180" fill="#64748b" font-family="Inter,sans-serif" font-size="8">U</text>
+                        <circle cx="112" cy="176" r="4" fill="#f59e0b"/>
+                        <text x="119" y="180" fill="#64748b" font-family="Inter,sans-serif" font-size="8">An</text>
+                        <circle cx="136" cy="176" r="4" fill="#ef4444"/>
+                        <text x="143" y="180" fill="#64748b" font-family="Inter,sans-serif" font-size="8">E</text>
+
+                        <text x="110" y="202" fill="#10b981" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" font-weight="600">All stages woven into narrative</text>
+                    </svg>
+                </div>
+                <div class="stage-content">
+                    <div class="stage-badge">✍️ Stage 5 &nbsp;·&nbsp; Synthesis</div>
+                    <div class="stage-title">Create</div>
+                    <p class="stage-desc">The story is the container that holds everything together. Writing forces clarity. When you weave Remember (the facts), Understand (the reasoning), Analyse (the connections), and Evaluate (the judgements) into a single narrative, the knowledge becomes genuinely yours — durable, transferable, and alive.</p>
+                    <div class="stage-mechanic">
+                        <div class="mechanic-item"><span class="dot"></span><span>Write the story of what you learned — in your own voice</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Reference the memory cards as plot points in the narrative</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>The story is the proof — if you can't tell it, you don't own it</span></div>
+                        <div class="mechanic-item"><span class="dot"></span><span>Awareness check: "Does my story make sense to a newcomer?"</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /stages -->
+
+    </div><!-- /container -->
+
+    <footer class="app-footer">
+        <p>Claude Developer Certification Study App</p>
+        <p>Created by Rifat Erdem Sahin</p>
+        <div class="footer-links">
+            <a href="../../index.html">🏠 Home</a>
+            <a href="memory_cards.html">🧠 Memory Cards</a>
+            <a href="story.html">📖 Story Canvas</a>
+            <a href="cards.html">🃏 Cards</a>
+        </div>
+    </footer>
+</body>
+</html>

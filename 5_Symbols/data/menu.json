@@ -68,6 +68,7 @@
     "label": "🎨 5. Create",
     "sublabel": "Build",
     "items": [
+      { "emoji": "🧠", "label": "Bloom's Architecture", "href": "blooms_architecture.html" },
       { "emoji": "🗳️", "label": "Vote for Videos", "href": "create.html" },
       { "emoji": "🎬", "label": "Creator", "href": "creator.html" },
       { "emoji": "🏛️", "label": "Tactics", "href": "tactics.html" },

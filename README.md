@@ -58,10 +58,10 @@ An interactive study guide for the **Claude Developer Certification** exam with 
 │   ├── README.md           # Stage overview
 │   └── user_experience.md  # UX mockups and documentation
 ├── 4_Formula/              # Checklists (Concepts and Exam Questions in Azure)
-│   ├── DEPLOYMENT_CHECKLIST.md
-│   ├── INDEX_STRUCTURE.md
-│   ├── PRO_EXAM_QUICK_START.md
-│   └── PRO_EXAM_STATUS.md
+│   ├── deployment_checklist.md
+│   ├── index_structure.md
+│   ├── pro_exam_quick_start.md
+│   └── pro_exam_status.md
 ├── 5_Symbols/              # Implementation code and assets
 │   ├── assets/             # Visual media (exam & memory card images)
 │   ├── azure-api/          # Function App API

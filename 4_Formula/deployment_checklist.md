@@ -14,8 +14,8 @@
   - [x] `scripts/upload_pro_exam_images.py` - Azure Blob Storage uploader
 - [x] Created comprehensive documentation:
   - [x] `docs/PRO_EXAM_SETUP.md` - Complete technical setup guide
-  - [x] `PRO_EXAM_QUICK_START.md` - Quick start guide for users
-  - [x] `DEPLOYMENT_CHECKLIST.md` - This file
+  - [x] `pro_exam_quick_start.md` - Quick start guide for users
+  - [x] `deployment_checklist.md` - This file
 
 ## 🚀 Live & Accessible
 
@@ -38,7 +38,7 @@ scripts/generate-pro-exam-images.js              (4.1 KB)
 scripts/generate-pro-exam-images-enhanced.js     (7.3 KB)
 scripts/upload_pro_exam_images.py                (4.2 KB)
 docs/PRO_EXAM_SETUP.md           (6.3 KB)
-PRO_EXAM_QUICK_START.md          (8.2 KB)
+pro_exam_quick_start.md          (8.2 KB)
 ```
 
 ### Integration Points
@@ -244,7 +244,7 @@ export AZURE_STORAGE_CONNECTION_STRING="your-connection-string"
 ### Files Created
 - [x] pages/pro-exam.html (5.2 KB)
 - [x] docs/PRO_EXAM_SETUP.md (6.3 KB)
-- [x] PRO_EXAM_QUICK_START.md (8.2 KB)
+- [x] pro_exam_quick_start.md (8.2 KB)
 - [x] scripts/generate-pro-exam-images.js (4.1 KB)
 - [x] scripts/generate-pro-exam-images-enhanced.js (7.3 KB)
 - [x] scripts/upload_pro_exam_images.py (4.2 KB)
@@ -271,7 +271,7 @@ The Pro Exam page is fully functional, integrated into the navigation, and ready
 - **Page URL**: https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
 - **Menu**: Home → Understand → 🏆 Pro Exam
 - **Setup Guide**: See `docs/PRO_EXAM_SETUP.md`
-- **Quick Start**: See `PRO_EXAM_QUICK_START.md`
+- **Quick Start**: See `pro_exam_quick_start.md`
 
 ---
 

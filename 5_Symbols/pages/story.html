@@ -2003,15 +2003,42 @@ Make the tone professional, reflective, and tailored for a developer setting up 
         }
 
         // 7. Saving, Loading, and JSON import/exports
+
+        // Quota-safe localStorage writer: tries full save, falls back to image-free save
+        function persistStory(quiet) {
+            const payload = JSON.stringify(storyData);
+            try {
+                localStorage.setItem('claude_cert_story_feed_data', payload);
+                if (!quiet) logToDebugConsole('Saved story to localStorage.', 'azure-success');
+                else logToDebugConsole('Auto-saved story changes.', 'azure-success');
+                return true;
+            } catch (e) {
+                if (e.name === 'QuotaExceededError' || e.code === 22 || e.code === 1014) {
+                    // Strip images and retry
+                    const slim = { ...storyData, nodes: storyData.nodes.map(n => { const c = { ...n }; delete c.image; return c; }) };
+                    try {
+                        localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(slim));
+                        logToDebugConsole('[SAVE] Images omitted from cache — payload too large for localStorage.', 'info');
+                        showToast('Saved (images excluded — export JSON to keep them)');
+                        return 'slim';
+                    } catch (e2) {
+                        logToDebugConsole('[SAVE] localStorage full — could not save: ' + e2.message, 'info');
+                        showToast('Could not save — browser storage full');
+                        return false;
+                    }
+                }
+                logToDebugConsole('[SAVE] Save error: ' + e.message, 'info');
+                return false;
+            }
+        }
+
         function saveStory() {
-            localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
-            showToast("Story saved successfully!");
-            logToDebugConsole("Saved story structure to LocalStorage and synced backup to Azure storage successfully.", "azure-success");
+            persistStory(false);
+            showToast('Story saved successfully!');
         }
 
         function saveStoryQuietly() {
-            localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
-            logToDebugConsole("Auto-saved story changes & updated Azure storage snapshot.", "azure-success");
+            persistStory(true);
         }
 
         function loadStory() {
@@ -2108,25 +2135,36 @@ Make the tone professional, reflective, and tailored for a developer setting up 
 
             const reader = new FileReader();
             reader.onload = function(e) {
+                // Parse errors and save errors are intentionally separate
+                let data;
                 try {
-                    const data = JSON.parse(e.target.result);
-                    if (data.username && Array.isArray(data.nodes)) {
-                        storyData = data;
-                        usernameInput.value = storyData.username;
-                        onUsernameChange(storyData.username);
-                        renderStoryFeed();
-                        selectNode(null);
-                        saveStoryQuietly();
-                        showToast("Story imported successfully!");
-                    } else {
-                        alert("Invalid JSON structure! File must contain 'username' string and 'nodes' array.");
-                    }
-                } catch(err) {
-                    alert("Failed to parse JSON file: " + err.message);
+                    data = JSON.parse(e.target.result);
+                } catch (parseErr) {
+                    alert('Invalid JSON file: ' + parseErr.message);
+                    return;
+                }
+
+                if (!data.username || !Array.isArray(data.nodes)) {
+                    alert("Invalid structure — file must have 'username' and 'nodes' fields.");
+                    return;
+                }
+
+                storyData = data;
+                usernameInput.value = storyData.username;
+                onUsernameChange(storyData.username);
+                renderStoryFeed();
+                selectNode(null);
+
+                const saved = persistStory(true);
+                if (saved === 'slim') {
+                    showToast('Imported! Images in memory but not cached (too large for localStorage)');
+                    logToDebugConsole('[IMPORT] Story imported with images — localStorage limit reached, images live in memory only.', 'info');
+                } else {
+                    showToast('Story imported successfully!');
+                    logToDebugConsole('[IMPORT] Story imported and cached to localStorage.', 'info');
                 }
             };
             reader.readAsText(file);
-            // Reset input
             event.target.value = '';
         }
 

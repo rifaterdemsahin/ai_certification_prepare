@@ -898,12 +898,6 @@
                             🃏 Add Memory Card
                         </button>
                     </div>
-                    <div class="canvas-add-group">
-                        <label>Add Connective Transition (Connect)</label>
-                        <button class="form-btn form-btn-orange" onclick="addTransitionNode()">
-                            ✍️ Add Connective Transition
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1957,6 +1951,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
                 color: 'purple'
             };
 
+            autoInsertTransition();
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
@@ -1997,6 +1992,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
                 color: nodeColor
             };
 
+            autoInsertTransition();
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
@@ -2019,6 +2015,20 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             selectNode(newNode.id);
             logToDebugConsole('[ADD] Custom personal card created', 'info');
             saveStoryQuietly();
+        }
+
+        // Auto-insert a blank transition between the previous node and the incoming content node
+        function autoInsertTransition() {
+            const nodes = storyData.nodes;
+            if (nodes.length > 0 && nodes[nodes.length - 1].type !== 'transition') {
+                nodes.push({
+                    id: generateUniqueId(),
+                    type: 'transition',
+                    title: 'Connective Transition',
+                    notes: 'Write the connective narrative that bridges your story here...',
+                    color: 'orange'
+                });
+            }
         }
 
         function addTransitionNode() {
@@ -2057,6 +2067,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
                 color: 'blue'
             };
 
+            autoInsertTransition();
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);

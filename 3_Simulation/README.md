@@ -23,10 +23,13 @@ This folder holds **visual representations** of what the project will look like 
 | `mockup_navigation.png` | Navigation menu mockup |
 | `flow_user_journey.md` | User journey flow diagram |
 | `carousel_config.json` | Image list for the auto-updating carousel |
+| `master_simulation.md` | Master simulation coordinator showing all mockups and explanations |
 | `user_experience.md` | User experience guides and mockups explaining the system |
 | `study_dashboard.png` | Study dashboard mockup image (active recall grid) |
 | `memory_palace_mindmap.png` | Memory palace mindmap mockup image |
 | `flashcard_recall_view.png` | Flashcard recall view mockup image |
+| `story_creation_to_merge_all_stages.png` | Story canvas stage roadmap mockup image |
+| `story_tactic_maturity.png` | Story tactic and learning maturity calculation mockup image |
 
 ## Image Carousel
 

@@ -22,6 +22,7 @@ This folder is the **honest record** of what went wrong, what was harder than ex
 | `workarounds.md` | Active workarounds and their technical debt |
 | `gap_analysis.md` | Plan vs. reality comparison |
 | `lessons_learned.md` | Retrospective insights |
+| `orphaned_objects.md` | Analysis and catalog of orphaned/unused files and scripts |
 
 ## Error Log Format
 

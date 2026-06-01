@@ -1289,8 +1289,9 @@
             }, 45000);
         });
 
-        // Paste image handler — attaches clipboard image to the selected node
-        document.addEventListener('paste', (e) => {
+        // Paste image handler — uploads clipboard image to Azure story-images container,
+        // stores the blob URL on the node, and persists locally.
+        document.addEventListener('paste', async (e) => {
             const items = Array.from(e.clipboardData?.items || []);
             const imageItem = items.find(item => item.type.startsWith('image/'));
             if (!imageItem) return;
@@ -1312,15 +1313,45 @@
             const file = imageItem.getAsFile();
             if (!file) return;
 
+            const contentType = file.type || 'image/png';
+            const kb = Math.round(file.size / 1024);
+            logToDebugConsole(`[PASTE] Image detected (${contentType}, ${kb} KB) — uploading to Azure...`, 'info');
+            showToast('Uploading image to Azure...');
+
+            // Read as data URL then POST to story-images endpoint
             const reader = new FileReader();
-            reader.onload = (ev) => {
-                node.image = ev.target.result;
-                renderStoryFeed();
-                refreshTransitionImgSection(node);
-                saveStoryQuietly();
-                const kb = Math.round(ev.target.result.length / 1024);
-                logToDebugConsole(`[PASTE] Image ${node.image ? 'replaced' : 'stored'} on "${truncateText(node.title, 28)}" (${kb} KB)`, 'info');
-                showToast(`Image updated: ${truncateText(node.title, 30)}`);
+            reader.onload = async (ev) => {
+                try {
+                    const resp = await fetch('https://claude-cert-api.azurewebsites.net/api/story-images', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            imageData: ev.target.result,
+                            contentType,
+                            username: storyData.username
+                        })
+                    });
+
+                    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                    const data = await resp.json();
+                    if (!data.url) throw new Error('No URL in response');
+
+                    node.image = data.url;
+                    renderStoryFeed();
+                    refreshTransitionImgSection(node);
+                    saveStoryQuietly();
+                    logToDebugConsole(`[PASTE] ✅ Image stored → ${data.url}`, 'azure-success');
+                    showToast(`Image uploaded to Azure: ${truncateText(node.title, 30)}`);
+
+                } catch (err) {
+                    // Fallback: keep base64 locally so the image isn't lost
+                    node.image = ev.target.result;
+                    renderStoryFeed();
+                    refreshTransitionImgSection(node);
+                    saveStoryQuietly();
+                    logToDebugConsole(`[PASTE] ⚠ Azure upload failed (${err.message}) — stored as base64 temporarily`, 'info');
+                    showToast('Image saved locally — Azure upload failed');
+                }
             };
             reader.readAsDataURL(file);
         });

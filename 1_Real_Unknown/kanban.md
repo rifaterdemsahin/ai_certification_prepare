@@ -2,7 +2,6 @@
 
 ## 📥 Backlog
 - [ ] Add alerting for the cost management https://portal.azure.com/#view/Microsoft_Azure_CostManagement/Menu/~/costanalysis/openedBy/AzurePortal > requires manual Azure Portal setup
-- [ ] Move these pages to the create menu > https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/quick_memory.html > https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/add_memory_card.html  > https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?action=new in Admin group and remove from other menus
 
 
 -> These backlog tasks are implemented in bulk by Claude and moved to done
@@ -24,6 +23,7 @@
 
 
 ## ✅ Done
+- [x] Move quick_memory, add_memory_card, and analyse_renderer?action=new into ⚙️ Admin group under Create menu; remove from Remember and Analyse menus; upload menu.json to Azure
 - [x] Add top-down visual study story writer with AI text generator and JSON saving (`5408808`)
 - [x] Migrate exam question markdown files to Azure Blob Storage and update references (`d9e1d4c`)
 - [x] Migrate core concept markdown files to Azure Blob Storage and update references (`b2014d7`)

@@ -31,9 +31,7 @@
                 { emoji: '🎬', label: 'Slideshow', href: 'remember.html' },
                 { emoji: '🎯', label: 'Mastery', href: 'mastery.html' },
                 { emoji: '📝', label: 'Quiz Mode', href: 'quiz.html' },
-                { emoji: '🧠', label: 'Memory Cards', href: 'memory_cards.html' },
-                { emoji: '➕', label: 'Add Memory Card', href: 'add_memory_card.html' },
-                { emoji: '⚡', label: 'Quick Memory', href: 'quick_memory.html' }
+                { emoji: '🧠', label: 'Memory Cards', href: 'memory_cards.html' }
             ]
         },
         {
@@ -89,10 +87,6 @@
                 { emoji: '🧘', label: 'AI Mental Health', href: 'https://youtu.be/Ykvf3MunGf8', external: true },
                 { emoji: '🌍', label: 'World Model (Gemini)', href: 'https://www.youtube.com/watch?v=KUyRq7szZsM', external: true },
 
-                // Group 6: Sub Admin Menu
-                { isHeader: true, label: '⚙️ Admin Controls' },
-                { emoji: '➕', label: 'New Analysis Page', href: 'analyse_renderer.html?action=new' },
-                { emoji: '🃏', label: 'Add Memory Card', href: 'add_memory_card.html' }
             ]
         },
         {
@@ -114,7 +108,12 @@
                 { emoji: '🎧', label: 'Multi-Media Learning', href: 'multi_media_learning.html' },
                 { emoji: '📖', label: 'Story Canvas', href: 'story.html' },
                 { emoji: '📝', label: 'Prompts', href: 'markdown_renderer.html?url=../../prompts.md&title=Prompts' },
-                { emoji: '📦', label: 'GitHub Repo', href: 'https://github.com/rifaterdemsahin/claude_certification_exam', external: true }
+                { emoji: '📦', label: 'GitHub Repo', href: 'https://github.com/rifaterdemsahin/claude_certification_exam', external: true },
+                // Admin group
+                { isHeader: true, label: '⚙️ Admin' },
+                { emoji: '⚡', label: 'Quick Memory', href: 'quick_memory.html' },
+                { emoji: '➕', label: 'Add Memory Card', href: 'add_memory_card.html' },
+                { emoji: '📄', label: 'New Analysis Page', href: 'analyse_renderer.html?action=new' }
             ]
         }
     ];

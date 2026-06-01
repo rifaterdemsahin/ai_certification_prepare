@@ -151,6 +151,9 @@
 
             try {
                 const resp = await fetch(`${API_BASE}/cards`);
+                if (!resp.ok) {
+                    throw new Error(`HTTP error! status: ${resp.status}`);
+                }
                 const data = await resp.json();
                 const files = (data.files || [])
                     .filter(f => f.match(/MEM-Q\d+\.md/))

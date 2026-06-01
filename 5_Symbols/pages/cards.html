@@ -504,6 +504,9 @@
         async function loadNewCards() {
             try {
                 const resp = await fetch('https://claude-cert-api.azurewebsites.net/api/cards');
+                if (!resp.ok) {
+                    throw new Error(`HTTP error! status: ${resp.status}`);
+                }
                 const data = await resp.json();
                 const files = (data.files || [])
                     .filter(f => f.match(/MEM-Q\d+\.md/) && parseInt(f.match(/MEM-Q(\d+)\.md/)[1]) > 100)

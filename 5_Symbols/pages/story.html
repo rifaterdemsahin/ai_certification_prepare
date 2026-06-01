@@ -841,6 +841,118 @@
             border-color: var(--accent-blue);
             text-decoration: none;
         }
+
+        /* Modal overlay styling for picking stories */
+        .story-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .story-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .story-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .story-modal-overlay.active .story-modal {
+            transform: translateY(0);
+        }
+        .story-modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .story-modal-header h3 {
+            margin: 0;
+            font-size: 1.2em;
+            color: var(--text-primary);
+        }
+        .story-modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5em;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .story-modal-close:hover {
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .story-modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .story-list-item {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .story-list-item:hover {
+            border-color: var(--accent-blue);
+            background: rgba(56, 189, 248, 0.05);
+            transform: translateX(4px);
+        }
+        .story-list-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .story-list-item-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .story-list-item-date {
+            font-size: 0.75em;
+            color: var(--text-secondary);
+        }
+        .story-list-item-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .story-list-btn {
+            padding: 6px 12px;
+            font-size: 0.8em;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -914,11 +1026,16 @@
                 <div class="collapsible-body" id="story-actions-body">
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <div style="display:flex; gap:8px;">
-                            <button class="form-btn form-btn-primary" onclick="saveStory()" title="Save current story to LocalStorage">
+                            <button class="form-btn form-btn-primary" onclick="saveStory()" title="Save current story to LocalStorage and Azure Cloud">
                                 💾 Save Story
                             </button>
                             <button class="form-btn form-btn-secondary" onclick="loadStory()" title="Reload last saved story from LocalStorage">
                                 🔄 Load Story
+                            </button>
+                        </div>
+                        <div style="display:flex; gap:8px;">
+                            <button class="form-btn form-btn-secondary" onclick="openPickStoryModal()" style="flex: 1; border-color: var(--accent-purple); color: var(--accent-purple);" title="Pick a story from Azure Cloud">
+                                📂 Pick Story
                             </button>
                         </div>
                         <div style="display:flex; gap:8px;">
@@ -1225,11 +1342,11 @@
         }
 
         function initMemoryCardPicker() {
-            if (typeof questionsData !== 'undefined') {
-                questionsData.forEach(q => {
+            if (typeof memoryCardsData !== 'undefined') {
+                memoryCardsData.forEach(mc => {
                     const option = document.createElement('option');
-                    option.value = q.id;
-                    option.textContent = `Q${String(q.id).padStart(3, '0')}: ${truncateText(q.question, 45)}`;
+                    option.value = mc.id;
+                    option.textContent = `Q${mc.padId}: ${truncateText(mc.title, 45)}`;
                     memoryCardPicker.appendChild(option);
                 });
             }
@@ -2049,21 +2166,20 @@ Make the tone professional, reflective, and tailored for a developer setting up 
 
         function addMemoryCardNode() {
             const qIdVal = memoryCardPicker.value;
-            if (!qIdVal) return alert('Select a question from the list first.');
-            const qSelected = questionsData.find(q => q.id === parseInt(qIdVal));
-            if (!qSelected) return;
-
-            const categoryCode = `CAT${String(qSelected.category).padStart(2, '0')}`;
-            const fullQId = `${categoryCode}-Q${String(qSelected.id).padStart(3, '0')}`;
+            if (!qIdVal) return alert('Select a memory card from the list first.');
+            const mc = typeof memoryCardsData !== 'undefined'
+                ? memoryCardsData.find(m => m.id === parseInt(qIdVal))
+                : null;
+            if (!mc) return;
 
             const newNode = {
                 id: generateUniqueId(),
                 type: 'memory-card',
-                refId: fullQId,
-                qNum: qSelected.id,
-                title: `🃏 Memory Card Q${qSelected.id}`,
-                notes: `Reviewing memory card for Q${qSelected.id}.`,
-                referenceText: qSelected.question,
+                refId: `MEM-Q${mc.padId}`,
+                qNum: mc.id,
+                title: `🃏 Memory Card Q${mc.id}`,
+                notes: `Reviewing memory card for Q${mc.id}.`,
+                referenceText: mc.title,
                 color: 'blue'
             };
 
@@ -2071,7 +2187,7 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             storyData.nodes.push(newNode);
             renderStoryFeed();
             selectNode(newNode.id);
-            logToDebugConsole(`[ADD] Memory card node added: Q${qSelected.id} (${fullQId})`, 'info');
+            logToDebugConsole(`[ADD] Memory card Q${mc.id} added (hasQuestion: ${mc.hasQuestion})`, 'info');
             memoryCardPicker.value = '';
             saveStoryQuietly();
         }
@@ -2134,8 +2250,10 @@ Make the tone professional, reflective, and tailored for a developer setting up 
         }
 
         function saveStory() {
-            persistStory(false);
-            showToast('Story saved successfully!');
+            const saved = persistStory(false);
+            if (saved) {
+                saveStoryToAzure();
+            }
         }
 
         function saveStoryQuietly() {

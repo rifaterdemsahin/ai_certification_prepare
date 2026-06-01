@@ -125,6 +125,29 @@ questionsData.forEach(q => {
     q.claudePrompt = q.claudePrompt || `As a Claude Developer Certification teaching assistant, explain this concept in depth: "${q.question}". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.`;
 });
 
+// ================== MEMORY CARDS — SINGLE SOURCE OF TRUTH ==================
+// Covers all cards in Azure Blob Storage (Q1-100 are exam-linked; Q101+ are standalone).
+// Update MEMORY_CARD_MAX_ID when new cards are added to the blob container.
+const MEMORY_CARD_MAX_ID = 124;
+const AZURE_BLOB_BASE = 'https://claudecertstore.blob.core.windows.net';
+
+const memoryCardsData = (() => {
+    const cards = [];
+    for (let i = 1; i <= MEMORY_CARD_MAX_ID; i++) {
+        const padId = String(i).padStart(3, '0');
+        const q = questionsData.find(q => q.id === i);
+        cards.push({
+            id: i,
+            padId,
+            title: q ? q.question : `Memory Card Q${i}`,
+            url: `${AZURE_BLOB_BASE}/memory-cards/MEM-Q${padId}.md`,
+            hasQuestion: !!q,
+            category: q ? q.category : null
+        });
+    }
+    return cards;
+})();
+
 // ================== CATEGORIES ==================
 // Defines the 5 competency areas for the Claude Developer Certification
 // Includes name, color code, and weight percentage

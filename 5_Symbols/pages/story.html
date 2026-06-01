@@ -925,6 +925,10 @@
         const questionPicker = document.getElementById('question-picker');
         const toast = document.getElementById('toast-message');
 
+        function generateUniqueId() {
+            return 'node-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        }
+
         const CORE_CONCEPTS_INFO = {
             "agentic-ai": "Agentic AI Overview: Building systems capable of planning, using tools, and working autonomously to achieve high-level goals.",
             "agentic-loop": "Agentic Loop Pattern: The cyclic Perceive-Think-Act loop that defines active LLM systems instead of simple linear prompting.",

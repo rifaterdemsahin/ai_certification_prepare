@@ -553,6 +553,84 @@
             font-weight: 500;
         }
 
+        /* Mode Toggle */
+        .mode-toggle {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .mode-btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        .mode-btn:hover:not(.active) {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+        }
+
+        /* Slideshow Navigation */
+        .slideshow-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .slideshow-nav .btn-nav {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            background: var(--bg-primary);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+            transition: all 0.2s;
+            min-width: 100px;
+        }
+
+        .slideshow-nav .btn-nav:hover:not(:disabled) {
+            background: rgba(56, 189, 248, 0.15);
+        }
+
+        .slideshow-nav .btn-nav:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slideshow-counter {
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-width: 80px;
+            text-align: center;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -638,6 +716,10 @@
             <select id="scenarioFilter">
                 <option value="">All Scenarios</option>
             </select>
+            <div class="mode-toggle">
+                <button class="mode-btn active" id="modeScroll" onclick="setViewMode('scroll')">☰ Scroll</button>
+                <button class="mode-btn" id="modeSlideshow" onclick="setViewMode('slideshow')">▶ Slideshow</button>
+            </div>
             <button class="btn-secondary" onclick="resetMastered()" style="margin-left: auto; border-color: var(--accent-green); color: var(--accent-green);">Reset Mastered</button>
             <button class="btn-secondary" onclick="resetAll()">Reset All</button>
         </div>
@@ -667,6 +749,9 @@
         let examData = [];
         let userAnswers = {};
         let masteredQuestions = [];
+        let viewMode = 'scroll';
+        let currentSlideIndex = 0;
+        let filteredQuestions = [];
 
         // Audio playback state and controls
         let currentAudio = null;
@@ -796,16 +881,25 @@
             });
         }
 
+        function setViewMode(mode) {
+            viewMode = mode;
+            document.getElementById('modeScroll').classList.toggle('active', mode === 'scroll');
+            document.getElementById('modeSlideshow').classList.toggle('active', mode === 'slideshow');
+            if (mode === 'slideshow') {
+                currentSlideIndex = 0;
+            }
+            renderQuestions();
+        }
+
         function renderQuestions() {
             const filter = document.getElementById('scenarioFilter').value;
             let filtered = filter ? examData.filter(q => q.scenario === filter) : examData;
-            
-            // Filter out mastered questions
             filtered = filtered.filter(q => !masteredQuestions.includes(q.question_number));
-            
+            filteredQuestions = filtered;
+
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
-            
+
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div class="question-card" style="text-align: center; padding: 48px;">
@@ -815,6 +909,8 @@
                         <button class="btn-primary" onclick="resetMastered()" style="display: inline-block;">Reset Mastered</button>
                     </div>
                 `;
+            } else if (viewMode === 'slideshow') {
+                renderSlideshow(filtered);
             } else {
                 filtered.forEach(question => {
                     const card = createQuestionCard(question);
@@ -823,6 +919,39 @@
             }
 
             document.getElementById('totalQuestions').textContent = examData.length;
+        }
+
+        function renderSlideshow(questions) {
+            if (currentSlideIndex >= questions.length) currentSlideIndex = questions.length - 1;
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+
+            const container = document.getElementById('questionsContainer');
+
+            const nav = document.createElement('div');
+            nav.className = 'slideshow-nav';
+            nav.id = 'slideshowNav';
+            nav.innerHTML = `
+                <button class="btn-nav" id="btnPrev" onclick="navigateSlide(-1)" ${currentSlideIndex === 0 ? 'disabled' : ''}>← Previous</button>
+                <span class="slideshow-counter">${currentSlideIndex + 1} / ${questions.length}</span>
+                <button class="btn-nav" id="btnNext" onclick="navigateSlide(1)" ${currentSlideIndex === questions.length - 1 ? 'disabled' : ''}>Next →</button>
+            `;
+            container.appendChild(nav);
+
+            const card = createQuestionCard(questions[currentSlideIndex]);
+            container.appendChild(card);
+
+            const navBottom = nav.cloneNode(true);
+            navBottom.id = 'slideshowNavBottom';
+            navBottom.querySelectorAll('.btn-nav').forEach((btn, i) => {
+                btn.onclick = () => navigateSlide(i === 0 ? -1 : 1);
+            });
+            container.appendChild(navBottom);
+        }
+
+        function navigateSlide(direction) {
+            currentSlideIndex += direction;
+            renderQuestions();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function createQuestionCard(question) {
@@ -1045,8 +1174,16 @@
                 masteredQuestions.push(questionNumber);
                 saveMasteredState();
             }
-            
-            // Instantly remove from view with a clean fade-out micro-animation
+
+            if (viewMode === 'slideshow') {
+                // Stay on same index (next question slides into place), clamp at end
+                const newLength = filteredQuestions.length - 1;
+                if (currentSlideIndex >= newLength && newLength > 0) currentSlideIndex = newLength - 1;
+                renderQuestions();
+                updateStats();
+                return;
+            }
+
             const card = document.getElementById(`question-${questionNumber}`);
             if (card) {
                 card.style.opacity = '0';

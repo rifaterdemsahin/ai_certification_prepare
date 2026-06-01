@@ -923,12 +923,6 @@
                         </button>
                     </div>
                     <div class="canvas-add-group">
-                        <label>Add Personal Target (Create)</label>
-                        <button class="form-btn form-btn-primary" onclick="addCustomNode()">
-                            🎨 Create Custom Personal Card
-                        </button>
-                    </div>
-                    <div class="canvas-add-group">
                         <label>Add Connective Transition (Connect)</label>
                         <button class="form-btn form-btn-orange" onclick="addTransitionNode()">
                             ✍️ Add Connective Transition
@@ -942,7 +936,7 @@
         <div class="story-images-column" id="story-images-column">
             <div class="images-col-header">
                 <h3>🖼️ Story Images</h3>
-                <div class="images-col-hint">Click a node, then paste an image (Ctrl+V)</div>
+                <div class="images-col-hint">Click a transition, then paste an image (Ctrl+V)</div>
             </div>
             <div class="image-slots-list" id="story-image-slots">
                 <!-- Slots rendered by JS -->
@@ -1156,18 +1150,18 @@
             if (!slotsEl) return;
             slotsEl.innerHTML = '';
 
-            const contentNodes = storyData.nodes.filter(n => n.type !== 'transition');
-            if (contentNodes.length === 0) {
+            const transitionNodes = storyData.nodes.filter(n => n.type === 'transition');
+            if (transitionNodes.length === 0) {
                 const empty = document.createElement('div');
                 empty.className = 'image-col-empty';
-                empty.textContent = 'Add story nodes to attach images to each step of your narrative.';
+                empty.textContent = 'Add ✍️ Connective Transitions to attach images to them.';
                 slotsEl.appendChild(empty);
                 return;
             }
 
             let displayIndex = 0;
             storyData.nodes.forEach((node) => {
-                if (node.type === 'transition') return;
+                if (node.type !== 'transition') return;
                 displayIndex++;
 
                 const slot = document.createElement('div');

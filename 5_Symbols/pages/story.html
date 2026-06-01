@@ -597,151 +597,36 @@
             100% { opacity: 0; transform: translateY(10px); }
         }
 
-        /* Story Images Column */
-        .story-images-column {
-            width: 270px;
-            height: calc(100vh - 48px);
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-left: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            z-index: 9;
-            position: sticky;
-            top: 48px;
-            overflow-y: auto;
-            flex-shrink: 0;
-        }
-
-        .images-col-header {
-            padding: 14px 14px 10px;
-            border-bottom: 1px solid var(--border);
-            background: rgba(30, 41, 59, 0.7);
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        .images-col-header h3 {
-            margin: 0 0 5px;
-            font-size: 0.85em;
-            color: var(--accent-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .images-col-hint {
-            font-size: 0.72em;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        .image-slots-list {
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .story-image-slot {
+        /* Image hover zoom overlay */
+        .img-zoom-overlay {
+            position: fixed;
+            z-index: 10000;
+            pointer-events: none;
+            display: none;
+            max-width: 500px;
+            max-height: 380px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            background: rgba(30, 41, 59, 0.4);
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 180px;
         }
 
-        .story-image-slot:hover {
-            border-color: rgba(56, 189, 248, 0.5);
-        }
-
-        .story-image-slot.active {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
-        }
-
-        .image-slot-label {
-            padding: 6px 9px;
-            font-size: 0.72em;
-            font-weight: 600;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            background: rgba(15, 23, 42, 0.4);
-        }
-
-        .story-image-slot.active .image-slot-label {
-            color: var(--accent-blue);
-            background: rgba(56, 189, 248, 0.06);
-        }
-
-        .story-image-thumb {
+        .img-zoom-overlay img {
             width: 100%;
-            flex: 1;
-            min-height: 120px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;
             display: block;
+            background: #090d16;
         }
 
-        .image-slot-paste-zone {
-            flex: 1;
-            min-height: 130px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 0.74em;
-            color: var(--text-secondary);
-            opacity: 0.55;
-            transition: opacity 0.2s;
-        }
-
-        .story-image-slot.active .image-slot-paste-zone {
-            opacity: 1;
-            color: var(--accent-blue);
-        }
-
-        .image-slot-paste-zone .paste-icon {
-            font-size: 1.5em;
-        }
-
-        .image-slot-del-btn {
-            position: absolute;
-            top: 26px;
-            right: 4px;
-            background: rgba(10, 14, 28, 0.75);
-            border: none;
-            border-radius: 6px;
-            color: var(--text-secondary);
-            font-size: 0.78em;
-            cursor: pointer;
-            padding: 3px 5px;
-            opacity: 0;
-            transition: opacity 0.2s, color 0.2s;
-        }
-
-        .story-image-slot:hover .image-slot-del-btn {
-            opacity: 1;
-        }
-
-        .image-slot-del-btn:hover {
-            color: var(--accent-red);
+        .transition-card-image {
+            cursor: zoom-in;
         }
 
         /* Collapsible sidebar section */
         .sidebar-section-toggle {
             cursor: pointer;
+            -webkit-user-select: none;
             user-select: none;
             display: flex;
             align-items: center;
@@ -779,15 +664,6 @@
             opacity: 0;
         }
 
-        .image-col-empty {
-            padding: 28px 14px;
-            text-align: center;
-            font-size: 0.8em;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            opacity: 0.7;
-        }
-
         /* Responsive layout mapping */
         @media (max-width: 900px) {
             .story-app {
@@ -801,9 +677,6 @@
             }
             .story-feed {
                 height: auto;
-            }
-            .story-images-column {
-                display: none;
             }
         }
 
@@ -1005,17 +878,6 @@
             </div>
         </div>
 
-        <!-- Story Images Column -->
-        <div class="story-images-column" id="story-images-column">
-            <div class="images-col-header">
-                <h3>🖼️ Story Images</h3>
-                <div class="images-col-hint">Click a transition, then paste an image (Ctrl+V)</div>
-            </div>
-            <div class="image-slots-list" id="story-image-slots">
-                <!-- Slots rendered by JS -->
-            </div>
-        </div>
-
         <!-- Sidebar Picker & Node Editor -->
         <div class="sidebar">
             
@@ -1136,8 +998,10 @@
         </div>
     </div>
 
-    <!-- Hidden file input for transition image upload -->
-    <input type="file" id="image-file-input" style="display:none;" accept="image/*" onchange="handleTransitionImageFile(event)">
+    <!-- Image hover zoom overlay -->
+    <div class="img-zoom-overlay" id="img-zoom-overlay">
+        <img id="img-zoom-img" src="" alt="zoom preview">
+    </div>
 
     <!-- Toast feedback for save actions -->
     <div class="toast-notification" id="toast-message">Story successfully saved!</div>
@@ -1166,30 +1030,19 @@
         const questionPicker = document.getElementById('question-picker');
         const toast = document.getElementById('toast-message');
 
-        let pendingImageNodeId = null;
-
-        function addImageToTransition(nodeId) {
-            pendingImageNodeId = nodeId;
-            document.getElementById('image-file-input').click();
+        function showImageZoom(src, event) {
+            const overlay = document.getElementById('img-zoom-overlay');
+            const zoomImg = document.getElementById('img-zoom-img');
+            zoomImg.src = src;
+            const x = Math.min(event.clientX + 24, window.innerWidth - 520);
+            const y = Math.min(event.clientY - 30, window.innerHeight - 400);
+            overlay.style.left = Math.max(10, x) + 'px';
+            overlay.style.top = Math.max(10, y) + 'px';
+            overlay.style.display = 'block';
         }
 
-        function handleTransitionImageFile(event) {
-            const file = event.target.files[0];
-            event.target.value = '';
-            if (!file || !pendingImageNodeId) return;
-            const node = storyData.nodes.find(n => n.id === pendingImageNodeId);
-            pendingImageNodeId = null;
-            if (!node) return;
-            const reader = new FileReader();
-            reader.onload = (ev) => {
-                node.image = ev.target.result;
-                renderStoryFeed();
-                saveStoryQuietly();
-                const kb = Math.round(ev.target.result.length / 1024);
-                logToDebugConsole(`[IMG] Image added to transition "${truncateText(node.title, 28)}" (${kb} KB)`, 'info');
-                showToast('Image added to transition!');
-            };
-            reader.readAsDataURL(file);
+        function hideImageZoom() {
+            document.getElementById('img-zoom-overlay').style.display = 'none';
         }
 
         function toggleSection(bodyId, chevronId) {
@@ -1245,13 +1098,17 @@
             e.preventDefault();
 
             if (!selectedNodeId) {
-                logToDebugConsole('[PASTE] No node selected — click a story node first', 'info');
-                showToast('Select a story node first, then paste image (Ctrl+V)');
+                logToDebugConsole('[PASTE] No transition selected — click a ✍️ Connective Transition first', 'info');
+                showToast('Click a Connective Transition first, then paste image (Ctrl+V)');
                 return;
             }
 
-            const node = storyData.nodes.find(n => n.id === selectedNodeId);
-            if (!node) return;
+            const node = storyData.nodes.find(n => n.id === selectedNodeId && n.type === 'transition');
+            if (!node) {
+                logToDebugConsole('[PASTE] Selected node is not a transition — images attach to transitions only', 'info');
+                showToast('Images attach to Connective Transitions only — select one first');
+                return;
+            }
 
             const file = imageItem.getAsFile();
             if (!file) return;
@@ -1259,81 +1116,14 @@
             const reader = new FileReader();
             reader.onload = (ev) => {
                 node.image = ev.target.result;
-                renderImageColumn();
+                renderStoryFeed();
                 saveStoryQuietly();
                 const kb = Math.round(ev.target.result.length / 1024);
                 logToDebugConsole(`[PASTE] Image stored on "${truncateText(node.title, 28)}" (${kb} KB base64)`, 'info');
-                showToast(`Image attached to: ${truncateText(node.title, 30)}`);
+                showToast(`Image attached: ${truncateText(node.title, 30)}`);
             };
             reader.readAsDataURL(file);
         });
-
-        // Image column renderer — mirrors node order with image slots
-        function renderImageColumn() {
-            const slotsEl = document.getElementById('story-image-slots');
-            if (!slotsEl) return;
-            slotsEl.innerHTML = '';
-
-            const transitionNodes = storyData.nodes.filter(n => n.type === 'transition');
-            if (transitionNodes.length === 0) {
-                const empty = document.createElement('div');
-                empty.className = 'image-col-empty';
-                empty.textContent = 'Add ✍️ Connective Transitions to attach images to them.';
-                slotsEl.appendChild(empty);
-                return;
-            }
-
-            let displayIndex = 0;
-            storyData.nodes.forEach((node) => {
-                if (node.type !== 'transition') return;
-                displayIndex++;
-
-                const slot = document.createElement('div');
-                slot.className = 'story-image-slot';
-                if (selectedNodeId === node.id) slot.classList.add('active');
-                slot.dataset.nodeId = node.id;
-                slot.addEventListener('click', () => selectNode(node.id));
-
-                const label = document.createElement('div');
-                label.className = 'image-slot-label';
-                label.textContent = `${displayIndex}. ${truncateText(node.title, 24)}`;
-                slot.appendChild(label);
-
-                if (node.image) {
-                    const img = document.createElement('img');
-                    img.src = node.image;
-                    img.className = 'story-image-thumb';
-                    img.alt = node.title;
-                    slot.appendChild(img);
-
-                    const delBtn = document.createElement('button');
-                    delBtn.className = 'image-slot-del-btn';
-                    delBtn.title = 'Remove image';
-                    delBtn.innerHTML = '🗑️';
-                    delBtn.addEventListener('click', (ev) => {
-                        ev.stopPropagation();
-                        delete node.image;
-                        renderImageColumn();
-                        saveStoryQuietly();
-                        logToDebugConsole(`[IMG] Image removed from "${node.title}"`, 'info');
-                    });
-                    slot.appendChild(delBtn);
-                } else {
-                    const zone = document.createElement('div');
-                    zone.className = 'image-slot-paste-zone';
-                    const icon = document.createElement('span');
-                    icon.className = 'paste-icon';
-                    icon.textContent = selectedNodeId === node.id ? '📋' : '🖼️';
-                    const hint = document.createElement('span');
-                    hint.textContent = selectedNodeId === node.id ? 'Ctrl+V to paste image' : 'Click → Ctrl+V';
-                    zone.appendChild(icon);
-                    zone.appendChild(hint);
-                    slot.appendChild(zone);
-                }
-
-                slotsEl.appendChild(slot);
-            });
-        }
 
         // 1. Initializers
         function initConceptPicker() {
@@ -1478,6 +1268,8 @@
                         tImg.src = node.image;
                         tImg.className = 'transition-card-image';
                         tImg.alt = 'transition image';
+                        tImg.addEventListener('mouseenter', (e) => showImageZoom(node.image, e));
+                        tImg.addEventListener('mouseleave', hideImageZoom);
                         tCard.appendChild(tImg);
                     }
 
@@ -1498,12 +1290,6 @@
                     tActionsDiv.style.display = 'flex';
                     tActionsDiv.style.gap = '4px';
 
-                    const tImgBtn = document.createElement('button');
-                    tImgBtn.className = 'tcard-img-btn';
-                    tImgBtn.innerHTML = node.image ? '🔄 Image' : '🖼️ Add Image';
-                    tImgBtn.title = node.image ? 'Replace image' : 'Add image to this transition';
-                    tImgBtn.addEventListener('click', (e) => { e.stopPropagation(); addImageToTransition(node.id); });
-                    tActionsDiv.appendChild(tImgBtn);
 
                     const tUpBtn = document.createElement('button');
                     tUpBtn.className = 'action-icon-btn';
@@ -1738,8 +1524,6 @@
                 } // end else (regular card)
                 timelineContainer.appendChild(nodeWrapper);
             });
-
-            renderImageColumn();
         }
 
         // 3. Node list reordering and selection mechanics
@@ -1804,8 +1588,6 @@
                         }
                     });
 
-                    renderImageColumn();
-
                     // Scroll editor into view on mobile screens
                     if (window.innerWidth <= 900) {
                         editorSection.scrollIntoView({ behavior: 'smooth' });
@@ -1813,7 +1595,6 @@
                 }
             } else {
                 editorSection.style.display = 'none';
-                renderImageColumn();
             }
         }
 

@@ -164,6 +164,27 @@
             color: var(--accent-blue);
             margin-right: 8px;
         }
+        .swe-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            overflow: hidden;
+            min-width: 120px;
+        }
+        .swe-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+        .swe-claude   { background: linear-gradient(90deg, #a855f7, #38bdf8); }
+        .swe-claude-old { background: linear-gradient(90deg, #6366f1, #10b981); }
+        .swe-gemini   { background: linear-gradient(90deg, #38bdf8, #06b6d4); }
+        .swe-kimi     { background: linear-gradient(90deg, #a855f7, #ec4899); }
+        .swe-deepseek { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+        .tag-flagship { background: rgba(168,85,247,0.2); color: #a855f7; border: 1px solid #a855f7; }
+        .tag-balanced { background: rgba(56,189,248,0.15); color: #38bdf8; border: 1px solid #38bdf8; }
+        .tag-fast     { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid #10b981; }
     </style>
 </head>
 <body>
@@ -375,6 +396,147 @@
             </ul>
             <p>This is especially beneficial for Claude 4.7 Adaptive with its 1M context window, making long-context applications more cost-effective.</p>
         </div>
+
+        <!-- SWE-bench Competitor Comparison -->
+        <div class="section">
+            <h2>SWE-bench Verified: Gemini vs Kimi vs DeepSeek vs Claude</h2>
+            <p>SWE-bench Verified measures a model's ability to resolve real GitHub issues in popular Python repositories — the gold standard for coding agent evaluation.</p>
+
+            <table id="swe-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Provider</th>
+                        <th>Release</th>
+                        <th>SWE-bench %</th>
+                        <th>Score Bar</th>
+                        <th>Verdict</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Claude Sonnet 4.6</b></td>
+                        <td>Anthropic</td>
+                        <td>2025</td>
+                        <td class="highlight">72.7%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-claude" style="width:72.7%"></div></div></td>
+                        <td><span class="tag tag-flagship">Leader</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Kimi K2</b></td>
+                        <td>Moonshot AI</td>
+                        <td>Jun 2025</td>
+                        <td style="color:#a855f7;font-weight:600;">65.8%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-kimi" style="width:65.8%"></div></div></td>
+                        <td><span class="tag tag-balanced">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Gemini 2.5 Pro</b></td>
+                        <td>Google</td>
+                        <td>May 2025</td>
+                        <td style="color:#38bdf8;font-weight:600;">63.8%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-gemini" style="width:63.8%"></div></div></td>
+                        <td><span class="tag tag-balanced">Strong</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Claude 3.7 Sonnet</b></td>
+                        <td>Anthropic</td>
+                        <td>Feb 2025</td>
+                        <td style="color:#10b981;font-weight:600;">62.3%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-claude-old" style="width:62.3%"></div></div></td>
+                        <td><span class="tag tag-fast">Reference</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Gemini 2.5 Flash</b></td>
+                        <td>Google</td>
+                        <td>May 2025</td>
+                        <td style="color:#38bdf8;font-weight:600;">53.3%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-gemini" style="width:53.3%"></div></div></td>
+                        <td><span class="tag tag-fast">Efficient</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>DeepSeek R1</b></td>
+                        <td>DeepSeek</td>
+                        <td>Jan 2025</td>
+                        <td style="color:#fbbf24;font-weight:600;">49.2%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-deepseek" style="width:49.2%"></div></div></td>
+                        <td><span class="tag tag-fast">OSS Value</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>DeepSeek V3</b></td>
+                        <td>DeepSeek</td>
+                        <td>Jan 2025</td>
+                        <td style="color:#fbbf24;font-weight:600;">42.0%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-deepseek" style="width:42.0%"></div></div></td>
+                        <td><span class="tag tag-fast">OSS Value</span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Kimi K1.5</b></td>
+                        <td>Moonshot AI</td>
+                        <td>Feb 2025</td>
+                        <td style="color:#a855f7;font-weight:600;">35.8%</td>
+                        <td><div class="swe-bar"><div class="swe-fill swe-kimi" style="width:35.8%"></div></div></td>
+                        <td><span class="tag tag-balanced">Improving</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size:0.8em;margin-top:8px;">* SWE-bench Verified scores from public leaderboards (~Aug 2025). Scores evolve with agent scaffolding updates.</p>
+        </div>
+
+        <div class="section">
+            <h2>Evaluations by Provider</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card" style="border-color:#38bdf8;">
+                    <h3>🔵 Google Gemini</h3>
+                    <p><strong>Gemini 2.5 Pro — 63.8% | Flash — 53.3%</strong></p>
+                    <ul>
+                        <li>Strongest multimodal integration of the three</li>
+                        <li>Native 1M context window at launch</li>
+                        <li>Closes the gap with Claude but still trails by ~9pts</li>
+                        <li>Flash tier offers excellent cost/SWE ratio</li>
+                        <li>Deep Google ecosystem (Search, Workspace) advantage</li>
+                        <li>Thinking mode boosts accuracy on complex tasks</li>
+                    </ul>
+                    <p style="margin-top:12px;color:#38bdf8;font-weight:600;">Verdict: Best choice when multimodal + long context matters</p>
+                </div>
+                <div class="comparison-card" style="border-color:#a855f7;">
+                    <h3>🟣 Moonshot Kimi</h3>
+                    <p><strong>Kimi K2 — 65.8% | K1.5 — 35.8%</strong></p>
+                    <ul>
+                        <li>Biggest leap between generations (+30pts K1.5→K2)</li>
+                        <li>K2 briefly led the SWE-bench leaderboard at launch</li>
+                        <li>Strong agentic tool-use architecture in K2</li>
+                        <li>Open-source weights available for K2</li>
+                        <li>Competitive pricing vs. Western API providers</li>
+                        <li>Less enterprise tooling / ecosystem maturity</li>
+                    </ul>
+                    <p style="margin-top:12px;color:#a855f7;font-weight:600;">Verdict: Best OSS option for coding agents right now</p>
+                </div>
+                <div class="comparison-card" style="border-color:#fbbf24;">
+                    <h3>🟡 DeepSeek</h3>
+                    <p><strong>R1 — 49.2% | V3 — 42.0%</strong></p>
+                    <ul>
+                        <li>Exceptional cost-efficiency vs. performance</li>
+                        <li>R1 is a strong open-source reasoning model</li>
+                        <li>V3 is best-in-class among non-reasoning OSS models</li>
+                        <li>Both available for local/self-hosted deployment</li>
+                        <li>Significant gap to Claude/Gemini on SWE-bench</li>
+                        <li>Data-residency and compliance questions for enterprise</li>
+                    </ul>
+                    <p style="margin-top:12px;color:#fbbf24;font-weight:600;">Verdict: Best for self-hosted, cost-sensitive, open-source deployments</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Key Takeaways for Certification Candidates</h2>
+            <p><strong>1. Claude leads on SWE-bench:</strong> Claude Sonnet 4.6 at 72.7% holds a meaningful ~7pt lead over the nearest competitor (Kimi K2 at 65.8%). For agentic coding tasks, this matters.</p>
+            <p><strong>2. Kimi K2 is the surprise challenger:</strong> Moonshot AI's K2 jumped from 35.8% (K1.5) to 65.8% — a 30-point improvement in one generation, making it the most-improved model of 2025.</p>
+            <p><strong>3. Gemini 2.5 Pro is a credible alternative:</strong> At 63.8%, it's close to Kimi K2 and benefits from Google's multimodal and long-context tooling. Flash at 53.3% is excellent value.</p>
+            <p><strong>4. DeepSeek is the open-source reference:</strong> R1 and V3 are benchmarks for what's achievable without API costs. Enterprise teams with data sovereignty needs should evaluate these carefully.</p>
+            <p><strong>5. SWE-bench is just one dimension:</strong> Context window, price/token, latency, safety, and tool-use ergonomics all matter. No single benchmark determines the best model for your use case.</p>
+        </div>
     </div>
 
     <script>
@@ -440,8 +602,5 @@
             rows.forEach(row => tbody.appendChild(row));
         }
     </script>
-</body>
-</html>
-    
 </body>
 </html>

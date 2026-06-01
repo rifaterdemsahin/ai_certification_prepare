@@ -142,6 +142,13 @@ Pattern: `CAT{NN}-Q{NNN}` (e.g., `CAT01-Q005`)
 - **Debug Console:** When `debug` cookie is `'true'`, logs page path, sessionStorage keys, and cookies via `console.group`.
 - **Video Resources:** External YouTube links live under `📹 Video Resources` header in the Analyse section of `menu.json` and `nav.js`.
 
+## Kanban Discipline
+
+After every session:
+1. Run `git log --oneline` and compare every commit against `1_Real_Unknown/kanban.md` Done section.
+2. Add any missing commits as `- [x] <description> (\`<hash>\`)` — newest at the top of Done.
+3. Commit and push the kanban update.
+
 ## Maintenance Checklist
 
 Run these checks regularly to keep the project healthy:

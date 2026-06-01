@@ -932,6 +932,18 @@
                             <span>Mark Question as Checked Off</span>
                         </label>
                     </div>
+                    <!-- Transition image editor (shown only for transition type) -->
+                    <div class="form-group" id="transition-img-section" style="display:none;">
+                        <label>Transition Image</label>
+                        <div id="transition-img-preview" style="min-height:36px;"></div>
+                        <div style="font-size:0.76em; color:var(--text-secondary); margin-top:8px; padding:8px 10px; background:rgba(15,23,42,0.5); border-radius:6px; text-align:center; border:1px dashed var(--border);">
+                            📋 Ctrl+V anywhere to paste / replace image
+                        </div>
+                        <button id="transition-img-remove-btn" class="form-btn form-btn-danger" style="width:100%; margin-top:8px; display:none;" onclick="removeTransitionImage()">
+                            🗑️ Remove Image
+                        </button>
+                    </div>
+
                     <div class="form-group">
                         <label>Card Color Accent</label>
                         <div class="form-color-picker" id="color-picker">
@@ -1030,6 +1042,44 @@
         const questionPicker = document.getElementById('question-picker');
         const toast = document.getElementById('toast-message');
 
+        function refreshTransitionImgSection(node) {
+            const section = document.getElementById('transition-img-section');
+            const preview = document.getElementById('transition-img-preview');
+            const removeBtn = document.getElementById('transition-img-remove-btn');
+            if (!section || !preview || !removeBtn) return;
+
+            if (node && node.type === 'transition') {
+                section.style.display = 'block';
+                preview.innerHTML = '';
+                if (node.image) {
+                    const img = document.createElement('img');
+                    img.src = node.image;
+                    img.style.cssText = 'width:100%; border-radius:6px; max-height:120px; object-fit:cover; display:block; cursor:zoom-in;';
+                    img.addEventListener('mouseenter', (e) => showImageZoom(node.image, e));
+                    img.addEventListener('mouseleave', hideImageZoom);
+                    preview.appendChild(img);
+                    removeBtn.style.display = 'block';
+                } else {
+                    removeBtn.style.display = 'none';
+                }
+            } else {
+                section.style.display = 'none';
+                removeBtn.style.display = 'none';
+            }
+        }
+
+        function removeTransitionImage() {
+            const id = document.getElementById('edit-node-id').value;
+            const node = storyData.nodes.find(n => n.id === id);
+            if (!node) return;
+            delete node.image;
+            renderStoryFeed();
+            refreshTransitionImgSection(node);
+            saveStoryQuietly();
+            logToDebugConsole(`[IMG] Image removed from transition "${node.title}"`, 'info');
+            showToast('Image removed');
+        }
+
         function showImageZoom(src, event) {
             const overlay = document.getElementById('img-zoom-overlay');
             const zoomImg = document.getElementById('img-zoom-img');
@@ -1117,10 +1167,11 @@
             reader.onload = (ev) => {
                 node.image = ev.target.result;
                 renderStoryFeed();
+                refreshTransitionImgSection(node);
                 saveStoryQuietly();
                 const kb = Math.round(ev.target.result.length / 1024);
-                logToDebugConsole(`[PASTE] Image stored on "${truncateText(node.title, 28)}" (${kb} KB base64)`, 'info');
-                showToast(`Image attached: ${truncateText(node.title, 30)}`);
+                logToDebugConsole(`[PASTE] Image ${node.image ? 'replaced' : 'stored'} on "${truncateText(node.title, 28)}" (${kb} KB)`, 'info');
+                showToast(`Image updated: ${truncateText(node.title, 30)}`);
             };
             reader.readAsDataURL(file);
         });
@@ -1570,6 +1621,9 @@
                     // Update notes label for transition type
                     const notesLabel = document.querySelector('label[for="edit-node-notes"]');
                     if (notesLabel) notesLabel.textContent = node.type === 'transition' ? 'Transition Narrative Text' : 'Personalized Narrative / Notes';
+
+                    // Show/update the image section for transition nodes
+                    refreshTransitionImgSection(node);
 
                     const qCtrls = document.getElementById('question-only-controls');
                     if (node.type === 'question') {

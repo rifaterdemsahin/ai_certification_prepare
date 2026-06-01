@@ -86,6 +86,33 @@ The helper automation script `5_Symbols/scripts/copy_and_upload_images.sh` origi
 
 ---
 
+## [2026-06-01] Story Transition Image Upload — 404 Then Wrong Container
+
+**Symptom:**
+1. Pasting an image (Ctrl+V) onto a connective transition node logged:
+   `HTTP 404 — image not attached`
+2. After a partial fix, the debug console showed:
+   `✅ Image stored → https://claudecertstore.blob.core.windows.net/stories/story_claude_scholar.json`
+   — the URL was a **story JSON file**, not an image blob. The `story-images` container remained empty.
+
+**Root cause:**
+1. **404**: `StoryImages` was created as a new Azure Function (`5_Symbols/azure-api/StoryImages/`) but was never deployed to the live Function App. The endpoint `api/story-images` therefore did not exist.
+2. **Wrong URL**: The fix folded image upload into the existing `Stories` function via `?action=upload-image`. However the `Stories` function also had not been redeployed with the new code. The old deployed code ignored the query parameter, treated the request as a normal story POST, saved the full JSON (including base64 image data), and returned the story JSON blob URL — which the client then stored as `node.image`.
+
+**Fix applied:**
+1. Removed the separate `StoryImages` function. Image upload is now handled by `POST /api/stories?action=upload-image` inside `Stories/index.js` — no new function deployment needed, only the existing `Stories` function needs updating.
+2. Updated `Stories/index.js` POST handler to extract base64 from nodes server-side, upload each image to the `story-images` container with a unique filename (`story-img-{user}-{ts}-{8rand}.{ext}`), and return `nodes` with blob URLs in the response.
+3. Removed base64 fallback from the client-side paste handler — if upload fails the image is not attached at all; user is told to retry.
+4. Added safety strip in `persistStory()` to drop any `data:` URL from nodes before writing to localStorage.
+5. **Manually deployed** the updated `Stories/index.js` via the Azure Portal code editor:
+   `https://portal.azure.com → Function App claude-cert-api → Stories → Code + Test → Save`
+
+**Workaround active:** No — resolved after manual portal deployment of `Stories/index.js`.
+
+**Linked to:** [5_Symbols/azure-api/Stories/index.js](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/azure-api/Stories/index.js) and [5_Symbols/pages/story.html](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/pages/story.html)
+
+---
+
 ## [2026-05-31] CORS Preflight Block (Response to preflight doesn't pass access control check) for /api/analyse-pages
 
 **Symptom:**

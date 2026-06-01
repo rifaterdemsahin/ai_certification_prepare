@@ -56,6 +56,7 @@ delivery-pilot-template/
 - **Deduplication:** Find and remove duplicate files or redundant resources. Ensure obsolete elements (like local navigation placeholders or duplicate script tags) are deleted or cleaned up.
 - **Structure Format:** Maintain the format defined in the template repository [delivery-pilot-template](https://github.com/rifaterdemsahin/delivery-pilot-template).
 - **After every command, commit and push** — do not batch changes; each step gets its own commit.
+- **After every session, update `1_Real_Unknown/kanban.md`** — read `git log --oneline`, compare every commit against the Done section, and add any missing entries with their commit hash before pushing.
 - Use emojis (✨, 🛠, 🧪, 🐛) for readability.
 - **Record every prompt** in `prompts.md` — log date, agent, and purpose for each prompt given.
 - Keep `index.html` at the repo root — GitHub Pages requires it at the root.

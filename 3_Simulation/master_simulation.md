@@ -11,8 +11,8 @@ The application's learning interface is designed around the principles of **Bloo
 ---
 
 ### 📊 1. Study Dashboard (Active Recall Grid)
-* **Image:** `../../3_Simulation/study_dashboard.png`
-* **Direct Render:** ![Study Dashboard](../../3_Simulation/study_dashboard.png)
+* **Image:** `study_dashboard.png`
+* **Direct Render:** ![Study Dashboard](./study_dashboard.png)
 * **Logical Explanation:**
   * **Symptom / Needs:** Developers need to quickly assess their overall certification readiness across 100 questions and 5 distinct competency categories without getting overwhelmed.
   * **UX Rationale:** By displaying a dense grid of 100 interactive nodes, the dashboard leverages the **Zeigarnik Effect** (remembering uncompleted tasks). Colors denote status: red for weak, yellow for hard, and green for mastered.
@@ -21,8 +21,8 @@ The application's learning interface is designed around the principles of **Bloo
 ---
 
 ### 🗺️ 2. Memory Palace Mindmap (Conceptual Mapping)
-* **Image:** `../../3_Simulation/memory_palace_mindmap.png`
-* **Direct Render:** ![Memory Palace Mindmap](../../3_Simulation/memory_palace_mindmap.png)
+* **Image:** `memory_palace_mindmap.png`
+* **Direct Render:** ![Memory Palace Mindmap](./memory_palace_mindmap.png)
 * **Logical Explanation:**
   * **Symptom / Needs:** Deep comprehension of tool configuration (MCP), client-server relations, and orchestration flows requires understanding connections rather than isolated facts.
   * **UX Rationale:** Leverages **Dual-Coding Theory** by overlaying visual nodes with semantic text tags.
@@ -31,8 +31,8 @@ The application's learning interface is designed around the principles of **Bloo
 ---
 
 ### 🧠 3. Flashcard Recall View (The feedback loop)
-* **Image:** `../../3_Simulation/flashcard_recall_view.png`
-* **Direct Render:** ![Flashcard Recall View](../../3_Simulation/flashcard_recall_view.png)
+* **Image:** `flashcard_recall_view.png`
+* **Direct Render:** ![Flashcard Recall View](./flashcard_recall_view.png)
 * **Logical Explanation:**
   * **Symptom / Needs:** The actual review step where self-assessment and visual cues help encode information into long-term memory.
   * **UX Rationale:** Forces retrieval practice. Employs SVG hints and emoji mnemonics to trigger visual memory anchors before answers are revealed. Save status in local cookies to feed the Spaced Repetition engine.
@@ -41,8 +41,8 @@ The application's learning interface is designed around the principles of **Bloo
 ---
 
 ### 📖 4. Story Canvas (Merging All Stages)
-* **Image:** `../../3_Simulation/story_creation_to_merge_all_stages.png`
-* **Direct Render:** ![Story Canvas](../../3_Simulation/story_creation_to_merge_all_stages.png)
+* **Image:** `story_creation_to_merge_all_stages.png`
+* **Direct Render:** ![Story Canvas](./story_creation_to_merge_all_stages.png)
 * **Logical Explanation:**
   * **Symptom / Needs:** Learners need a narrative context or a "story" to weave dry technical standards (like pricing, limits, or system prompts) into memorable scenarios.
   * **UX Rationale:** Maps the 7 delivery stages (Real Unknown, Environment, Simulation, Formula, Symbols, Semblance, Testing Known) into a vertical visual timeline, combining personal narratives with technical requirements.
@@ -51,8 +51,8 @@ The application's learning interface is designed around the principles of **Bloo
 ---
 
 ### 📈 5. Story Tactic & Maturity Calculation (Learning Progression)
-* **Image:** `../../3_Simulation/story_tactic_maturity.png`
-* **Direct Render:** ![Story Tactic & Maturity Calculation](../../3_Simulation/story_tactic_maturity.png)
+* **Image:** `story_tactic_maturity.png`
+* **Direct Render:** ![Story Tactic & Maturity Calculation](./story_tactic_maturity.png)
 * **Logical Explanation:**
   * **Symptom / Needs:** Self-learners often get stuck at lower cognitive levels (Remember/Understand) and need structured guidelines and clear calculations to progress to the "Create" (design and build) stage.
   * **UX Rationale:** Visualizes a structured "Learning Maturity Roadmap" (Novice -> Re-centered -> Advanced -> Innovative -> Expert) alongside a radar chart of skill areas (Ethics, ML, NLP, Data Science) and a list of recommended transition projects. Uses a radial gauge to represent overall "Maturity Percentage" (e.g. 78% Maturity) to gamify and track higher-order learning capabilities.

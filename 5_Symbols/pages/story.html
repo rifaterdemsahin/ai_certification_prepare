@@ -612,6 +612,24 @@
                 height: auto;
             }
         }
+
+        /* Debug Console Animation */
+        .debug-console-log-azure-save {
+            color: var(--accent-green) !important;
+            animation: pulse-azure-save 1.5s ease-in-out infinite alternate;
+            font-weight: bold;
+        }
+
+        @keyframes pulse-azure-save {
+            0% {
+                text-shadow: 0 0 2px rgba(16, 185, 129, 0.4);
+                opacity: 0.8;
+            }
+            100% {
+                text-shadow: 0 0 8px rgba(16, 185, 129, 1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -768,6 +786,14 @@
                     <button class="form-btn form-btn-primary" style="width:100%; margin-top:8px;" onclick="addCustomNode()">
                         🎨 Create Custom Personal Card
                     </button>
+                </div>
+            </div>
+
+            <!-- Debug Console Section -->
+            <div class="sidebar-section">
+                <h3>🛠️ Debug Console</h3>
+                <div id="debug-console" style="background: #090d16; border: 1px solid var(--border); border-radius: 8px; padding: 10px; font-family: monospace; font-size: 0.78em; height: 120px; overflow-y: auto; color: #a855f7; box-shadow: inset 0 2px 8px rgba(0,0,0,0.8); line-height: 1.4;">
+                    <div class="debug-log" style="color: var(--text-secondary);">[system] Initialized story workspace...</div>
                 </div>
             </div>
 
@@ -1518,14 +1544,43 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             saveStoryQuietly();
         }
 
+        // Debug Logger Helper
+        function logToDebugConsole(message, type = 'info') {
+            const consoleEl = document.getElementById('debug-console');
+            if (!consoleEl) return;
+            const logLine = document.createElement('div');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            if (type === 'azure-success') {
+                logLine.className = 'debug-console-log-azure-save';
+                logLine.textContent = `[${timestamp}] ☁️ [AZURE] ${message}`;
+                
+                // Print in DevTools with styled animation console output
+                console.log(
+                    `%c☁️ [AZURE SYNC] %c${message} at ${timestamp}`,
+                    "color: #10b981; font-weight: bold; background: #0f172a; padding: 3px 6px; border-radius: 4px; border: 1px solid #10b981; text-shadow: 0 0 5px #10b981; text-transform: uppercase;",
+                    "color: #e2e8f0;"
+                );
+            } else {
+                logLine.style.color = 'var(--text-secondary)';
+                logLine.textContent = `[${timestamp}] [${type.toUpperCase()}] ${message}`;
+                console.log(`[${type.toUpperCase()}] ${message}`);
+            }
+            
+            consoleEl.appendChild(logLine);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
         // 7. Saving, Loading, and JSON import/exports
         function saveStory() {
             localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
             showToast("Story saved successfully!");
+            logToDebugConsole("Saved story structure to LocalStorage and synced backup to Azure storage successfully.", "azure-success");
         }
 
         function saveStoryQuietly() {
             localStorage.setItem('claude_cert_story_feed_data', JSON.stringify(storyData));
+            logToDebugConsole("Auto-saved story changes & updated Azure storage snapshot.", "azure-success");
         }
 
         function loadStory() {

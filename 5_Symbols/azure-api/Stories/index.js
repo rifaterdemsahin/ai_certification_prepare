@@ -36,6 +36,37 @@ module.exports = async function (context, req) {
         const containerClient = blobServiceClient.getContainerClient("stories");
         await containerClient.createIfNotExists();
 
+        // Image upload action — POST /api/stories?action=upload-image
+        if (req.method === "POST" && req.query.action === 'upload-image') {
+            const { imageData, contentType, username } = req.body || {};
+            if (!imageData || !username) {
+                context.res = { status: 400, headers: corsHeaders, body: { error: "Missing imageData or username" } };
+                return;
+            }
+            const base64Data = imageData.includes(',') ? imageData.split(',')[1] : imageData;
+            const mime = contentType || 'image/png';
+            const ext = mime.split('/')[1].replace('jpeg', 'jpg').split('+')[0] || 'png';
+            const cleanUsername = username.toLowerCase().replace(/[^a-z0-9]/g, '_');
+            const rand = Math.random().toString(36).substr(2, 8);
+            const imgFilename = `story-img-${cleanUsername}-${Date.now()}-${rand}.${ext}`;
+
+            const imgContainer = blobServiceClient.getContainerClient("story-images");
+            await imgContainer.createIfNotExists({ access: 'blob' });
+
+            const imgBlob = imgContainer.getBlockBlobClient(imgFilename);
+            const buf = Buffer.from(base64Data, 'base64');
+            await imgBlob.upload(buf, buf.length, {
+                blobHTTPHeaders: { blobContentType: mime }
+            });
+
+            context.res = {
+                status: 200,
+                headers: { ...corsHeaders, "Content-Type": "application/json" },
+                body: { ok: true, filename: imgFilename, url: imgBlob.url }
+            };
+            return;
+        }
+
         if (req.method === "GET") {
             const filename = req.query.filename;
             if (filename) {

@@ -922,6 +922,24 @@
         let targetQuestionNumber = null;
         const pendingImageBlobs = {};
 
+        // Per-question upload timestamps — persisted in localStorage so reloads use fresh URLs
+        let imageVersions = {};
+        function loadImageVersions() {
+            try { imageVersions = JSON.parse(localStorage.getItem('proExamImageVersions') || '{}'); } catch(e) { imageVersions = {}; }
+        }
+        function setImageVersion(qNum) {
+            imageVersions[qNum] = Date.now();
+            localStorage.setItem('proExamImageVersions', JSON.stringify(imageVersions));
+        }
+        function getImageUrl(questionNumber) {
+            const pad = String(questionNumber).padStart(3, '0');
+            const ext = (questionNumber >= 1 && questionNumber <= 58) ? 'png' : 'svg';
+            const base = `https://${STORAGE_ACCOUNT}.blob.core.windows.net/exam-images/q${pad}.${ext}`;
+            const v = imageVersions[questionNumber];
+            return v ? `${base}?t=${v}` : base;
+        }
+        loadImageVersions();
+
         function initLearner() {
             learnerName = getCookie('pro_exam_learner_name') || '';
             if (!learnerName) {
@@ -1050,11 +1068,16 @@
                     body: blob
                 });
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                // Persist version so every reload uses the cache-busted URL
+                setImageVersion(qNum);
+                // Update in-memory examData so future modal opens use the versioned URL immediately
+                const qObj = examData.find(q => q.question_number === qNum);
+                if (qObj) qObj._imageUploaded = true;
                 if (status) { status.textContent = '✓ Uploaded!'; status.style.color = 'var(--accent-green)'; }
-                // Reload modal image with cache-bust
+                // Reload modal image using the now-versioned URL
                 const container = document.getElementById('modalImageContainer');
                 if (container) {
-                    container.innerHTML = `<img src="https://${STORAGE_ACCOUNT}.blob.core.windows.net/exam-images/${filename}?t=${Date.now()}" class="modal-image" alt="Question ${qNum} diagram" style="display:block;margin:0 auto;">`;
+                    container.innerHTML = `<img src="${getImageUrl(qNum)}" class="modal-image" alt="Question ${qNum} diagram" style="display:block;margin:0 auto;">`;
                 }
                 setTimeout(() => {
                     const zone = document.getElementById(`change-img-${qNum}`);
@@ -1488,26 +1511,16 @@
         }
 
         function loadImageForQuestion(questionNumber, container) {
-            const extension = (questionNumber >= 1 && questionNumber <= 58) ? 'png' : 'svg';
-            const filename = `q${String(questionNumber).padStart(3, '0')}.${extension}`;
-            
-            // Load directly from Azure Blob Storage
-            const azureUrl = `https://claudecertstore.blob.core.windows.net/exam-images/${filename}`;
-            
+            const url = getImageUrl(questionNumber);
             const img = new Image();
-            
             img.onload = () => {
-                container.innerHTML = `<img src="${azureUrl}" class="modal-image" alt="Question ${questionNumber} diagram" style="display:block;margin:0 auto;">`;
+                container.innerHTML = `<img src="${url}" class="modal-image" alt="Question ${questionNumber} diagram" style="display:block;margin:0 auto;">`;
             };
-            
             img.onerror = () => {
-                // Fallback to placeholder if Azure fails
-                const question = examData.find(q => q.question_number === questionNumber);
-                const svg = createPlaceholderDiagram(question.image_prompt, questionNumber);
-                container.innerHTML = `<div>${svg}</div>`;
+                const q = examData.find(q => q.question_number === questionNumber);
+                container.innerHTML = `<div>${createPlaceholderDiagram(q.image_prompt, questionNumber)}</div>`;
             };
-            
-            img.src = azureUrl;
+            img.src = url;
         }
 
         function createPlaceholderDiagram(prompt, questionNumber) {

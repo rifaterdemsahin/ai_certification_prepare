@@ -1,24 +1,37 @@
-# Exam Notes & Learner Identity Architecture
+# Pro Exam — Where User Data Is Saved
 
-## Overview
-
-The Pro Exam page (`5_Symbols/pages/pro-exam.html`) supports personal study notes attached to each question. Notes are persisted in two layers — local and cloud — and are scoped to a named learner identity.
+All user data from `5_Symbols/pages/pro-exam.html` is saved across four storage locations.
 
 ---
 
-## Learner Identity
+## Quick Reference — Storage Map
 
-### How it works
-On first visit, a modal prompts for the learner's name. The name is stored as a browser cookie and used as a namespace for all data.
+| What | Storage | Key / Blob name | Survives reload? | Cross-device? |
+|---|---|---|---|---|
+| Learner name | Cookie | `pro_exam_learner_name` | ✅ 365 days | ❌ browser only |
+| Learner identity | Azure Blob | `self-learner/{slug}.json` | ✅ permanent | ✅ |
+| Question notes (all) | localStorage | `exam_notes_{slug}` | ✅ permanent | ❌ browser only |
+| Question notes backup | Azure Blob | `exam-notes/{slug}-notes.json` | ✅ permanent | ✅ |
+| Exam answers | localStorage | `proExamProgress` | ✅ permanent | ❌ browser only |
+| Mastered questions | Cookie | `claude_cert_pro_mastered` | ✅ 30 days | ❌ browser only |
+| Image upload versions | localStorage | `proExamImageVersions` | ✅ permanent | ❌ browser only |
 
-| Storage | Key | Expiry |
-|---|---|---|
-| Cookie | `pro_exam_learner_name` | 365 days |
-| Azure Blob | `self-learner/{slug}.json` | Permanent |
+`{slug}` = learner name with non-alphanumeric characters replaced by `_`  
+e.g. `Jane Smith` → `Jane_Smith`
 
-`{slug}` = name with all non-alphanumeric characters replaced by `_`.
+---
 
-### Blob schema — `self-learner/{slug}.json`
+## 1. Learner Name
+
+**Trigger:** User submits the name prompt modal on first visit, or clicks "change".
+
+**Saved to:**
+- Cookie `pro_exam_learner_name` (365-day expiry, same-site)
+- Azure Blob `self-learner/Jane_Smith.json`
+
+**Cookie purpose:** Identifies the learner on every page load so their notes and image versions are loaded immediately without fetching from Azure.
+
+**Blob schema:**
 ```json
 {
   "name": "Jane Smith",
@@ -27,119 +40,122 @@ On first visit, a modal prompts for the learner's name. The name is stored as a 
 }
 ```
 
-The blob is uploaded (PUT) when the learner first enters their name. It is overwritten on subsequent visits if the user changes their name.
+**Code path:**  
+`saveLearnerName()` → `setCookie('pro_exam_learner_name', ...)` + `uploadLearnerToAzure()`
 
 ---
 
-## Exam Notes
+## 2. Question Notes
 
-### How it works
-When a question's image popup is opened, a notes textarea appears on the right. The Save button writes the note to two places:
+**Trigger:** User clicks "💾 Save Note" in the image popup notes panel (right column).
 
-1. **`localStorage`** — keyed as `exam_notes_{slug}`, read back on page load
-2. **Azure Blob Storage** — `exam-notes/{slug}-notes.json`, entire notes object uploaded on each save
+**Saved to:**
+1. `localStorage['exam_notes_Jane_Smith']` — entire notes object, JSON stringified
+2. Azure Blob `exam-notes/Jane_Smith-notes.json` — same JSON, uploaded on every save
 
-Notes are loaded from `localStorage` on page load (fast, offline-capable). Azure is the backup / cross-device persistence layer.
+**Primary read:** localStorage (instant, offline-capable). Azure is the backup for cross-device access.
 
-### Blob schema — `exam-notes/{slug}-notes.json`
+**Blob schema:**
 ```json
 {
   "learnerName": "Jane Smith",
   "lastUpdated": "2026-06-02T16:05:00.000Z",
   "notes": {
-    "1": "Orchestrator delegates subtasks to subagents via tool calls.",
-    "12": "Prompt caching threshold is 1024 tokens for Sonnet."
+    "1":  "Coordinator routes findings to synthesis agent via tool calls.",
+    "30": "Minimal footprint = request only needed permissions."
   }
 }
 ```
 
-Keys in `notes` are question numbers (strings). Values are free-form text.
+Keys are question numbers (strings). Values are free-form text typed by the learner.
+
+**Code path:**  
+`saveNote(qNum)` → `localStorage.setItem(exam_notes_{slug}, ...)` + `uploadNotesToAzure()`
+
+**Loaded on page start:**  
+`initLearner()` reads the cookie, then reads `localStorage['exam_notes_{slug}']` into `examNotes{}`.  
+When the image popup opens, `existingNote = examNotes[questionNumber]` pre-fills the textarea.
 
 ---
 
-## Azure Storage
+## 3. Image Upload Versions
 
-### Account
-`claudecertstore` (Azure Blob Storage)
+**Trigger:** User uploads a replacement diagram via the "📎 Change Image" button → paste/drop/file → "☁️ Upload to Azure".
 
-### Containers
+**Saved to:**
+- Azure Blob `exam-images/q030.png` — replaces the existing image file
+- `localStorage['proExamImageVersions']` — `{"30": 1717340400000, ...}` timestamp map
 
-| Container | Purpose | Public access |
-|---|---|---|
-| `exam-notes` | One JSON per learner — all their question notes | Private (SAS only) |
-| `self-learner` | One JSON per learner — identity/timestamp | Private (SAS only) |
+**Why the timestamp map?**  
+Azure replaces the blob at `q030.png` but the URL doesn't change, so the browser serves the old cached version on reload. The timestamp makes the URL unique per upload:
 
-### Authentication
-Both containers use a **container-level SAS token** embedded in the page JS. The tokens have `rwcl` permissions (read, write, create, list) and expire 2028-01-01. This lets the browser PUT blobs directly without a backend proxy.
-
-> **Security note:** The SAS tokens are visible in the page source. This is acceptable for a study app — there is no sensitive data and the worst case is a user overwrites their own notes blob. Rotate the tokens if abuse is detected.
-
-### Direct upload (REST)
 ```
-PUT https://claudecertstore.blob.core.windows.net/{container}/{blob}?{SAS}
-x-ms-blob-type: BlockBlob
-Content-Type: application/json
-
-{...json body...}
+before upload:  https://claudecertstore.blob.core.windows.net/exam-images/q030.png
+after upload:   https://claudecertstore.blob.core.windows.net/exam-images/q030.png?t=1717340400000
 ```
 
-CORS on the storage account allows all origins (`*`) with PUT/GET/OPTIONS so browser uploads work without a proxy.
+The `?t=` param is appended by `getImageUrl(questionNumber)` which checks `imageVersions[qNum]` on every modal open and page load.
+
+**Code path:**  
+`uploadImageToAzure(qNum)` → Azure PUT → `setImageVersion(qNum)` → `localStorage['proExamImageVersions']`  
+`loadImageVersions()` runs at page startup to restore the map into `imageVersions{}`.
 
 ---
 
-## Data Flow
+## 4. Exam Answers & Mastered State
 
-```
-User types name
-  → cookie: pro_exam_learner_name
-  → Azure PUT: self-learner/{slug}.json
+**Trigger:** User selects an answer option or clicks "🎓 Mastered".
 
-Page loads
-  → read cookie → learnerName
-  → read localStorage: exam_notes_{slug} → examNotes{}
-  → show learner badge in header
+| Data | Storage | Key | Notes |
+|---|---|---|---|
+| Selected answers | localStorage | `proExamProgress` | `{questionNumber: selectedOption}` |
+| Mastered list | Cookie | `claude_cert_pro_mastered` | `[1, 5, 12, ...]` array, 30-day expiry |
 
-User opens image popup (any question)
-  → modal opens two-column layout
-    left:  question text + diagram image
-    right: notes textarea (pre-filled from examNotes)
-
-User clicks Save Note
-  → examNotes[questionNumber] = textarea.value
-  → localStorage.setItem(exam_notes_{slug}, JSON.stringify(examNotes))
-  → Azure PUT: exam-notes/{slug}-notes.json
-  → status indicator shows "✓ Saved" for 2 seconds
-
-User clicks "change" badge
-  → learnerNameModal re-opens with current name pre-filled
-  → on confirm: cookie updated, badge updated, new localStorage key used
-```
+These are independent of learner identity — they are not namespaced by name.
 
 ---
 
-## UI Components
+## Azure Storage Details
 
-### Learner badge (header)
-A purple pill in the page header showing `👤 {name}` with a `change` link. Hidden until `initLearner()` resolves a name. Rendered by `updateLearnerBadge()`.
+**Account:** `claudecertstore`
 
-### Learner name modal
-A centered overlay (`z-index: 3000`) that blocks interaction until a name is entered. Triggered on first visit and from the "change" link.
+| Container | Blob pattern | Access | SAS expiry |
+|---|---|---|---|
+| `exam-notes` | `{slug}-notes.json` | Private, SAS write | 2028-01-01 |
+| `self-learner` | `{slug}.json` | Private, SAS write | 2028-01-01 |
+| `exam-images` | `q{NNN}.png` | Public read, SAS write | 2028-01-01 |
 
-### Notes panel (image modal right column)
-- `notes-q{N}` — textarea ID, value set via `.value` (not innerHTML) to prevent injection
-- `notes-status-{N}` — status span, shows "✓ Saved" briefly after save
-- Grid collapses to single column on screens ≤ 768px
+All three SAS tokens are `rwcl` (read, write, create, list) and embedded in the page JS. CORS on the storage account allows `PUT` from all origins (`*`), enabling direct browser uploads with no backend proxy.
 
 ---
 
-## JS Functions Reference
+## Full Save Flow (one-page summary)
 
-| Function | Purpose |
-|---|---|
-| `initLearner()` | Reads cookie, loads localStorage notes, shows name modal if no name |
-| `saveLearnerName()` | Saves name to cookie, calls badge update + Azure upload |
-| `updateLearnerBadge()` | Updates the header badge DOM with current `learnerName` |
-| `changeLearner()` | Re-opens the name modal pre-filled with current name |
-| `saveNote(qNum)` | Writes note to `examNotes`, localStorage, Azure |
-| `uploadLearnerToAzure()` | PUT `self-learner/{slug}.json` via SAS |
-| `uploadNotesToAzure()` | PUT `exam-notes/{slug}-notes.json` via SAS |
+```
+FIRST VISIT
+  ├─ Name prompt shown
+  ├─ Name entered → Cookie: pro_exam_learner_name
+  │                → Azure: self-learner/Jane_Smith.json
+  └─ examNotes{} = {} (empty)
+
+PAGE LOAD (returning)
+  ├─ Cookie read → learnerName = "Jane Smith"
+  ├─ localStorage['exam_notes_Jane_Smith'] → examNotes{}
+  ├─ localStorage['proExamImageVersions'] → imageVersions{}
+  ├─ localStorage['proExamProgress'] → userAnswers{}
+  └─ Cookie['claude_cert_pro_mastered'] → masteredQuestions[]
+
+OPEN IMAGE POPUP (question 30)
+  ├─ getImageUrl(30) → q030.png?t=1717340400000  (if version exists)
+  └─ textarea.value = examNotes[30] || ''
+
+SAVE NOTE
+  ├─ examNotes[30] = "my note text"
+  ├─ localStorage['exam_notes_Jane_Smith'] = JSON.stringify(examNotes)
+  └─ Azure PUT: exam-notes/Jane_Smith-notes.json
+
+UPLOAD IMAGE (question 30)
+  ├─ Azure PUT: exam-images/q030.png
+  ├─ imageVersions[30] = Date.now()
+  └─ localStorage['proExamImageVersions'] = JSON.stringify(imageVersions)
+```

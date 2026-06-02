@@ -1060,7 +1060,9 @@
                 
                 console.log('Rendering questions...');
                 initLearner();
-                setViewMode(viewMode);
+                const urlMode = new URL(window.location).searchParams.get('mode');
+                if (urlMode === 'scroll' || urlMode === 'slideshow') viewMode = urlMode;
+                setViewMode(viewMode, true);
                 updateStats();
                 populateScenarioFilter();
                 console.log('✓ Data loaded successfully');
@@ -1087,9 +1089,15 @@
             });
         }
 
-        function setViewMode(mode) {
+        function setViewMode(mode, skipHistory) {
             viewMode = mode;
-            
+
+            if (!skipHistory) {
+                const url = new URL(window.location);
+                url.searchParams.set('mode', mode);
+                history.pushState(null, '', url);
+            }
+
             // Sync bottom/filter buttons if they exist
             const modeScroll = document.getElementById('modeScroll');
             const modeSlideshow = document.getElementById('modeSlideshow');
@@ -1477,6 +1485,12 @@
                 updateStats();
             }
         }
+
+        // Restore mode on browser back/forward
+        window.addEventListener('popstate', () => {
+            const m = new URL(window.location).searchParams.get('mode');
+            if (m === 'scroll' || m === 'slideshow') setViewMode(m, true);
+        });
 
         // Close modal on outside click
         document.getElementById('imageModal').addEventListener('click', function(e) {

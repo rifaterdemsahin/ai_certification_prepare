@@ -696,6 +696,35 @@
             text-align: center;
         }
 
+        /* Learner badge */
+        .learner-badge {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            margin-top: 14px;
+            padding: 8px 14px;
+            background: rgba(168,85,247,0.12);
+            border: 1px solid rgba(168,85,247,0.35);
+            border-radius: 20px;
+            width: fit-content;
+        }
+        .learner-badge .learner-name {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+        .learner-badge .change-btn {
+            font-size: 0.75em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: transparent;
+            border: 1px solid rgba(168,85,247,0.4);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .learner-badge .change-btn:hover { color: var(--accent-purple); border-color: var(--accent-purple); }
+
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
@@ -744,6 +773,11 @@
             </div>
             <h1>🎯 Pro Exam - 57 Advanced Questions</h1>
             <p class="subtitle">Master the Claude Developer Certification with 57 advanced questions covering multi-agent orchestration, error handling, and Claude Code configuration. Each question includes visual diagrams to reinforce concepts.</p>
+            <div class="learner-badge" id="learnerBadge">
+                <span>👤</span>
+                <span class="learner-name" id="learnerBadgeName"></span>
+                <button class="change-btn" onclick="changeLearner()">change</button>
+            </div>
         </header>
 
         <!-- Prominent High-Contrast View Mode Selector -->
@@ -859,6 +893,7 @@
             } else {
                 const saved = localStorage.getItem(`exam_notes_${learnerName}`);
                 if (saved) { try { examNotes = JSON.parse(saved); } catch(e) {} }
+                updateLearnerBadge();
             }
         }
 
@@ -870,7 +905,27 @@
             document.getElementById('learnerNameModal').classList.remove('show');
             const saved = localStorage.getItem(`exam_notes_${learnerName}`);
             if (saved) { try { examNotes = JSON.parse(saved); } catch(e) {} }
+            updateLearnerBadge();
             uploadLearnerToAzure();
+        }
+
+        function updateLearnerBadge() {
+            const badge = document.getElementById('learnerBadge');
+            const nameEl = document.getElementById('learnerBadgeName');
+            if (!badge || !nameEl) return;
+            if (learnerName) {
+                nameEl.textContent = learnerName;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function changeLearner() {
+            const input = document.getElementById('learnerNameInput');
+            if (input) input.value = learnerName;
+            document.getElementById('learnerNameModal').classList.add('show');
+            setTimeout(() => { if (input) input.focus(); }, 100);
         }
 
         function saveNote(questionNumber) {

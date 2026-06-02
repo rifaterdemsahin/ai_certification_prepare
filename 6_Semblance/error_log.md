@@ -133,5 +133,26 @@ Calling the `analyse_renderer.html?action=new` page failed with a browser consol
 
 **Linked to:** [5_Symbols/azure-api/AnalysePages/index.js](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/azure-api/AnalysePages/index.js) and [5_Symbols/pages/analyse_renderer.html](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/pages/analyse_renderer.html)
 
+---
+
+## [2026-06-02] GitHub Pages Deploy Failure on Artifact Upload (Tar Warning Exiting Non-Zero)
+
+**Symptom:**
+GitHub Actions deployment (`static.yml`) failed at the "Upload artifact" (`actions/upload-pages-artifact@v3`) step with `Error: Process completed with exit code 1`. The log output listed workspace files, ending with:
+`tar: ./.antigravitycli/a4349985-2bae-4456-b12f-680128560882.json: File removed before we read it`
+
+**Root cause:**
+The local agent/IDE state directories (`.claude/`, `.antigravitycli/`, and `.grok/`) and Mac system `.DS_Store` files were committed and tracked by Git due to temporary modifications in `.gitignore` (which commented them out). During the page build pipeline, a dynamic JSON log file under `.antigravitycli/` was modified or deleted while `tar` was archiving the workspace, causing the archiver to abort with an error.
+
+**Fix applied:**
+1. Modified `.gitignore` to restore ignore rules for `.claude/`, `.antigravitycli/`, and `.grok/`.
+2. Removed all tracked local config directories and `.DS_Store` files from Git tracking using `git rm -r --cached`.
+3. Committed and pushed the changes to trigger a clean deployment run, which completed successfully.
+
+**Workaround active:** No
+
+**Linked to:** [.gitignore](file:///Users/rifaterdemsahin/projects/claude_certification_exam/.gitignore) and [.github/workflows/static.yml](file:///Users/rifaterdemsahin/projects/claude_certification_exam/.github/workflows/static.yml)
+
+
 
 

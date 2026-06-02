@@ -437,6 +437,7 @@
         }
 
         function toggleMastery(id) {
+            const scrollY = window.scrollY;
             if (state.progress[id]) {
                 delete state.progress[id];
             } else {
@@ -445,6 +446,7 @@
             }
             saveProgress(state.progress);
             renderCards();
+            requestAnimationFrame(() => window.scrollTo(0, scrollY));
         }
 
         function getNextUnmasteredId(currentId) {

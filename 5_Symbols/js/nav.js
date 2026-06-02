@@ -96,6 +96,7 @@
             items: [
                 { emoji: '🎓', label: 'Evaluate Certificates', href: 'evaluate_certificates.html' },
                 { emoji: '💬', label: 'Discussion Board', href: 'understand.html' },
+                { emoji: '🏛️', label: 'Tactics', href: 'tactics.html' },
                 { emoji: '📊', label: 'Pricing', href: 'claude_pricing.html' },
                 { emoji: '🎮', label: 'Multiplayer', href: 'multiplayer.html' }
             ]
@@ -106,7 +107,6 @@
             items: [
                 { emoji: '🗳️', label: 'Vote for Videos', href: 'create.html' },
                 { emoji: '🎬', label: 'Creator', href: 'creator.html' },
-                { emoji: '🏛️', label: 'Tactics', href: 'tactics.html' },
                 { emoji: '🎧', label: 'Multi-Media Learning', href: 'multi_media_learning.html' },
                 { emoji: '📖', label: 'Story Canvas', href: 'story.html' },
                 { emoji: '📝', label: 'Prompts', href: 'markdown_renderer.html?url=../../prompts.md&title=Prompts' },
@@ -171,8 +171,8 @@
         const rememberPages = ['cards.html', 'remember.html', 'mastery.html', 'quiz.html', 'memory_cards.html', 'add_memory_card.html', 'quick_memory.html'];
         const understandPages = ['exam.html', 'practice_exam.html', 'pro-exam.html'];
         const analysePages = ['bmad.html', 'agi-path.html', 'claude_cli.html', 'claude_architecture.html', 'llm_mental_model.html', 'context_compression.html', 'explicit_criteria.html', 'dictionary.html', 'evaluate.html', 'mcp_python.html', 'mindmap.html', 'multi_turn.html', 'prompt_caching.html', 'structured_reasoning.html', 'resources.html', 'swe_bench.html', 'skills.html', 'analyse.html', 'analyse_renderer.html'];
-        const evaluatePages = ['understand.html', 'claude_pricing.html', 'multiplayer.html', 'evaluate_certificates.html'];
-        const createPages = ['create.html', 'creator.html', 'markdown_renderer.html', 'tactics.html', 'multi_media_learning.html', 'story.html'];
+        const evaluatePages = ['understand.html', 'claude_pricing.html', 'multiplayer.html', 'evaluate_certificates.html', 'tactics.html'];
+        const createPages = ['create.html', 'creator.html', 'markdown_renderer.html', 'multi_media_learning.html', 'story.html'];
 
         if (rememberPages.some(p => currentPage.includes(p))) activeIndex = 0;
         else if (understandPages.some(p => currentPage.includes(p))) activeIndex = 1;

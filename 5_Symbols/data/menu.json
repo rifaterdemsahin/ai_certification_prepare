@@ -61,6 +61,7 @@
     "items": [
       { "emoji": "🎓", "label": "Evaluate Certificates", "href": "evaluate_certificates.html" },
       { "emoji": "💬", "label": "Discussion Board", "href": "understand.html" },
+      { "emoji": "🏛️", "label": "Tactics", "href": "tactics.html" },
       { "emoji": "📊", "label": "Pricing", "href": "claude_pricing.html" },
       { "emoji": "🎮", "label": "Multiplayer", "href": "multiplayer.html" }
     ]
@@ -72,7 +73,6 @@
       { "emoji": "🧠", "label": "Bloom's Architecture", "href": "blooms_architecture.html" },
       { "emoji": "🗳️", "label": "Vote for Videos", "href": "create.html" },
       { "emoji": "🎬", "label": "Creator", "href": "creator.html" },
-      { "emoji": "🏛️", "label": "Tactics", "href": "tactics.html" },
       { "emoji": "🎧", "label": "Multi-Media Learning", "href": "multi_media_learning.html" },
       { "emoji": "📖", "label": "Story Canvas", "href": "story.html" },
       { "emoji": "📝", "label": "Prompts", "href": "markdown_renderer.html?url=../../prompts.md&title=Prompts" },

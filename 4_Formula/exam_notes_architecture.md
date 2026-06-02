@@ -119,11 +119,11 @@ These are independent of learner identity — they are not namespaced by name.
 
 **Account:** `claudecertstore`
 
-| Container | Blob pattern | Access | SAS expiry |
-|---|---|---|---|
-| `exam-notes` | `{slug}-notes.json` | Private, SAS write | 2028-01-01 |
-| `self-learner` | `{slug}.json` | Private, SAS write | 2028-01-01 |
-| `exam-images` | `q{NNN}.png` | Public read, SAS write | 2028-01-01 |
+| Container | Blob pattern | Access | SAS expiry | Portal link |
+|---|---|---|---|---|
+| `exam-notes` | `{slug}-notes.json` | Private, SAS write | 2028-01-01 | [Open in Azure Portal](https://portal.azure.com/#view/Microsoft_Azure_Storage/ContainerMenuBlade/~/overview/storageAccountId/%2Fsubscriptions%2Fb85b029d-9f7c-4c5a-8939-819480780c5d%2FresourceGroups%2Fclaude-certificate-training%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fclaudecertstore/path/exam-notes/etag/%220x8DEC0C603B90197%22/defaultId//publicAccessVal/None) |
+| `self-learner` | `{slug}.json` | Private, SAS write | 2028-01-01 | — |
+| `exam-images` | `q{NNN}.png` | Public read, SAS write | 2028-01-01 | — |
 
 All three SAS tokens are `rwcl` (read, write, create, list) and embedded in the page JS. CORS on the storage account allows `PUT` from all origins (`*`), enabling direct browser uploads with no backend proxy.
 

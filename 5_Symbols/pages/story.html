@@ -603,20 +603,36 @@
             z-index: 10000;
             pointer-events: none;
             display: none;
-            max-width: 500px;
-            max-height: 380px;
+            width: 560px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             border: 1px solid var(--border);
+            background: #090d16;
         }
 
         .img-zoom-overlay img {
             width: 100%;
-            height: 100%;
+            max-height: 400px;
             object-fit: contain;
             display: block;
             background: #090d16;
+        }
+
+        .img-zoom-caption {
+            padding: 10px 14px;
+            font-size: 0.85em;
+            color: var(--text-primary);
+            line-height: 1.45;
+            font-style: italic;
+            border-top: 1px solid var(--border);
+            background: rgba(30, 41, 59, 0.95);
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .img-zoom-caption:empty {
+            display: none;
         }
 
         .transition-card-image {
@@ -1154,6 +1170,7 @@
     <!-- Image hover zoom overlay -->
     <div class="img-zoom-overlay" id="img-zoom-overlay">
         <img id="img-zoom-img" src="" alt="zoom preview">
+        <div id="img-zoom-caption" class="img-zoom-caption"></div>
     </div>
 
     <!-- Toast feedback for save actions -->
@@ -1198,7 +1215,7 @@
                     const img = document.createElement('img');
                     img.src = node.image;
                     img.style.cssText = 'width:100%; border-radius:6px; max-height:120px; object-fit:cover; display:block; cursor:zoom-in;';
-                    img.addEventListener('mouseenter', (e) => showImageZoom(node.image, e));
+                    img.addEventListener('mouseenter', (e) => showImageZoom(node.image, e, node.notes));
                     img.addEventListener('mouseleave', hideImageZoom);
                     preview.appendChild(img);
                     removeBtn.style.display = 'block';
@@ -1223,12 +1240,14 @@
             showToast('Image removed');
         }
 
-        function showImageZoom(src, event) {
+        function showImageZoom(src, event, text) {
             const overlay = document.getElementById('img-zoom-overlay');
             const zoomImg = document.getElementById('img-zoom-img');
+            const caption = document.getElementById('img-zoom-caption');
             zoomImg.src = src;
-            const x = Math.min(event.clientX + 24, window.innerWidth - 520);
-            const y = Math.min(event.clientY - 30, window.innerHeight - 400);
+            if (caption) caption.textContent = text || '';
+            const x = Math.min(event.clientX + 24, window.innerWidth - 580);
+            const y = Math.min(event.clientY - 30, window.innerHeight - 520);
             overlay.style.left = Math.max(10, x) + 'px';
             overlay.style.top = Math.max(10, y) + 'px';
             overlay.style.display = 'block';
@@ -1509,7 +1528,7 @@
                         tImg.src = node.image;
                         tImg.className = 'transition-card-image';
                         tImg.alt = 'transition image';
-                        tImg.addEventListener('mouseenter', (e) => showImageZoom(node.image, e));
+                        tImg.addEventListener('mouseenter', (e) => showImageZoom(node.image, e, node.notes));
                         tImg.addEventListener('mouseleave', hideImageZoom);
                         tCard.appendChild(tImg);
                     }

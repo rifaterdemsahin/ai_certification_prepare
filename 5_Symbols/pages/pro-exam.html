@@ -1079,23 +1079,32 @@
             
             modalTitle.textContent = `Question ${question.question_number} - Diagram`;
             
+            // Always show question text
+            const questionHtml = `
+                <div style="background: var(--bg-primary); border-left: 4px solid var(--accent-blue); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+                    <p style="font-size: 1em; color: var(--text-primary); font-weight: 500; line-height: 1.6;">${question.question}</p>
+                </div>
+            `;
+
             if (!question.image_prompt) {
-                modalBody.innerHTML = '<div style="padding: 40px; color: var(--text-secondary); text-align: center;">No diagram available for this question.</div>';
+                modalBody.innerHTML = questionHtml + '<div style="padding: 20px; color: var(--text-secondary); text-align: center;">No diagram available for this question.</div>';
                 modal.classList.add('show');
                 return;
             }
-            
-            // Show loading state
-            modalBody.innerHTML = `
-                <div class="modal-loading">
-                    <div class="spinner"></div>
-                    <p style="margin-top: 16px;">Loading diagram...</p>
+
+            // Show question text + loading state for image
+            modalBody.innerHTML = questionHtml + `
+                <div id="modalImageContainer">
+                    <div class="modal-loading">
+                        <div class="spinner"></div>
+                        <p style="margin-top: 16px;">Loading diagram...</p>
+                    </div>
                 </div>
             `;
             modal.classList.add('show');
-            
+
             // Try to load from Azure, fallback to placeholder
-            loadImageForQuestion(questionNumber, modalBody);
+            loadImageForQuestion(questionNumber, document.getElementById('modalImageContainer'));
         }
 
         function loadImageForQuestion(questionNumber, container) {

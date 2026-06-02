@@ -153,6 +153,26 @@ The local agent/IDE state directories (`.claude/`, `.antigravitycli/`, and `.gro
 
 **Linked to:** [.gitignore](file:///Users/rifaterdemsahin/projects/claude_certification_exam/.gitignore) and [.github/workflows/static.yml](file:///Users/rifaterdemsahin/projects/claude_certification_exam/.github/workflows/static.yml)
 
+---
+
+## [2026-06-02] Story Editor Rapid Keystroke Save Floods
+
+**Symptom:**
+1. Debug logs showed rapid, back-to-back saves (e.g. 22 saves within 3 seconds) logged as `[10:32:36] ☁️ [AZURE] Auto-saved story changes.` when typing in the narrative editor inputs.
+2. Keystrokes flooded localStorage writes, degrading browser performance and creating high-frequency storage events.
+
+**Root cause:**
+The text inputs for node titles, notes, and transition narratives trigger `updateNodeFromForm()` or `updateTransitionFromForm()` on every single `input` event. These functions called `saveStoryQuietly()`, which immediately wrote the entire story JSON to `localStorage` without throttling or debouncing. (The console prepended `☁️ [AZURE]` due to the logs matching the `'azure-success'` style, even though they were localStorage-only saves).
+
+**Fix applied:**
+1. Refactored `saveStoryQuietly()` inside `story.html` to use a 2.5-second debounce window using `setTimeout` to buffer rapid consecutive inputs.
+2. Updated `saveStory()` to clear any pending debounced timeout, preventing duplicate operations when manual or interval-based full saves are triggered.
+
+**Workaround active:** No
+
+**Linked to:** [5_Symbols/pages/story.html](file:///Users/rifaterdemsahin/projects/claude_certification_exam/5_Symbols/pages/story.html)
+
+
 
 
 

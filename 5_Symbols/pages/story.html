@@ -2346,7 +2346,12 @@ Make the tone professional, reflective, and tailored for a developer setting up 
             }
         }
 
+        let saveQuietlyTimeout = null;
         function saveStory() {
+            if (saveQuietlyTimeout) {
+                clearTimeout(saveQuietlyTimeout);
+                saveQuietlyTimeout = null;
+            }
             const saved = persistStory(false);
             if (saved) {
                 saveStoryToAzure();
@@ -2354,7 +2359,13 @@ Make the tone professional, reflective, and tailored for a developer setting up 
         }
 
         function saveStoryQuietly() {
-            persistStory(true);
+            if (saveQuietlyTimeout) {
+                clearTimeout(saveQuietlyTimeout);
+            }
+            saveQuietlyTimeout = setTimeout(() => {
+                persistStory(true);
+                saveQuietlyTimeout = null;
+            }, 2500); // 2.5-second debounce window to prevent rapid save logs during typing
         }
 
         function loadStory() {

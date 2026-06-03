@@ -98,7 +98,8 @@
                 { emoji: '💬', label: 'Discussion Board', href: 'understand.html' },
                 { emoji: '🏛️', label: 'Tactics', href: 'tactics.html' },
                 { emoji: '📊', label: 'Pricing', href: 'claude_pricing.html' },
-                { emoji: '🎮', label: 'Multiplayer', href: 'multiplayer.html' }
+                { emoji: '🎮', label: 'Multiplayer', href: 'multiplayer.html' },
+                { emoji: '🐛', label: 'Open an Issue', href: 'https://github.com/rifaterdemsahin/claude_certification_exam/issues', external: true }
             ]
         },
         {

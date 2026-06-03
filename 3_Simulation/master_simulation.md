@@ -58,6 +58,14 @@ The application's learning interface is designed around the principles of **Bloo
   * **UX Rationale:** Visualizes a structured "Learning Maturity Roadmap" (Novice -> Re-centered -> Advanced -> Innovative -> Expert) alongside a radar chart of skill areas (Ethics, ML, NLP, Data Science) and a list of recommended transition projects. Uses a radial gauge to represent overall "Maturity Percentage" (e.g. 78% Maturity) to gamify and track higher-order learning capabilities.
   * **Interactive Workflow:** Check off completed learning projects (e.g., "Implement a basic Chatbot", "Fine-tune a Pre-trained Model") to automatically increment the maturity calculation and advance along the maturity roadmap.
 
+### 🎙️ 6. Gemini Live Audio Tutor (Interactive Audio Session)
+* **Image:** `gemini_live_audio_tutor.png`
+* **Direct Render:** ![Gemini Live Audio Tutor](./gemini_live_audio_tutor.png)
+* **Logical Explanation:**
+  * **Symptom / Needs:** Developers need hands-free, high-bandwidth interaction to practice explaining concepts out loud (Active Recall via verbal explanation) while multitasking or doing focused mock interviews.
+  * **UX Rationale:** Leverages a live audio interface powered by Gemini Live. The layout features visual waveform queues, speech-to-text transcript logs, real-time latency indicators, and quick-toggle mute/pause buttons, maximizing flow state and mimicry of a real technical interview.
+  * **Interactive Workflow:** Start a voice session, speak back-and-forth in real-time with the tutor, receive audio feedback and corrections, and review auto-generated textual notes afterward.
+
 ---
 
 ## 🔗 Quick Navigation Links

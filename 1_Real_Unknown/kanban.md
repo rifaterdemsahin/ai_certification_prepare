@@ -23,6 +23,7 @@
 
 
 ## ✅ Done
+- [x] Multilingual TTS audio — generate 102 Turkish MP3s locally via Kokoro, upload to Azure, dual EN/TR audio buttons in cards/remember/pro-exam, formula documented (`1b6e095`)
 - [x] Open issue and implement Gemini Live for live training sessions (`f9d4d9b`)
 - [x] Add Gemini Live two-choice voice quiz tactic to tactics page (`d66e34f`)
 - [x] Add Azure Portal link for exam-notes container (`eab2a4f`)

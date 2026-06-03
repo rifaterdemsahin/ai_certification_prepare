@@ -95,6 +95,8 @@
             sublabel: 'Collaborate',
             items: [
                 { emoji: '🎓', label: 'Evaluate Certificates', href: 'evaluate_certificates.html' },
+                { emoji: '🛡️', label: 'Why Get Certificates', href: 'why_get_certificates.html' },
+                { emoji: '📅', label: 'Evaluate Exam Day', href: 'exam_day_guide.html' },
                 { emoji: '💬', label: 'Discussion Board', href: 'understand.html' },
                 { emoji: '🏛️', label: 'Tactics', href: 'tactics.html' },
                 { emoji: '📊', label: 'Pricing', href: 'claude_pricing.html' },
@@ -172,7 +174,7 @@
         const rememberPages = ['cards.html', 'remember.html', 'mastery.html', 'quiz.html', 'memory_cards.html', 'add_memory_card.html', 'quick_memory.html'];
         const understandPages = ['exam.html', 'practice_exam.html', 'pro-exam.html'];
         const analysePages = ['bmad.html', 'agi-path.html', 'claude_cli.html', 'claude_architecture.html', 'llm_mental_model.html', 'context_compression.html', 'explicit_criteria.html', 'dictionary.html', 'evaluate.html', 'mcp_python.html', 'mindmap.html', 'multi_turn.html', 'prompt_caching.html', 'structured_reasoning.html', 'resources.html', 'swe_bench.html', 'skills.html', 'analyse.html', 'analyse_renderer.html'];
-        const evaluatePages = ['understand.html', 'claude_pricing.html', 'multiplayer.html', 'evaluate_certificates.html', 'tactics.html'];
+        const evaluatePages = ['understand.html', 'claude_pricing.html', 'multiplayer.html', 'evaluate_certificates.html', 'tactics.html', 'why_get_certificates.html', 'exam_day_guide.html'];
         const createPages = ['create.html', 'creator.html', 'markdown_renderer.html', 'multi_media_learning.html', 'story.html'];
 
         if (rememberPages.some(p => currentPage.includes(p))) activeIndex = 0;

@@ -6,7 +6,7 @@
 
 **Claude Developer Certification - Study Mastery App**
 
-Interactive study guide for the Claude Developer Certification exam featuring 124 questions, visual hints, memory aids, and progress tracking.
+Interactive study guide for the Claude Developer Certification exam featuring a growing, personalized question bank, visual hints, memory aids, and progress tracking. The number of questions and memory cards is intentionally not fixed — building your own questions and cards is itself the learning method, and every learner can contribute their own content.
 
 ## Core Architecture
 

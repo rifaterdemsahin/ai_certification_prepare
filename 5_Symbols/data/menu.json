@@ -60,6 +60,8 @@
     "sublabel": "Collaborate",
     "items": [
       { "emoji": "🎓", "label": "Evaluate Certificates", "href": "evaluate_certificates.html" },
+      { "emoji": "🛡️", "label": "Why Get Certificates", "href": "why_get_certificates.html" },
+      { "emoji": "📅", "label": "Evaluate Exam Day", "href": "exam_day_guide.html" },
       { "emoji": "💬", "label": "Discussion Board", "href": "understand.html" },
       { "emoji": "🏛️", "label": "Tactics", "href": "tactics.html" },
       { "emoji": "📊", "label": "Pricing", "href": "claude_pricing.html" },

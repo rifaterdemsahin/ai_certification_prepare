@@ -138,8 +138,99 @@ This makes re-runs safe and cheap — only missing files are regenerated.
 
 | File | Role |
 |------|------|
-| `5_Symbols/scripts/generate_audio.py` | Main pipeline script |
-| `5_Symbols/js/data.js` | Bakes `audioUrl` into every question object |
-| `5_Symbols/data/questions.json` | Updated with `audioUrl` values after upload |
-| `5_Symbols/pages/remember.html` | Renders the play button and streams audio |
+| `5_Symbols/scripts/generate_audio.py` | English audio pipeline |
+| `5_Symbols/scripts/generate_audio_tr.py` | Turkish audio pipeline |
+| `5_Symbols/js/data.js` | Bakes `audioUrl` + `audioUrlTr` into every question object |
+| `5_Symbols/data/questions.json` | Updated with `audioUrl` and `audioUrlTr` after upload |
+| `5_Symbols/pages/remember.html` | Renders EN + TR play buttons |
+| `5_Symbols/pages/cards.html` | Renders EN + TR play buttons |
+| `5_Symbols/js/state.js` | `getUserLanguage()` / `setUserLanguage()` cookie helpers |
+| `5_Symbols/css/styles.css` | `.remember-audio-btn-tr` orange TR button style |
+
+---
+
+## Multilingual Audio — Formula
+
+### Rationale
+
+Multilingual learners acquire and retain technical content better when they can switch
+between their native language framing and the target language. For Turkish speakers
+studying an English-language certification, hearing the question label and structure
+in Turkish removes cognitive load, while the English technical content trains the
+exact vocabulary they need for the exam.
+
+### Language Detection
+
+Language preference is stored in cookie `user_language` (values: `en` | `tr`, default `en`).
+
+- Set via `setUserLanguage(lang)` in `state.js`
+- Read via `getUserLanguage()` in `state.js`
+- User sets it in the Pro Exam welcome modal (🇬🇧 / 🇹🇷 picker) or via the `🌐 EN` / `🇹🇷 TR` toggle in `cards.html` and `remember.html`
+
+### Turkish Audio Text Formula
+
+```
+"Soru {N}. {question} ... Cevap: {answer}"
+```
+
+- `Soru` = "Question" in Turkish
+- `Cevap` = "Answer" in Turkish
+- Question and answer text remain in English — technical content is exam-language English
+- Result: Turkish framing + English content. Natural code-switching for bilingual learners.
+
+### Azure Blob Naming Convention
+
+| Language | Pattern | Example |
+|----------|---------|---------|
+| English | `AUD-Q{NNN}.mp3` | `AUD-Q042.mp3` |
+| Turkish | `AUD-Q{NNN}-TR.mp3` | `AUD-Q042-TR.mp3` |
+
+Both are stored in the `memory-audio` container of `claudecertstore`.
+
+### UI Behaviour
+
+| Language setting | `cards.html` | `remember.html` |
+|----------------|--------------|-----------------|
+| `en` (default) | Single `🔊 Play` button (blue) | Single `🔊 Play Audio` button (green) |
+| `tr` | `🔊 EN` (blue) + `🔊 TR` (orange) side by side | `🔊 EN Audio` (green) + `🔊 TR Audio` (orange) |
+
+### JSON Schema Extension
+
+```json
+{
+  "id": 1,
+  "audioUrl":   "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q001.mp3",
+  "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q001-TR.mp3"
+}
+```
+
+`data.js` bakes both URLs into every question at load time so no extra API calls are needed.
+
+### Re-running Turkish Audio
+
+```bash
+cd 5_Symbols/scripts
+
+# Full regeneration
+AZURE_STORAGE_KEY=$(az storage account keys list --account-name claudecertstore --query "[0].value" -o tsv) \
+python3 generate_audio_tr.py
+
+# Single question (e.g. Q42)
+AZURE_STORAGE_KEY=... python3 generate_audio_tr.py --start-id 42 --end-id 42
+
+# Force overwrite existing blobs
+AZURE_STORAGE_KEY=... python3 generate_audio_tr.py --force
+
+# Dry-run (local /tmp only, no upload)
+python3 generate_audio_tr.py --dry-run
+```
+
+### Extending to More Languages
+
+To add a new language (e.g. Spanish):
+1. Copy `generate_audio_tr.py` → `generate_audio_es.py`
+2. Change `build_tts_text_tr` to use Spanish labels (`Pregunta {N}. ... Respuesta: ...`)
+3. Change blob naming to `AUD-Q{NNN}-ES.mp3`
+4. Add `audioUrlEs` to `data.js` bake pattern
+5. Add `es` option to the language selector in `state.js`, `cards.html`, `remember.html`, and `pro-exam.html`
 | `2_Environment/kokoro.md` | Docker setup and API reference |

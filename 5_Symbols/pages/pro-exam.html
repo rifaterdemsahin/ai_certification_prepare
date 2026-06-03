@@ -883,6 +883,19 @@
             <input type="text" id="learnerNameInput" placeholder="Your name..." autocomplete="name"
                 style="width: 100%; padding: 12px 14px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: inherit; font-size: 1em; margin-bottom: 16px; box-sizing: border-box;"
                 onkeydown="if(event.key==='Enter') saveLearnerName()">
+            <div style="margin-bottom: 16px;">
+                <p style="color: var(--text-secondary); font-size: 0.85em; margin-bottom: 10px;">🌐 Audio language preference:</p>
+                <div style="display: flex; gap: 10px;">
+                    <button id="lang-btn-en" onclick="selectLang('en')"
+                        style="flex:1;padding:10px;border-radius:8px;border:2px solid var(--accent-blue);background:rgba(56,189,248,0.15);color:var(--accent-blue);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;">
+                        🇬🇧 English
+                    </button>
+                    <button id="lang-btn-tr" onclick="selectLang('tr')"
+                        style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;">
+                        🇹🇷 Türkçe
+                    </button>
+                </div>
+            </div>
             <button class="btn-primary" onclick="saveLearnerName()" style="width: 100%; padding: 14px;">Start Studying →</button>
         </div>
     </div>
@@ -940,10 +953,28 @@
         }
         loadImageVersions();
 
+        function selectLang(lang) {
+            setCookie('user_language', lang, 365);
+            const enBtn = document.getElementById('lang-btn-en');
+            const trBtn = document.getElementById('lang-btn-tr');
+            if (enBtn && trBtn) {
+                if (lang === 'tr') {
+                    enBtn.style.cssText = 'flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;';
+                    trBtn.style.cssText = 'flex:1;padding:10px;border-radius:8px;border:2px solid var(--accent-orange);background:rgba(245,158,11,0.15);color:var(--accent-orange);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;';
+                } else {
+                    enBtn.style.cssText = 'flex:1;padding:10px;border-radius:8px;border:2px solid var(--accent-blue);background:rgba(56,189,248,0.15);color:var(--accent-blue);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;';
+                    trBtn.style.cssText = 'flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:inherit;font-weight:600;font-size:0.9em;transition:all 0.2s;';
+                }
+            }
+        }
+
         function initLearner() {
             learnerName = getCookie('pro_exam_learner_name') || '';
             if (!learnerName) {
                 document.getElementById('learnerNameModal').classList.add('show');
+                // Reflect previously saved language preference
+                const savedLang = getCookie('user_language') || 'en';
+                selectLang(savedLang);
             } else {
                 const saved = localStorage.getItem(`exam_notes_${learnerName}`);
                 if (saved) { try { examNotes = JSON.parse(saved); } catch(e) {} }

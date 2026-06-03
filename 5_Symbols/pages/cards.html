@@ -172,6 +172,42 @@
             border-color: var(--accent-red);
             color: var(--accent-red);
         }
+        .audio-btn-tr {
+            background: rgba(245,158,11,0.1);
+            border: 1px solid var(--accent-orange);
+            color: var(--accent-orange);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: inherit;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .audio-btn-tr:hover { background: rgba(245,158,11,0.2); }
+        .audio-btn-tr.playing {
+            background: rgba(239,68,68,0.15);
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+        .lang-toggle {
+            background: rgba(168,85,247,0.12);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            border-radius: 8px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: inherit;
+            transition: all 0.2s;
+            font-weight: 600;
+        }
+        .lang-toggle:hover { background: rgba(168,85,247,0.25); }
+        .lang-toggle.tr-active {
+            background: rgba(245,158,11,0.15);
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
         .card-modal-image img {
             max-width: 100%;
             max-height: 300px;
@@ -229,6 +265,7 @@
             <button class="filter-btn" onclick="setFilter('mastered')">Mastered</button>
             <button class="filter-btn" onclick="setFilter('favorites')">Favorites</button>
             <button class="filter-btn shuffle-btn" onclick="shuffleCards()">🔀 Shuffle</button>
+            <button class="lang-toggle" id="lang-toggle-btn" onclick="toggleLanguage()" title="Switch audio language">🌐 EN</button>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Search questions..." oninput="filterCards(this.value)">
                 <button class="search-clear" onclick="clearSearch()">×</button>
@@ -315,7 +352,7 @@
                                         <div class="text">${escapeHtml(hint.memory)}</div>
                                     </div>
                                 ` : ''}
-                                ${q.audioUrl ? `<button class="audio-btn" id="audio-card-${q.id}" onclick="event.stopPropagation(); playAudio('${q.audioUrl}', 'audio-card-${q.id}')">🔊 Play</button>` : ''}
+                                ${q.audioUrl ? renderAudioBtns(q, 'card') : ''}
                                 <button class="mastery-btn ${isMastered ? 'mastered' : ''}" onclick="event.stopPropagation(); toggleMastery(${q.id})">
                                     ${isMastered ? '✓ Mastered' : 'Mark as Mastered'}
                                 </button>
@@ -363,7 +400,7 @@
                         </div>
                     ` : ''}
                     <div class="card-modal-actions">
-                        ${q.audioUrl ? `<button class="audio-btn" id="audio-modal-${q.id}" onclick="playAudio('${q.audioUrl}', 'audio-modal-${q.id}')">🔊 Play Audio</button>` : ''}
+                        ${q.audioUrl ? renderAudioBtns(q, 'modal') : ''}
                         <button class="${isFavorite ? 'fav-active' : ''}" onclick="toggleFavorite(${q.id}); this.closest('.card-modal-overlay').remove(); openCardModal(${q.id});">
                             ${isFavorite ? '★ Favorited' : '☆ Favorite'}
                         </button>
@@ -557,9 +594,9 @@
             if (currentAudio && !currentAudio.paused) {
                 currentAudio.pause();
                 currentAudio = null;
-                document.querySelectorAll('.audio-btn').forEach(b => {
+                document.querySelectorAll('.audio-btn, .audio-btn-tr').forEach(b => {
                     b.classList.remove('playing');
-                    b.textContent = b.id.startsWith('audio-modal') ? '🔊 Play Audio' : '🔊 Play';
+                    b.textContent = b.dataset.defaultLabel || '🔊 Play';
                 });
                 if (btn && btn.dataset.activeUrl === url) return;
             }
@@ -573,13 +610,54 @@
             currentAudio.onended = () => {
                 if (btn) {
                     btn.classList.remove('playing');
-                    btn.textContent = btn.id.startsWith('audio-modal') ? '🔊 Play Audio' : '🔊 Play';
+                    btn.textContent = btn.dataset.defaultLabel || '🔊 Play';
                     delete btn.dataset.activeUrl;
                 }
             };
         }
 
+        // Language preference helpers
+        function renderAudioBtns(q, context) {
+            const isModal = context === 'modal';
+            const lang = getUserLanguage();
+            const prefix = isModal ? 'audio-modal' : 'audio-card';
+            const labelEn = isModal ? '🔊 EN Audio' : '🔊 EN';
+            const labelTr = isModal ? '🔊 TR Audio' : '🔊 TR';
+            const stopEvt = isModal ? '' : 'event.stopPropagation(); ';
+            if (lang === 'tr') {
+                return `
+                    <button class="audio-btn" id="${prefix}-en-${q.id}" data-default-label="${labelEn}"
+                        onclick="${stopEvt}playAudio('${q.audioUrl}', '${prefix}-en-${q.id}')">${labelEn}</button>
+                    <button class="audio-btn-tr" id="${prefix}-tr-${q.id}" data-default-label="${labelTr}"
+                        onclick="${stopEvt}playAudio('${q.audioUrlTr}', '${prefix}-tr-${q.id}')">${labelTr}</button>`;
+            }
+            return `<button class="audio-btn" id="${prefix}-${q.id}" data-default-label="${isModal ? '🔊 Play Audio' : '🔊 Play'}"
+                onclick="${stopEvt}playAudio('${q.audioUrl}', '${prefix}-${q.id}')">${isModal ? '🔊 Play Audio' : '🔊 Play'}</button>`;
+        }
+
+        function toggleLanguage() {
+            const current = getUserLanguage();
+            const next = current === 'tr' ? 'en' : 'tr';
+            setUserLanguage(next);
+            updateLangToggleBtn();
+            renderCards();
+        }
+
+        function updateLangToggleBtn() {
+            const btn = document.getElementById('lang-toggle-btn');
+            if (!btn) return;
+            const lang = getUserLanguage();
+            if (lang === 'tr') {
+                btn.textContent = '🇹🇷 TR';
+                btn.classList.add('tr-active');
+            } else {
+                btn.textContent = '🌐 EN';
+                btn.classList.remove('tr-active');
+            }
+        }
+
         // Initialize
+        updateLangToggleBtn();
         renderCards();
         loadNewCards();
     </script>

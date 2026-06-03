@@ -111,6 +111,7 @@ questionsData.forEach(q => {
     const memId = `MEM-Q${padId}`;
     q.youtubeShortUrl = q.youtubeShortUrl || '';
     q.audioUrl = q.audioUrl || `https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q${padId}.mp3`;
+    q.audioUrlTr = q.audioUrlTr || `https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q${padId}-TR.mp3`;
 
     // Logic to handle image formats: SVG for new ones, PNG for existing ones
     const ext = (q.id >= 16) ? 'svg' : 'png';

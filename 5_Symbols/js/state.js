@@ -26,6 +26,15 @@ function saveProgress(progress) {
     setCookie('claude_cert_progress_v2', JSON.stringify(progress), 365);
 }
 
+// ================== LANGUAGE PREFERENCE ==================
+function getUserLanguage() {
+    return getCookie('user_language') || 'en';
+}
+
+function setUserLanguage(lang) {
+    setCookie('user_language', lang, 365);
+}
+
 // ================== STATE ==================
 // Main application state managed via browser cookies for persistence
 let state = {

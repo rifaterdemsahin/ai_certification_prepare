@@ -19,7 +19,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20are%20the%20three%20stages%20of%20an%20Agentic%20Loop%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q001_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q001.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are the three stages of an Agentic Loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are the three stages of an Agentic Loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q001-TR.mp3"
     },
     {
       "id": 2,
@@ -39,7 +40,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20Coordinator-Subagent%20model%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q002_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q002.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the Coordinator-Subagent model?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the Coordinator-Subagent model?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q002-TR.mp3"
     },
     {
       "id": 3,
@@ -59,7 +61,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20Task%20Decomposition%20in%20agentic%20systems%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q003_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q003.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Task Decomposition in agentic systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Task Decomposition in agentic systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q003-TR.mp3"
     },
     {
       "id": 4,
@@ -78,7 +81,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20Session%20Management%20in%20agentic%20architecture%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q004_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q004.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Session Management in agentic architecture?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Session Management in agentic architecture?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q004-TR.mp3"
     },
     {
       "id": 5,
@@ -96,7 +100,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20difference%20between%20a%20simple%20prompt%20and%20an%20agentic%20loop%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q005_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q005.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the difference between a simple prompt and an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the difference between a simple prompt and an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q005-TR.mp3"
     },
     {
       "id": 6,
@@ -115,7 +120,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20an%20autonomous%20cycle%20in%20agent%20architecture%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q006_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q006.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an autonomous cycle in agent architecture?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an autonomous cycle in agent architecture?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q006-TR.mp3"
     },
     {
       "id": 7,
@@ -134,7 +140,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20does%20'stateless'%20mean%20in%20agent%20design%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q007_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q007.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What does 'stateless' mean in agent design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What does 'stateless' mean in agent design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q007-TR.mp3"
     },
     {
       "id": 8,
@@ -152,7 +159,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20sub-agent%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q008_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q008.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a sub-agent?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a sub-agent?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q008-TR.mp3"
     },
     {
       "id": 9,
@@ -171,7 +179,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20'Sinthome'%20concept%20in%20Claude%20projects%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q009_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q009.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the 'Sinthome' concept in Claude projects?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the 'Sinthome' concept in Claude projects?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q009-TR.mp3"
     },
     {
       "id": 10,
@@ -189,7 +198,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20purpose%20of%20routing%20logic%20in%20the%20Coordinator%20pattern%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q010_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q010.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the purpose of routing logic in the Coordinator pattern?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the purpose of routing logic in the Coordinator pattern?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q010-TR.mp3"
     },
     {
       "id": 11,
@@ -208,7 +218,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'tool%20call'%20in%20an%20agentic%20loop%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q011_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q011.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'tool call' in an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'tool call' in an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q011-TR.mp3"
     },
     {
       "id": 12,
@@ -226,7 +237,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'observation'%20in%20the%20Perceive%20stage%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q012_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q012.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'observation' in the Perceive stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'observation' in the Perceive stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q012-TR.mp3"
     },
     {
       "id": 13,
@@ -245,7 +257,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'reasoning'%20in%20the%20Think%20stage%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q013_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q013.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'reasoning' in the Think stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'reasoning' in the Think stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q013-TR.mp3"
     },
     {
       "id": 14,
@@ -264,7 +277,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'execution'%20in%20the%20Act%20stage%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q014_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q014.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'execution' in the Act stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'execution' in the Act stage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q014-TR.mp3"
     },
     {
       "id": 15,
@@ -282,7 +296,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20an%20'escalation%20pattern'%20in%20agent%20systems%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q015_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q015.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an 'escalation pattern' in agent systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an 'escalation pattern' in agent systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q015-TR.mp3"
     },
     {
       "id": 16,
@@ -300,7 +315,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'parallel%20sub-agent%20execution'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q016_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q016.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'parallel sub-agent execution'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'parallel sub-agent execution'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q016-TR.mp3"
     },
     {
       "id": 17,
@@ -319,7 +335,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'sequential%20sub-agent%20execution'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q017_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q017.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'sequential sub-agent execution'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'sequential sub-agent execution'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q017-TR.mp3"
     },
     {
       "id": 18,
@@ -337,7 +354,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'task%20handoff'%20between%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q018_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q018.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'task handoff' between agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'task handoff' between agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q018-TR.mp3"
     },
     {
       "id": 19,
@@ -355,7 +373,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'agent%20memory'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q019_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q019.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'agent memory'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'agent memory'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q019-TR.mp3"
     },
     {
       "id": 20,
@@ -373,7 +392,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'short-term%20memory'%20in%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q020_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q020.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'short-term memory' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'short-term memory' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q020-TR.mp3"
     },
     {
       "id": 21,
@@ -391,7 +411,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'long-term%20memory'%20in%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q021_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q021.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'long-term memory' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'long-term memory' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q021-TR.mp3"
     },
     {
       "id": 22,
@@ -410,7 +431,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'feedback%20loop'%20in%20agentic%20systems%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q022_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q022.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'feedback loop' in agentic systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'feedback loop' in agentic systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q022-TR.mp3"
     },
     {
       "id": 23,
@@ -428,7 +450,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'goal-oriented%20behavior'%20in%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q023_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q023.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'goal-oriented behavior' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'goal-oriented behavior' in agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q023-TR.mp3"
     },
     {
       "id": 24,
@@ -446,7 +469,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20an%20'agentic%20boundary'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q024_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q024.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an 'agentic boundary'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an 'agentic boundary'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q024-TR.mp3"
     },
     {
       "id": 25,
@@ -464,7 +488,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20're-planning'%20in%20an%20agentic%20loop%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q025_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q025.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 're-planning' in an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 're-planning' in an agentic loop?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q025-TR.mp3"
     },
     {
       "id": 26,
@@ -482,7 +507,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'termination%20condition'%20for%20an%20agent%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q026_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q026.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'termination condition' for an agent?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'termination condition' for an agent?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q026-TR.mp3"
     },
     {
       "id": 27,
@@ -501,7 +527,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'human-in-the-loop'%20orchestration%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q027_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q027.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'human-in-the-loop' orchestration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'human-in-the-loop' orchestration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q027-TR.mp3"
     },
     {
       "id": 28,
@@ -519,7 +546,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20does%20MCP%20stand%20for%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q028_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q028.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What does MCP stand for?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What does MCP stand for?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q028-TR.mp3"
     },
     {
       "id": 29,
@@ -537,7 +565,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20key%20principle%20of%20MCP%20as%20'Protocol%20over%20API'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q029_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q029.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the key principle of MCP as 'Protocol over API'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the key principle of MCP as 'Protocol over API'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q029-TR.mp3"
     },
     {
       "id": 30,
@@ -556,7 +585,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Signal-to-Noise'%20ratio%20in%20tool%20interfaces%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q030_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q030.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Signal-to-Noise' ratio in tool interfaces?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Signal-to-Noise' ratio in tool interfaces?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q030-TR.mp3"
     },
     {
       "id": 31,
@@ -575,7 +605,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'structured%20error%20handling'%20for%20tools%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q031_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q031.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'structured error handling' for tools?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'structured error handling' for tools?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q031-TR.mp3"
     },
     {
       "id": 32,
@@ -593,7 +624,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'self-correction'%20in%20tool%20usage%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q032_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q032.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'self-correction' in tool usage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'self-correction' in tool usage?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q032-TR.mp3"
     },
     {
       "id": 33,
@@ -612,7 +644,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'context%20bloat%20prevention'%20in%20tool%20design%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q033_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q033.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context bloat prevention' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context bloat prevention' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q033-TR.mp3"
     },
     {
       "id": 34,
@@ -630,7 +663,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20an%20MCP%20server%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q034_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q034.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an MCP server?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is an MCP server?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q034-TR.mp3"
     },
     {
       "id": 35,
@@ -648,7 +682,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20are%20the%20three%20core%20primitives%20of%20MCP%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q035_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q035.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are the three core primitives of MCP?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are the three core primitives of MCP?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q035-TR.mp3"
     },
     {
       "id": 36,
@@ -666,7 +701,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'tool%20discovery'%20in%20MCP%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q036_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q036.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool discovery' in MCP?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool discovery' in MCP?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q036-TR.mp3"
     },
     {
       "id": 37,
@@ -685,7 +721,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=Why%20is%20JSON%20schema%20important%20for%20tool%20interfaces%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q037_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q037.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"Why is JSON schema important for tool interfaces?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"Why is JSON schema important for tool interfaces?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q037-TR.mp3"
     },
     {
       "id": 38,
@@ -704,7 +741,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'parameter%20validation'%20in%20tool%20design%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q038_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q038.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'parameter validation' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'parameter validation' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q038-TR.mp3"
     },
     {
       "id": 39,
@@ -723,7 +761,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'tool%20fallback%20strategy'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q039_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q039.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'tool fallback strategy'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'tool fallback strategy'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q039-TR.mp3"
     },
     {
       "id": 40,
@@ -742,7 +781,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'rate%20limiting'%20in%20tool%20integration%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q040_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q040.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'rate limiting' in tool integration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'rate limiting' in tool integration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q040-TR.mp3"
     },
     {
       "id": 41,
@@ -761,7 +801,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'tool%20idempotency'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q041_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q041.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool idempotency'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool idempotency'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q041-TR.mp3"
     },
     {
       "id": 42,
@@ -779,7 +820,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'schema%20evolution'%20in%20tool%20design%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q042_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q042.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'schema evolution' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'schema evolution' in tool design?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q042-TR.mp3"
     },
     {
       "id": 43,
@@ -798,7 +840,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'timeout%20handling'%20for%20tools%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q043_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q043.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'timeout handling' for tools?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'timeout handling' for tools?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q043-TR.mp3"
     },
     {
       "id": 44,
@@ -817,7 +860,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'tool%20composition'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q044_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q044.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool composition'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'tool composition'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q044-TR.mp3"
     },
     {
       "id": 45,
@@ -835,7 +879,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20benefit%20of%20MCP%20standardization%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q045_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q045.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the benefit of MCP standardization?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the benefit of MCP standardization?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q045-TR.mp3"
     },
     {
       "id": 46,
@@ -854,7 +899,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20purpose%20of%20CLAUDE.md%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q046_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q046.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the purpose of CLAUDE.md?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the purpose of CLAUDE.md?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q046-TR.mp3"
     },
     {
       "id": 47,
@@ -873,7 +919,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Plan%20Mode'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q047_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q047.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Plan Mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Plan Mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q047-TR.mp3"
     },
     {
       "id": 48,
@@ -892,7 +939,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Act%20Mode'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q048_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q048.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Act Mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Act Mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q048-TR.mp3"
     },
     {
       "id": 49,
@@ -910,7 +958,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=When%20should%20you%20use%20Plan%20Mode%20vs.%20Act%20Mode%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q049_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q049.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"When should you use Plan Mode vs. Act Mode?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"When should you use Plan Mode vs. Act Mode?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q049-TR.mp3"
     },
     {
       "id": 50,
@@ -928,7 +977,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20are%20custom%20slash%20commands%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q050_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q050.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are custom slash commands in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are custom slash commands in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q050-TR.mp3"
     },
     {
       "id": 51,
@@ -947,7 +997,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=How%20does%20CLAUDE.md%20act%20as%20a%20'Sinthome'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q051_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q051.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How does CLAUDE.md act as a 'Sinthome'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How does CLAUDE.md act as a 'Sinthome'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q051-TR.mp3"
     },
     {
       "id": 52,
@@ -965,7 +1016,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20should%20be%20included%20in%20a%20CLAUDE.md%20file%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q052_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q052.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What should be included in a CLAUDE.md file?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What should be included in a CLAUDE.md file?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q052-TR.mp3"
     },
     {
       "id": 53,
@@ -983,7 +1035,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20hierarchy%20of%20CLAUDE.md%20files%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q053_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q053.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the hierarchy of CLAUDE.md files?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the hierarchy of CLAUDE.md files?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q053-TR.mp3"
     },
     {
       "id": 54,
@@ -1001,7 +1054,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=How%20do%20you%20create%20a%20custom%20slash%20command%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q054_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q054.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How do you create a custom slash command?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How do you create a custom slash command?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q054-TR.mp3"
     },
     {
       "id": 55,
@@ -1020,7 +1074,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20CI%2FCD%20integration%20with%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q055_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q055.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is CI/CD integration with Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is CI/CD integration with Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q055-TR.mp3"
     },
     {
       "id": 56,
@@ -1038,7 +1093,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20the%20'CLAUDE.md%20hierarchy'%20concept%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q056_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q056.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the 'CLAUDE.md hierarchy' concept?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is the 'CLAUDE.md hierarchy' concept?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q056-TR.mp3"
     },
     {
       "id": 57,
@@ -1057,7 +1113,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20happens%20if%20Claude%20violates%20a%20CLAUDE.md%20rule%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q057_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q057.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What happens if Claude violates a CLAUDE.md rule?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What happens if Claude violates a CLAUDE.md rule?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q057-TR.mp3"
     },
     {
       "id": 58,
@@ -1076,7 +1133,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'context%20persistence'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q058_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q058.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context persistence' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context persistence' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q058-TR.mp3"
     },
     {
       "id": 59,
@@ -1094,7 +1152,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=How%20do%20you%20update%20CLAUDE.md%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q059_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q059.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How do you update CLAUDE.md?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"How do you update CLAUDE.md?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q059-TR.mp3"
     },
     {
       "id": 60,
@@ -1113,7 +1172,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'Video%20Creator%20Master%20Prompt'%20file%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q060_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q060.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Video Creator Master Prompt' file?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Video Creator Master Prompt' file?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q060-TR.mp3"
     },
     {
       "id": 61,
@@ -1131,7 +1191,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'automation%20scripting'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q061_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q061.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'automation scripting' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'automation scripting' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q061-TR.mp3"
     },
     {
       "id": 62,
@@ -1149,7 +1210,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'workflow%20chaining'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q062_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q062.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'workflow chaining'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'workflow chaining'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q062-TR.mp3"
     },
     {
       "id": 63,
@@ -1167,7 +1229,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'code%20review%20mode'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q063_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q063.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'code review mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'code review mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q063-TR.mp3"
     },
     {
       "id": 64,
@@ -1186,7 +1249,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'test-driven%20development'%20with%20Claude%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q064_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q064.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'test-driven development' with Claude?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'test-driven development' with Claude?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q064-TR.mp3"
     },
     {
       "id": 65,
@@ -1204,7 +1268,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'refactoring%20mode'%20in%20Claude%20Code%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q065_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q065.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'refactoring mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'refactoring mode' in Claude Code?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q065-TR.mp3"
     },
     {
       "id": 66,
@@ -1222,7 +1287,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20Few-Shot%20Learning%20in%20prompting%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q066_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q066.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Few-Shot Learning in prompting?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is Few-Shot Learning in prompting?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q066-TR.mp3"
     },
     {
       "id": 67,
@@ -1241,7 +1307,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20JSON%20Schema%20in%20structured%20output%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q067_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q067.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a JSON Schema in structured output?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a JSON Schema in structured output?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q067-TR.mp3"
     },
     {
       "id": 68,
@@ -1259,7 +1326,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20are%20'Explicit%20Criteria'%20in%20prompt%20engineering%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q068_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q068.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are 'Explicit Criteria' in prompt engineering?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What are 'Explicit Criteria' in prompt engineering?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q068-TR.mp3"
     },
     {
       "id": 69,
@@ -1278,7 +1346,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'Validation%20Loop'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q069_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q069.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Validation Loop'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Validation Loop'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q069-TR.mp3"
     },
     {
       "id": 70,
@@ -1296,7 +1365,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'role%20prompting'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q070_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q070.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'role prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'role prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q070-TR.mp3"
     },
     {
       "id": 71,
@@ -1315,7 +1385,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'chain-of-thought%20prompting'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q071_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q071.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'chain-of-thought prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'chain-of-thought prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q071-TR.mp3"
     },
     {
       "id": 72,
@@ -1333,7 +1404,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'output%20format%20specification'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q072_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q072.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'output format specification'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'output format specification'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q072-TR.mp3"
     },
     {
       "id": 73,
@@ -1351,7 +1423,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'prompt%20templating'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q073_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q073.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt templating'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt templating'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q073-TR.mp3"
     },
     {
       "id": 74,
@@ -1369,7 +1442,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'negative%20prompting'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q074_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q074.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'negative prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'negative prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q074-TR.mp3"
     },
     {
       "id": 75,
@@ -1387,7 +1461,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'context%20priming'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q075_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q075.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context priming'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context priming'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q075-TR.mp3"
     },
     {
       "id": 76,
@@ -1406,7 +1481,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'prompt%20iteration'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q076_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q076.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt iteration'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt iteration'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q076-TR.mp3"
     },
     {
       "id": 77,
@@ -1424,7 +1500,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'output%20validation'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q077_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q077.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'output validation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'output validation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q077-TR.mp3"
     },
     {
       "id": 78,
@@ -1443,7 +1520,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'schema%20validation'%20with%20JSON%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q078_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q078.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'schema validation' with JSON?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'schema validation' with JSON?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q078-TR.mp3"
     },
     {
       "id": 79,
@@ -1462,7 +1540,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'prompt%20injection%20defense'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q079_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q079.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt injection defense'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'prompt injection defense'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q079-TR.mp3"
     },
     {
       "id": 80,
@@ -1480,7 +1559,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'multi-turn%20prompting'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q080_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q080.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'multi-turn prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'multi-turn prompting'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q080-TR.mp3"
     },
     {
       "id": 81,
@@ -1498,7 +1578,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'system%20vs.%20user%20prompts'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q081_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q081.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'system vs. user prompts'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'system vs. user prompts'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q081-TR.mp3"
     },
     {
       "id": 82,
@@ -1517,7 +1598,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'temperature'%20in%20prompting%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q082_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q082.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'temperature' in prompting?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'temperature' in prompting?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q082-TR.mp3"
     },
     {
       "id": 83,
@@ -1535,7 +1617,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'max%20tokens'%20configuration%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q083_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q083.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'max tokens' configuration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'max tokens' configuration?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q083-TR.mp3"
     },
     {
       "id": 84,
@@ -1554,7 +1637,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'retry%20logic'%20in%20prompt%20engineering%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q084_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q084.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'retry logic' in prompt engineering?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'retry logic' in prompt engineering?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q084-TR.mp3"
     },
     {
       "id": 85,
@@ -1573,7 +1657,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'structured%20reasoning'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q085_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q085.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'structured reasoning'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'structured reasoning'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q085-TR.mp3"
     },
     {
       "id": 86,
@@ -1592,7 +1677,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Long-Term%20Context%20Preservation'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q086_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q086.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Long-Term Context Preservation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Long-Term Context Preservation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q086-TR.mp3"
     },
     {
       "id": 87,
@@ -1611,7 +1697,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20a%20'Human%20Handoff'%20pattern%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q087_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q087.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Human Handoff' pattern?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is a 'Human Handoff' pattern?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q087-TR.mp3"
     },
     {
       "id": 88,
@@ -1630,7 +1717,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Confidence%20Calibration'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q088_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q088.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Confidence Calibration'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Confidence Calibration'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q088-TR.mp3"
     },
     {
       "id": 89,
@@ -1649,7 +1737,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'Error%20Propagation%20Prevention'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q089_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q089.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Error Propagation Prevention'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'Error Propagation Prevention'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q089-TR.mp3"
     },
     {
       "id": 90,
@@ -1668,7 +1757,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'context%20window%20management'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q090_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q090.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context window management'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'context window management'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q090-TR.mp3"
     },
     {
       "id": 91,
@@ -1687,7 +1777,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'summarization%20for%20context'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q091_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q091.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'summarization for context'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'summarization for context'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q091-TR.mp3"
     },
     {
       "id": 92,
@@ -1706,7 +1797,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'semantic%20search%20for%20context'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q092_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q092.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'semantic search for context'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'semantic search for context'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q092-TR.mp3"
     },
     {
       "id": 93,
@@ -1725,7 +1817,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'RAG'%20(Retrieval-Augmented%20Generation)%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q093_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q093.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'RAG' (Retrieval-Augmented Generation)?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'RAG' (Retrieval-Augmented Generation)?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q093-TR.mp3"
     },
     {
       "id": 94,
@@ -1743,7 +1836,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'graceful%20degradation'%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q094_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q094.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'graceful degradation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'graceful degradation'?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q094-TR.mp3"
     },
     {
       "id": 95,
@@ -1761,7 +1855,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'circuit%20breaker'%20pattern%20in%20reliability%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q095_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q095.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'circuit breaker' pattern in reliability?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'circuit breaker' pattern in reliability?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q095-TR.mp3"
     },
     {
       "id": 96,
@@ -1779,7 +1874,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'fallback%20content'%20strategy%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q096_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q096.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'fallback content' strategy?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'fallback content' strategy?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q096-TR.mp3"
     },
     {
       "id": 97,
@@ -1797,7 +1893,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'monitoring%20and%20alerting'%20for%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q097_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q097.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'monitoring and alerting' for agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'monitoring and alerting' for agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q097-TR.mp3"
     },
     {
       "id": 98,
@@ -1816,7 +1913,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'request%20idempotency'%20in%20reliability%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q098_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q098.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'request idempotency' in reliability?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'request idempotency' in reliability?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q098-TR.mp3"
     },
     {
       "id": 99,
@@ -1834,7 +1932,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'chaos%20engineering'%20for%20AI%20systems%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q099_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q099.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'chaos engineering' for AI systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'chaos engineering' for AI systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q099-TR.mp3"
     },
     {
       "id": 100,
@@ -1853,7 +1952,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20'observability'%20in%20agent%20systems%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q100_v1.svg",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q100.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'observability' in agent systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'observability' in agent systems?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q100-TR.mp3"
     },
     {
       "id": 101,
@@ -1872,7 +1972,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20SWE-bench%20and%20how%20is%20it%20used%20to%20evaluate%20AI%20coding%20agents%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q101_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q101.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is SWE-bench and how is it used to evaluate AI coding agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is SWE-bench and how is it used to evaluate AI coding agents?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q101-TR.mp3"
     },
     {
       "id": 124,
@@ -1892,7 +1993,8 @@
       "relatedVideoUrl": "https://www.youtube.com/results?search_query=What%20is%20%27function%20calling%27%20capability%20in%20Claude%27s%20API%20and%20how%20does%20it%20enable%20tool%20use%3F%20tutorial",
       "azureImageUrl": "https://claudecertstore.blob.core.windows.net/memory-images/MEM-Q124_v1.png",
       "notesUrl": "https://claudecertstore.blob.core.windows.net/memory-cards/MEM-Q124.md",
-      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'function calling' capability in Claude's API and how does it enable tool use?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding."
+      "claudePrompt": "As a Claude Developer Certification teaching assistant, explain this concept in depth: \"What is 'function calling' capability in Claude's API and how does it enable tool use?\". Include analogies, why it matters for the exam, and 2 quiz questions to check my understanding.",
+      "audioUrlTr": "https://claudecertstore.blob.core.windows.net/memory-audio/AUD-Q124-TR.mp3"
     }
   ],
   "categories": {

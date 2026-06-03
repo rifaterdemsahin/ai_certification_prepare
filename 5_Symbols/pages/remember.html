@@ -23,6 +23,8 @@
             <button class="filter-btn" id="filter-unmastered" onclick="setFilter('unmastered')">Unmastered</button>
             <button class="filter-btn" id="filter-mastered" onclick="setFilter('mastered')">Mastered</button>
             <button class="reset-btn" onclick="resetMastery()" style="margin-left: auto;">🗑️ Reset Mastery</button>
+            <button id="lang-toggle-btn" onclick="toggleLanguage()" title="Switch audio language"
+                style="background:rgba(168,85,247,0.12);border:1px solid var(--accent-purple);color:var(--accent-purple);border-radius:8px;padding:6px 14px;cursor:pointer;font-size:0.85em;font-family:inherit;font-weight:600;transition:all 0.2s;">🌐 EN</button>
         </div>
 
         <div class="remember-container">
@@ -143,10 +145,22 @@
             const isLast = state.rememberIndex >= filtered.length - 1;
 
             const audioUrl = q.audioUrl || '';
-            const audioBtn = audioUrl ? `
-                <button class="remember-audio-btn" id="audio-btn-${q.id}" onclick="event.stopPropagation(); playAudio('${audioUrl}', ${q.id})">
-                    🔊 Play Audio
-                </button>` : '';
+            const audioUrlTr = q.audioUrlTr || '';
+            const lang = getUserLanguage();
+            let audioBtn = '';
+            if (audioUrl) {
+                if (lang === 'tr' && audioUrlTr) {
+                    audioBtn = `
+                        <button class="remember-audio-btn" id="audio-btn-en-${q.id}" data-default-label="🔊 EN Audio"
+                            onclick="event.stopPropagation(); playAudio('${audioUrl}', 'audio-btn-en-${q.id}')">🔊 EN Audio</button>
+                        <button class="remember-audio-btn-tr" id="audio-btn-tr-${q.id}" data-default-label="🔊 TR Audio"
+                            onclick="event.stopPropagation(); playAudio('${audioUrlTr}', 'audio-btn-tr-${q.id}')">🔊 TR Audio</button>`;
+                } else {
+                    audioBtn = `
+                        <button class="remember-audio-btn" id="audio-btn-${q.id}" data-default-label="🔊 Play Audio"
+                            onclick="event.stopPropagation(); playAudio('${audioUrl}', 'audio-btn-${q.id}')">🔊 Play Audio</button>`;
+                }
+            }
 
             const isMastered = !!state.progress[q.id];
             const masteryBtn = `
@@ -201,21 +215,55 @@
         }
 
         let currentAudio = null;
-        function playAudio(url, id) {
-            const btn = document.getElementById(`audio-btn-${id}`);
+        function playAudio(url, btnId) {
+            const btn = document.getElementById(btnId);
             if (currentAudio && !currentAudio.paused) {
                 currentAudio.pause();
                 currentAudio = null;
-                document.querySelectorAll('.remember-audio-btn').forEach(b => b.classList.remove('playing'));
-                if (btn) btn.textContent = '🔊 Play Audio';
-                return;
+                document.querySelectorAll('.remember-audio-btn, .remember-audio-btn-tr').forEach(b => {
+                    b.classList.remove('playing');
+                    b.textContent = b.dataset.defaultLabel || '🔊 Play Audio';
+                });
+                if (btn && btn.dataset.activeUrl === url) return;
             }
             currentAudio = new Audio(url);
             currentAudio.play().catch(() => {});
-            if (btn) { btn.classList.add('playing'); btn.textContent = '⏹ Stop'; }
+            if (btn) {
+                btn.dataset.activeUrl = url;
+                btn.classList.add('playing');
+                btn.textContent = '⏹ Stop';
+            }
             currentAudio.onended = () => {
-                if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊 Play Audio'; }
+                if (btn) {
+                    btn.classList.remove('playing');
+                    btn.textContent = btn.dataset.defaultLabel || '🔊 Play Audio';
+                    delete btn.dataset.activeUrl;
+                }
             };
+        }
+
+        function toggleLanguage() {
+            const current = getUserLanguage();
+            setUserLanguage(current === 'tr' ? 'en' : 'tr');
+            updateLangToggleBtn();
+            renderRemember();
+        }
+
+        function updateLangToggleBtn() {
+            const btn = document.getElementById('lang-toggle-btn');
+            if (!btn) return;
+            const lang = getUserLanguage();
+            if (lang === 'tr') {
+                btn.textContent = '🇹🇷 TR';
+                btn.style.background = 'rgba(245,158,11,0.15)';
+                btn.style.borderColor = 'var(--accent-orange)';
+                btn.style.color = 'var(--accent-orange)';
+            } else {
+                btn.textContent = '🌐 EN';
+                btn.style.background = 'rgba(168,85,247,0.12)';
+                btn.style.borderColor = 'var(--accent-purple)';
+                btn.style.color = 'var(--accent-purple)';
+            }
         }
 
         function toggleAnswer() {
@@ -255,7 +303,7 @@
         }
 
         // Initialize after Azure data is ready
-        window.dataReady.then(() => initRemember());
+        window.dataReady.then(() => { updateLangToggleBtn(); initRemember(); });
     </script>
 </body>
 </html>

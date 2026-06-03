@@ -7,7 +7,7 @@ This document outlines the measurable goals for the **Claude Developer Certifica
 ## 🎯 Objective 1: Optimize Candidate Preparedness for Core Competencies
 *Enable candidates to achieve high proficiency and pass the certification exam on their first attempt.*
 
-* **KR 1.1:** Compile a comprehensive database of **100 high-fidelity questions** aligned with the official exam weights:
+* **KR 1.1:** Compile a comprehensive database of **124 high-fidelity questions** aligned with the official exam weights:
   * Agentic Architecture & Orchestration (27%)
   * Tool Design & MCP Integration (18%)
   * Claude Code Configuration & Workflows (20%)
@@ -21,7 +21,7 @@ This document outlines the measurable goals for the **Claude Developer Certifica
 ## 🎯 Objective 2: Maximize Conceptual Retention via Rich Visuals & Active Recall
 *Move candidates from passive reading to active evaluation and creation.*
 
-* **KR 2.1:** Create and integrate **100 descriptive visual mnemonics/emojis** mapped to each question to leverage the Memory Palace technique.
+* **KR 2.1:** Create and integrate **124 descriptive visual mnemonics/emojis** mapped to each question to leverage the Memory Palace technique.
 * **KR 2.2:** Build an interactive **SVG-based Mindmap** that traces conceptual relationships between key certification areas (e.g., how prompt caching connects to context window management).
 * **KR 2.3:** Maintain detailed concept study guides in Azure Blob Storage covering 100% of core topics (MCP, Claude Code, Spaced Memory).
 

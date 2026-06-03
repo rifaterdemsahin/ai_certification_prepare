@@ -23,6 +23,26 @@
 
 
 ## ✅ Done
+- [x] Open issue and implement Gemini Live for live training sessions (`f9d4d9b`)
+- [x] Add Gemini Live two-choice voice quiz tactic to tactics page (`d66e34f`)
+- [x] Add Azure Portal link for exam-notes container (`eab2a4f`)
+- [x] Rewrite exam_notes_architecture with full storage map and save flows (`8fbe496`)
+- [x] Persist image upload version so reloads always show the fresh image (`044df39`)
+- [x] Image clipboard upload in popup + question ID in slideshow URL (`9e7f3b1`)
+- [x] WhatsApp learning style in evaluate page (`78485d0`)
+- [x] Sync view mode to URL param (?mode=scroll|slideshow) with history API (`4485d82`)
+- [x] Display learner name badge in pro-exam header + add architecture doc (`e555715`)
+- [x] Add personal notes editor and learner identity to pro-exam image popup (`50d5b7f`)
+- [x] Center images and preserve scroll/view state on mastered + add repetitive exam runs tactic (`fa72cad`)
+- [x] Prevent image stretching in pro-exam popup modal (`ebd6797`)
+- [x] Display question text in image popup modal on pro-exam (`b3afddf`)
+- [x] Image hover on story transitions shows 2x zoom and transition text (`04d229c`)
+- [x] Implement keystroke debouncing for story editor saves and log in semblance (`1f2527a`)
+- [x] Create story save cost estimation formula doc (`fd5c086`)
+- [x] Document deployment tar failure and resolution in chronological error log (`4a485f0`)
+- [x] Remove stale .antigravitycli symlink before Pages artifact upload (`4401bae`)
+- [x] Remove agent state directories and .DS_Store from git tracking and restore .gitignore (`04151fc`)
+- [x] Add high-contrast, prominent layout selection buttons to pro-exam page (`0bf8092`)
 - [x] Update CLAUDE.md as single source of truth: fix question count (124), expand Azure container map (3→7), rebuild directory layout, add data-loading pattern and Cloudflare Workers section (`f800847`)
 - [x] Align antigravity.md: remove generic template language, add deduplication + agent-file protocol, delegate shared rules to CLAUDE.md (`3b7aa85`)
 - [x] Update bmad.html with dual meaning (Breakthrough Method Agile Delivery + Build Model Apply Deliver), upload to Azure, add Azure upload skill to claude.md, gitignore backups

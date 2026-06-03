@@ -30,3 +30,6 @@ These are the primary architectural, content-related, and technical questions gu
 * **Q6: Azure API Fallbacks**
   * *Question:* What happens to the memory card features if the Azure Function App API is unreachable or rate-limited?
   * *Investigation:* Design local storage/local JSON caches to gracefully degrade to local questions if the Azure Blob Storage fetch fails.
+* **Q7: Gemini Live Session State**
+  * *Question:* How should Gemini Live voice-quiz sessions be persisted — should correct answers feed back into the cookie-based mastery state?
+  * *Investigation:* Currently Gemini Live runs as an ephemeral session. Evaluate whether a session-end webhook or client-side callback can write mastered IDs back to the existing cookie store.

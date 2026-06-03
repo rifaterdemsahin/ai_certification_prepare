@@ -17,7 +17,7 @@
 ## 📍 Live URLs
 
 **Pro Exam Page**: 
-https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/pro-exam.html
 
 **Navigation**: 
 Home → Understand (📝) → Pro Exam (🏆)

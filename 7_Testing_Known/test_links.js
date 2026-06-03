@@ -49,6 +49,8 @@ const GITHUB_PAGES = [
   '/5_Symbols/pages/evaluate_certificates.html',
   '/5_Symbols/pages/mcp-before-after.html',
   '/5_Symbols/pages/token_use_and_types.html',
+  '/5_Symbols/pages/why_get_certificates.html',
+  '/5_Symbols/pages/exam_day_guide.html',
   '/5_Symbols/js/data.js',
   '/5_Symbols/js/nav.js',
   '/5_Symbols/js/state.js',

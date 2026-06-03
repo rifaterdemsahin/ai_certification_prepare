@@ -435,6 +435,72 @@
             </div>
         </div>
 
+        <!-- GEMINI LIVE VOICE QUIZ -->
+        <div class="tactic-section">
+            <h2><span>🎙️</span> Gemini Live — Spoken Two-Choice Quiz</h2>
+            <p>Gemini Live lets you study hands-free with voice. Open it on your phone while commuting, cooking, or walking. The session reads each question aloud, gives you only two options to reduce decision fatigue, repeats any question you miss, asks in random order, and explains the rationale after each wrong answer.</p>
+
+            <h3>How to start</h3>
+            <div class="palace-step" style="margin-bottom:10px">
+                <div class="palace-num" style="background:var(--accent-green)">1</div>
+                <div class="palace-content">
+                    <strong>Open Gemini Live</strong>
+                    <p>Go to <a href="https://gemini.google.com" target="_blank" rel="noopener" style="color:var(--accent-blue)">gemini.google.com</a>, tap the waveform icon to start a Live session, or open the Gemini app on mobile and tap the microphone.</p>
+                </div>
+            </div>
+            <div class="palace-step" style="margin-bottom:10px">
+                <div class="palace-num" style="background:var(--accent-green)">2</div>
+                <div class="palace-content">
+                    <strong>Paste the prompt below and press Send</strong>
+                    <p>Gemini will confirm it's ready, then begin reading questions out loud. Just say <strong>A</strong> or <strong>B</strong> to answer.</p>
+                </div>
+            </div>
+            <div class="palace-step" style="margin-bottom:10px">
+                <div class="palace-num" style="background:var(--accent-green)">3</div>
+                <div class="palace-content">
+                    <strong>Say "repeat" to hear a question again, "stop" to end</strong>
+                    <p>At the end of the session (or whenever you say "explain") Gemini gives a rationale summary covering every question you got wrong.</p>
+                </div>
+            </div>
+
+            <h3>Gemini Live Prompt — Two-Choice Voice Quiz</h3>
+            <p>Copy this, open Gemini Live, paste it, and start talking.</p>
+            <div style="position:relative">
+                <button class="copy-btn" onclick="copyPrompt(this, 'promptGeminiLive')">Copy</button>
+                <div class="prompt-box" id="promptGeminiLive">You are my spoken study coach for the Claude Developer Certification exam.
+
+The exam covers 5 competency areas:
+1. Agentic Architecture & Orchestration (27%)
+2. Tool Design & MCP Integration (18%)
+3. Claude Code Configuration & Workflows (20%)
+4. Prompt Engineering & Structured Output (20%)
+5. Context Management & Reliability (15%)
+
+Your job:
+- Ask me questions from the Claude Developer Certification training material, drawn randomly across all 5 categories.
+- For EVERY question give me exactly TWO options labelled A and B — no more, no less.
+- Read the question and both options out loud clearly.
+- Wait for me to say A or B.
+- If I answer correctly: say "Correct!" and move to the next question immediately.
+- If I answer incorrectly: say "Not quite — the answer is [X]." then read the question again from the top so I hear it a second time before moving on.
+- If I say "repeat": read the current question and options again from the beginning.
+- Keep track of which questions I got wrong.
+- At the end of the session (when I say "done" or "explain"): go through every question I got wrong and explain the rationale — why the correct answer is right and why my choice was wrong.
+- Ask questions in random order. Do not ask the same question twice in one session.
+- Keep your voice responses short and clear. No long preambles.
+
+Start now. Ask me the first question.</div>
+            </div>
+
+            <h3>💡 Why two options instead of four?</h3>
+            <p style="color:var(--text-secondary);font-size:0.9em">Four-option MCQ while listening is hard — you forget option A by the time B, C, D are read. Two options forces binary thinking: <em>do I know this or not?</em> You get through more questions per session and the repetition loop (re-reading missed questions) locks in weak spots faster than a single pass with four options.</p>
+
+            <div class="actions" style="margin-top:16px">
+                <a href="https://gemini.google.com" target="_blank" rel="noopener">🎙️ Open Gemini Live</a>
+                <a href="memory_cards.html">🃏 Browse Memory Cards (for context)</a>
+            </div>
+        </div>
+
         <!-- LIVE GEMINI SESSIONS -->
         <div class="tactic-section">
             <h2><span>🤖</span> Live AI Study Sessions (Gemini / Claude)</h2>

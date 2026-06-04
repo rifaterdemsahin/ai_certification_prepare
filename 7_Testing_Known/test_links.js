@@ -1,5 +1,5 @@
 /**
- * Link Checker — Claude Developer Certification Study App
+ * Link Checker — AI Certification Prep
  *
  * Checks every page on GitHub Pages and every dynamic Azure analyse-page blob.
  * Outputs a pass/fail table, a fix prompt for broken links, and exits non-zero
@@ -14,7 +14,7 @@ const https = require('https');
 const http  = require('http');
 
 // ── Config ───────────────────────────────────────────────────────────────────
-const GITHUB_BASE = 'https://rifaterdemsahin.github.io/claude_certification_exam';
+const GITHUB_BASE = 'https://rifaterdemsahin.github.io/ai_certification_prepare';
 const AZURE_BASE  = 'https://claudecertstore.blob.core.windows.net';
 const CONCURRENCY = 6;   // parallel requests
 const TIMEOUT_MS  = 10000;
@@ -165,7 +165,7 @@ function buildFixPrompt(broken) {
     lines.push('**Fix options:**');
     lines.push('');
     lines.push('**Option A — Create via UI:**');
-    lines.push('Visit https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/create.html');
+    lines.push('Visit https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/create.html');
     lines.push('and create each missing page, which auto-uploads to Azure.');
     lines.push('');
     lines.push('**Option B — Upload existing HTML directly:**');

@@ -1,5 +1,5 @@
 {
-  "name": "claude-certification-exam-tests",
+  "name": "ai-certification-prepare-tests",
   "version": "1.0.0",
   "description": "Tests for the Claude Developer Certification Study App",
   "main": "test_logic.js",

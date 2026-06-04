@@ -103,7 +103,7 @@
                 { emoji: '🏛️', label: 'Tactics', href: 'tactics.html' },
                 { emoji: '📊', label: 'Pricing', href: 'claude_pricing.html' },
                 { emoji: '🎮', label: 'Multiplayer', href: 'multiplayer.html' },
-                { emoji: '🐛', label: 'Open an Issue', href: 'https://github.com/rifaterdemsahin/claude_certification_exam/issues', external: true }
+                { emoji: '🐛', label: 'Open an Issue', href: 'https://github.com/rifaterdemsahin/ai_certification_prepare/issues', external: true }
             ]
         },
         {
@@ -116,7 +116,7 @@
                 { emoji: '🎧', label: 'Multi-Media Learning', href: 'multi_media_learning.html' },
                 { emoji: '📖', label: 'Story Canvas', href: 'story.html' },
                 { emoji: '📝', label: 'Prompts', href: 'markdown_renderer.html?url=../../prompts.md&title=Prompts' },
-                { emoji: '📦', label: 'GitHub Repo', href: 'https://github.com/rifaterdemsahin/claude_certification_exam', external: true },
+                { emoji: '📦', label: 'GitHub Repo', href: 'https://github.com/rifaterdemsahin/ai_certification_prepare', external: true },
                 // Admin group
                 { isHeader: true, label: '⚙️ Admin' },
                 { emoji: '⚡', label: 'Quick Memory', href: 'quick_memory.html' },

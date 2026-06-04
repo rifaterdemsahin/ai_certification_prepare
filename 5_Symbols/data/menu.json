@@ -82,7 +82,7 @@
       { "emoji": "🎧", "label": "Multi-Media Learning", "href": "multi_media_learning.html" },
       { "emoji": "📖", "label": "Story Canvas", "href": "story.html" },
       { "emoji": "📝", "label": "Prompts", "href": "markdown_renderer.html?url=../../prompts.md&title=Prompts" },
-      { "emoji": "📦", "label": "GitHub Repo", "href": "https://github.com/rifaterdemsahin/claude_certification_exam", "external": true },
+      { "emoji": "📦", "label": "GitHub Repo", "href": "https://github.com/rifaterdemsahin/ai_certification_prepare", "external": true },
       { "isHeader": true, "label": "⚙️ Admin" },
       { "emoji": "⚡", "label": "Quick Memory", "href": "quick_memory.html" },
       { "emoji": "➕", "label": "Add Memory Card", "href": "add_memory_card.html" },

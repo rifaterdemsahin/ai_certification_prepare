@@ -1,7 +1,7 @@
 {
   "name": "ai-certification-prepare-tests",
   "version": "1.0.0",
-  "description": "Tests for the Claude Developer Certification Study App",
+  "description": "Tests for the AI Certification Prep platform — validates links, nav structure, and content integrity across all certification tracks",
   "main": "test_logic.js",
   "scripts": {
     "test": "node test_logic.js",

@@ -1,84 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Dashboard -->
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/</loc>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
+    <!-- Remember -->
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=dictionary.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/markdown_renderer.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=mindmap.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/tactics.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/cards.html</loc>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=agi-path.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/remember.html</loc>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/memory_cards.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/mastery.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/quiz.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=mcp_python.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/memory_cards.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Understand -->
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/exam.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/practice_exam.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/pro-exam.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <!-- Analyse -->
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/redhat_ai_roadmap.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/mcp-before-after.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/claude_pricing.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=dictionary.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=mindmap.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=agi-path.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=claude_architecture.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=context_compression.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=prompt_caching.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=skills.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=mcp_python.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=skills.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=explicit_criteria.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=structured_reasoning.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/analyse_renderer.html?page=multi_turn.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Evaluate -->
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/evaluate_certificates.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/why_get_certificates.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=explicit_criteria.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/exam_day_guide.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=structured_reasoning.html</loc>
-        <lastmod>2026-05-31</lastmod>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/tactics.html</loc>
+        <lastmod>2026-06-04</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=multi_turn.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/claude_pricing.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/analyse_renderer.html?page=context_compression.html</loc>
-        <lastmod>2026-05-31</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/multiplayer.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Create -->
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/story.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/multi_media_learning.html</loc>
+        <lastmod>2026-06-04</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 </urlset>

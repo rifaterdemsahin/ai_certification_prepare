@@ -23,6 +23,8 @@
 
 
 ## ✅ Done
+- [x] Fix SEO — add OG/Twitter/description meta to index.html, fix sitemap.xml and robots.txt to ai_certification_prepare URLs, add 25+ pages to sitemap
+- [x] Update 7_Testing_Known README with certifications earned table and proof the self-learning method works
 - [x] Rebrand site to AI Certification Prep — update titles, footers, GitHub links, and git remote to ai_certification_prepare across all pages
 - [x] Create Red Hat AI Roadmap page (EX267) in Analyse section with 9 skill domains, study checklist, and exam facts; add to nav menu
 - [x] Add Red Hat EX267 certificate and personal AI certificate roadmap (Claude → Red Hat → AWS → GCP → Azure → USAII) to evaluate_certificates.html

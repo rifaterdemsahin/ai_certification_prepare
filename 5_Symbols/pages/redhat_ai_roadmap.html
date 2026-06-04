@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Red Hat Certified Specialist in OpenShift AI (EX267) — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>Red Hat AI Roadmap (EX267) — Claude Dev Cert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎩</text></svg>">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --border: #334155;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8;
+            --accent-purple: #a855f7;
+            --accent-green: #10b981;
+            --accent-yellow: #fbbf24;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --rh-red: #ee0000;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 16px;
+            background: linear-gradient(135deg, #1e0000 0%, #0f172a 100%);
+            border-bottom: 1px solid rgba(238,0,0,0.3);
+            margin-bottom: 30px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '🎩';
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.04;
+            top: -10px;
+            right: 20px;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, #ee0000, #ff6666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        header .subtitle {
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-size: 1rem;
+        }
+        header .cert-badge {
+            display: inline-block;
+            margin-top: 14px;
+            background: rgba(238,0,0,0.15);
+            border: 1px solid rgba(238,0,0,0.4);
+            color: #ff6666;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+
+        /* Skill grid */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 10px;
+        }
+        .skill-card {
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border-color: rgba(238,0,0,0.4);
+        }
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .skill-card h3 {
+            color: var(--text-primary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .skill-card p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        .skill-card ul {
+            margin: 8px 0 0 18px;
+            color: var(--text-secondary);
+            font-size: 0.83rem;
+        }
+        .skill-card ul li { margin-bottom: 4px; }
+
+        /* Progress tracker */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(51,65,85,0.5);
+        }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .status-todo { background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .status-done { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        .badge-done { background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid rgba(16,185,129,0.4); }
+
+        /* Comparison table */
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(238,0,0,0.08); color: #ff6666; font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+
+        blockquote {
+            border-left: 4px solid rgba(238,0,0,0.6);
+            padding: 12px 20px;
+            background: rgba(238,0,0,0.05);
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(238,0,0,0.12);
+            border: 1px solid rgba(238,0,0,0.35);
+            color: #ff6666;
+            padding: 10px 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+        .cta-link:hover {
+            background: rgba(238,0,0,0.22);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
+            .skill-grid { grid-template-columns: 1fr; }
+            table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+
+    <div class="container">
+
+        <header>
+            <h1>Red Hat AI Roadmap</h1>
+            <p class="subtitle">Red Hat Certified Specialist in OpenShift AI</p>
+            <span class="cert-badge">EX267 — Performance-Based Exam</span>
+        </header>
+
+        <!-- What this cert proves -->
+        <div class="section">
+            <h2>🎯 Prove Your Skills & Knowledge</h2>
+            <p>A <strong>Red Hat Certified Developer</strong> for OpenShift AI demonstrates hands-on, production-grade ability to install, configure, and operate AI/ML workloads on enterprise Kubernetes infrastructure. This is a <em>performance-based exam</em> — no multiple choice, only real tasks on a live system.</p>
+            <blockquote>
+                "Candidates must perform tasks on a live Red Hat OpenShift AI environment to prove competency — not theory."
+            </blockquote>
+            <a href="https://www.redhat.com/en/services/certification/ex267-red-hat-certified-specialist-openshift-ai" target="_blank" rel="noopener" class="cta-link">
+                🔗 Official EX267 Exam Page — Red Hat
+            </a>
+        </div>
+
+        <!-- 9 skill domains -->
+        <div class="section">
+            <h2>🧩 9 Core Skill Domains</h2>
+            <p>To earn the EX267, a candidate must be able to perform all of the following on a live Red Hat OpenShift cluster:</p>
+            <div class="skill-grid">
+
+                <div class="skill-card">
+                    <span class="icon">🏗️</span>
+                    <h3>1. Install Red Hat OpenShift AI (RHOAI)</h3>
+                    <p>Set up the RHOAI operator and dashboard on an OpenShift cluster, verify component health.</p>
+                    <ul>
+                        <li>OperatorHub deployment</li>
+                        <li>DataScienceCluster resource</li>
+                        <li>GPU operator prerequisites</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">⚙️</span>
+                    <h3>2. Configure & Manage RHOAI</h3>
+                    <p>Manage platform settings, user access, resource quotas, and RHOAI component lifecycle.</p>
+                    <ul>
+                        <li>Role-based access (RBAC)</li>
+                        <li>Component enable/disable</li>
+                        <li>Storage configuration</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">📁</span>
+                    <h3>3. Work with Data Science Projects</h3>
+                    <p>Create and organise namespaced data science projects that isolate resources per team or use-case.</p>
+                    <ul>
+                        <li>Project creation via dashboard</li>
+                        <li>Namespace isolation</li>
+                        <li>Resource limits per project</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🖥️</span>
+                    <h3>4. Use Data Science Workbenches</h3>
+                    <p>Launch and configure JupyterLab and other workbench images; manage notebook environments.</p>
+                    <ul>
+                        <li>Custom notebook images</li>
+                        <li>PVC-backed persistent storage</li>
+                        <li>GPU workbench allocation</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🔌</span>
+                    <h3>5. Configure Data Connections</h3>
+                    <p>Connect workbenches and pipelines to external object storage (S3-compatible), databases, and secrets.</p>
+                    <ul>
+                        <li>S3 / MinIO data connections</li>
+                        <li>Secret injection via RHOAI</li>
+                        <li>Connection validation</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🗂️</span>
+                    <h3>6. Use Git to Manage Notebooks Collaboratively</h3>
+                    <p>Integrate Git inside JupyterLab for version control, branch management, and collaborative workflows.</p>
+                    <ul>
+                        <li>JupyterLab Git extension</li>
+                        <li>Clone / commit / push from UI</li>
+                        <li>Reproducible notebook sharing</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🤖</span>
+                    <h3>7. Work with Machine Learning Models</h3>
+                    <p>Train, evaluate, and manage ML models within the platform; track experiments and artefacts.</p>
+                    <ul>
+                        <li>Model registry integration</li>
+                        <li>Experiment tracking</li>
+                        <li>Model versioning</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🚀</span>
+                    <h3>8. Deploy Trained Models Using Model Serving</h3>
+                    <p>Serve models as REST APIs using single-model and multi-model serving runtimes (KServe, OVMS, Triton).</p>
+                    <ul>
+                        <li>InferenceService (KServe)</li>
+                        <li>ModelMesh multi-model serving</li>
+                        <li>Endpoint monitoring</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <span class="icon">🔁</span>
+                    <h3>9. Create Data Science Pipelines</h3>
+                    <p>Build and run reproducible ML pipelines using Kubeflow Pipelines / Data Science Pipelines Operator.</p>
+                    <ul>
+                        <li>Pipeline authoring (KFP SDK)</li>
+                        <li>Scheduled pipeline runs</li>
+                        <li>Artifact lineage & logs</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Exam logistics -->
+        <div class="section">
+            <h2>📋 Exam Format & Key Facts</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Detail</th>
+                        <th>Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Exam Code</strong></td><td>EX267</td></tr>
+                    <tr><td><strong>Format</strong></td><td>Performance-based — live tasks on a real OpenShift cluster</td></tr>
+                    <tr><td><strong>Duration</strong></td><td>3 hours</td></tr>
+                    <tr><td><strong>Passing Score</strong></td><td>210 out of 300</td></tr>
+                    <tr><td><strong>Languages</strong></td><td>English, Chinese (Simplified), Japanese</td></tr>
+                    <tr><td><strong>Delivery</strong></td><td>Remote proctored or testing centre</td></tr>
+                    <tr><td><strong>Prerequisite</strong></td><td>Recommended: RHCSA or equivalent OpenShift experience</td></tr>
+                    <tr><td><strong>Validity</strong></td><td>3 years</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Study checklist -->
+        <div class="section">
+            <h2>✅ Personal Study Checklist</h2>
+            <p>Track hands-on practice for each domain. Mark off as you gain confidence on a live cluster.</p>
+
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🏗️</div>
+                <div class="progress-label">Install RHOAI from OperatorHub<span>Deploy DataScienceCluster, verify all components Ready</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">⚙️</div>
+                <div class="progress-label">Configure RHOAI RBAC and storage<span>Add admin/user roles, connect PVC and object storage</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">📁</div>
+                <div class="progress-label">Create a data science project<span>Namespace isolation, resource quotas</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🖥️</div>
+                <div class="progress-label">Launch and configure a workbench<span>Custom image, persistent volume, GPU allocation</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🔌</div>
+                <div class="progress-label">Set up S3 data connection<span>Connect MinIO or AWS S3, inject secrets</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🗂️</div>
+                <div class="progress-label">Use JupyterLab Git extension<span>Clone repo, commit notebook changes, push to remote</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🤖</div>
+                <div class="progress-label">Register a trained model<span>Upload artefact, track experiment, version model</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🚀</div>
+                <div class="progress-label">Deploy model via KServe / ModelMesh<span>Create InferenceService, test REST endpoint</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+            <div class="progress-item">
+                <div class="progress-icon status-todo">🔁</div>
+                <div class="progress-label">Build and run a data science pipeline<span>KFP SDK pipeline, scheduled run, review artefacts</span></div>
+                <span class="badge-todo">To Do</span>
+            </div>
+        </div>
+
+        <!-- How it fits in the roadmap -->
+        <div class="section">
+            <h2>🗺️ Place in the AI Certificate Roadmap</h2>
+            <p>This certification sits at <strong>Stage 2</strong> of the personal AI certificate roadmap — immediately after the Anthropic Claude Developer cert and before multi-cloud coverage.</p>
+            <table>
+                <thead>
+                    <tr><th>Stage</th><th>Certification</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr style="background:rgba(16,185,129,0.05);">
+                        <td>1</td>
+                        <td>Anthropic Claude Developer Certification</td>
+                        <td style="color:var(--accent-green);">⚡ In Progress</td>
+                    </tr>
+                    <tr style="background:rgba(238,0,0,0.05);">
+                        <td>2</td>
+                        <td><strong>Red Hat EX267 — OpenShift AI Specialist</strong></td>
+                        <td style="color:#ff6666;">🎯 Next</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>AWS Certified AI Practitioner / ML Specialty</td>
+                        <td style="color:var(--text-secondary);">📅 Planned</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Google Cloud Professional ML Engineer</td>
+                        <td style="color:var(--text-secondary);">📅 Planned</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Microsoft Azure AI Engineer (AI-102)</td>
+                        <td style="color:var(--text-secondary);">📅 Planned</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>USAII Certified AI Scientist (CAIS™)</td>
+                        <td style="color:var(--text-secondary);">📅 Planned</td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+
+    </div>
+</body>
+</html>

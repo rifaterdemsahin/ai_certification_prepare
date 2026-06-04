@@ -23,6 +23,7 @@
 
 
 ## ✅ Done
+- [x] Create Red Hat AI Roadmap page (EX267) in Analyse section with 9 skill domains, study checklist, and exam facts; add to nav menu
 - [x] Add Red Hat EX267 certificate and personal AI certificate roadmap (Claude → Red Hat → AWS → GCP → Azure → USAII) to evaluate_certificates.html
 - [x] Multilingual TTS audio — generate 102 Turkish MP3s locally via Kokoro, upload to Azure, dual EN/TR audio buttons in cards/remember/pro-exam, formula documented (`1b6e095`)
 - [x] Open issue and implement Gemini Live for live training sessions (`f9d4d9b`)

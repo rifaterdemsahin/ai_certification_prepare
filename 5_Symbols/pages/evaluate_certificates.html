@@ -135,6 +135,89 @@
             align-items: center;
             gap: 8px;
         }
+
+        /* Roadmap styles */
+        .roadmap {
+            position: relative;
+            padding: 20px 0;
+        }
+        .roadmap-track {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .roadmap-phase {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            position: relative;
+        }
+        .roadmap-phase:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 23px;
+            top: 52px;
+            width: 2px;
+            height: calc(100% - 12px);
+            background: linear-gradient(to bottom, var(--border), transparent);
+        }
+        .roadmap-node {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            border: 2px solid;
+            margin-top: 4px;
+        }
+        .node-done {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--accent-green);
+        }
+        .node-next {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: var(--accent-red);
+        }
+        .node-future {
+            background: rgba(148, 163, 184, 0.1);
+            border-color: var(--border);
+        }
+        .roadmap-content {
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            flex: 1;
+            margin-bottom: 20px;
+        }
+        .roadmap-content.active {
+            border-color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.05);
+        }
+        .roadmap-content.next {
+            border-color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.05);
+        }
+        .roadmap-content h4 {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .roadmap-content p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+        .tag-current { background: rgba(16,185,129,0.2); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.4); padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .tag-next { background: rgba(239,68,68,0.2); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.4); padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+        .tag-planned { background: rgba(148,163,184,0.1); color: var(--text-secondary); border: 1px solid var(--border); padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
     </style>
 </head>
 <body>
@@ -279,6 +362,12 @@
                         <td>Practical Python & Machine Learning</td>
                         <td>Intermediate</td>
                     </tr>
+                    <tr style="background: rgba(239, 68, 68, 0.05);">
+                        <td><strong>Red Hat Certified Specialist in OpenShift AI</strong> <span class="badge" style="background:rgba(239,68,68,0.15);color:var(--accent-red);border-color:rgba(239,68,68,0.3);">EX267</span></td>
+                        <td>MLOps Engineers & Platform Engineers</td>
+                        <td>Deploying & managing AI/ML workloads on Red Hat OpenShift AI (RHOAI)</td>
+                        <td>Advanced</td>
+                    </tr>
                 </tbody>
             </table>
 
@@ -286,6 +375,86 @@
                 <strong>A Note on the Job Market:</strong> Because thousands of new AI courses pop up every month, hiring managers often emphasize practical, hands-on portfolios (like GitHub projects or working MCP integrations) over the sheer number of certificates a candidate holds.
             </blockquote>
         </div>
+
+        <!-- Certificate Roadmap Section -->
+        <div class="section">
+            <h2>🗺️ My AI Certificate Roadmap</h2>
+            <p>A personal progression plan — from LLM application developer to full-stack AI platform engineer. Each certification unlocks new capabilities and opens doors to higher-complexity work.</p>
+
+            <div class="roadmap">
+                <div class="roadmap-track">
+
+                    <!-- Stage 1: Claude -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-done">🤖</div>
+                        <div class="roadmap-content active">
+                            <h4>Anthropic Claude Developer Certification <span class="tag-current">IN PROGRESS</span></h4>
+                            <p><strong>Focus:</strong> Agentic architecture, MCP tool design, prompt engineering, context management, Claude Code workflows.<br>
+                            <strong>Why first:</strong> Foundational for building production LLM apps and multi-agent systems with the world's leading frontier model.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: Red Hat OpenShift AI -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-next">🎩</div>
+                        <div class="roadmap-content next">
+                            <h4>
+                                <a href="https://www.redhat.com/en/services/certification/ex267-red-hat-certified-specialist-openshift-ai" target="_blank" rel="noopener" style="color:var(--accent-red);text-decoration:none;">Red Hat Certified Specialist in OpenShift AI (EX267)</a>
+                                <span class="tag-next">NEXT</span>
+                            </h4>
+                            <p><strong>Focus:</strong> Deploying and managing AI/ML workloads on Red Hat OpenShift AI (RHOAI) — notebooks, model serving, pipelines, and GPU scheduling.<br>
+                            <strong>Why second:</strong> Bridges LLM development to enterprise MLOps; Red Hat credentials are highly valued in regulated industries and government contracts.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: AWS -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-future">☁️</div>
+                        <div class="roadmap-content">
+                            <h4>AWS Certified AI Practitioner / ML Specialty <span class="tag-planned">PLANNED</span></h4>
+                            <p><strong>Focus:</strong> SageMaker, Bedrock, and deploying AI workloads at scale on AWS.<br>
+                            <strong>Why:</strong> AWS has the largest market share for enterprise cloud — essential for client-facing AI architecture roles.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4: Google Cloud -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-future">🌐</div>
+                        <div class="roadmap-content">
+                            <h4>Google Cloud Professional Machine Learning Engineer <span class="tag-planned">PLANNED</span></h4>
+                            <p><strong>Focus:</strong> TensorFlow, Vertex AI, MLOps pipelines, and data engineering on GCP.<br>
+                            <strong>Why:</strong> Google leads in ML research and Vertex AI is increasingly dominant for enterprise AI deployments.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 5: Azure -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-future">🪟</div>
+                        <div class="roadmap-content">
+                            <h4>Microsoft Azure AI Engineer Associate (AI-102) <span class="tag-planned">PLANNED</span></h4>
+                            <p><strong>Focus:</strong> Azure Cognitive Services, OpenAI Service integration, bot frameworks, and Azure AI Studio.<br>
+                            <strong>Why:</strong> Microsoft's deep enterprise penetration makes Azure AI skills critical for Fortune 500 engagements.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stage 6: Vendor-Neutral -->
+                    <div class="roadmap-phase">
+                        <div class="roadmap-node node-future">🛡️</div>
+                        <div class="roadmap-content">
+                            <h4>USAII Certified AI Scientist (CAIS™) <span class="tag-planned">PLANNED</span></h4>
+                            <p><strong>Focus:</strong> Vendor-neutral AI strategy, ethics, governance, and enterprise AI management frameworks.<br>
+                            <strong>Why:</strong> Demonstrates leadership-level AI credibility beyond any single vendor ecosystem.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <blockquote>
+                <strong>Strategy:</strong> Start with the most hands-on, code-heavy certifications (Claude, Red Hat) to build deep technical credibility. Then layer in multi-cloud coverage (AWS → GCP → Azure) and finish with vendor-neutral governance to round out an enterprise AI architect profile.
+            </blockquote>
+        </div>
+
     </div>
 </body>
 </html>

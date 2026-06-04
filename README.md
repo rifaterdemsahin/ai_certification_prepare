@@ -4,7 +4,7 @@ An interactive study guide for the **Claude Developer Certification** exam with 
 
 ## 🚀 Live Demo
 
-**[Study App - GitHub Pages](https://rifaterdemsahin.github.io/claude_certification_exam/)**
+**[Study App - GitHub Pages](https://rifaterdemsahin.github.io/ai_certification_prepare/)**
 
 ## 📋 Features
 

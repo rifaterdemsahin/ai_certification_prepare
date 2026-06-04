@@ -49,7 +49,7 @@ for item in exam_data:
 {deep_dive}
 
 ## Edit Link
-[Edit this file](https://github.com/rifaterdemsahin/claude_certification_exam/edit/main/formula/exam/CAT01-Q{id_str}.md)
+[Edit this file](https://github.com/rifaterdemsahin/ai_certification_prepare/edit/main/formula/exam/CAT01-Q{id_str}.md)
 """
     with open(filename, 'w') as f:
         f.write(content)
@@ -193,7 +193,7 @@ for item in questions_data:
 {deep_dive}
 
 ## Edit Link
-[Edit this file](https://github.com/rifaterdemsahin/claude_certification_exam/edit/main/formula/memory/MEM-Q{id_str}.md)
+[Edit this file](https://github.com/rifaterdemsahin/ai_certification_prepare/edit/main/formula/memory/MEM-Q{id_str}.md)
 """
     with open(filename, 'w') as f:
         f.write(content)

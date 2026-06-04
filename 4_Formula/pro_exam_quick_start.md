@@ -31,7 +31,7 @@
 The page is already live and accessible:
 
 ```
-https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+https://rifaterdemsahin.github.io/ai_certification_prepare/pages/pro-exam.html
 ```
 
 Or via the navigation menu: **Understand → 🏆 Pro Exam**

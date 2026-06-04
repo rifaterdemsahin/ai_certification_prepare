@@ -57,7 +57,7 @@ export default {
           headers: {
             'Authorization': `Bearer ${orKey}`,
             'Content-Type': 'application/json',
-            'HTTP-Referer': 'https://rifaterdemsahin.github.io/claude_certification_exam/',
+            'HTTP-Referer': 'https://rifaterdemsahin.github.io/ai_certification_prepare/',
             'X-Title': 'Claude Certification Study App',
           },
           body: JSON.stringify({

@@ -17,7 +17,7 @@
 ## 📍 Live URLs
 
 **Pro Exam Page**: 
-https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/pro-exam.html
+https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/pro-exam.html
 
 **Navigation**: 
 Home → Understand (📝) → Pro Exam (🏆)
@@ -142,7 +142,7 @@ export AZURE_STORAGE_CONNECTION_STRING="<get-from-azure>"
 python scripts/upload_pro_exam_images_to_azure.py
 
 # Test the page
-# Open: https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+# Open: https://rifaterdemsahin.github.io/ai_certification_prepare/pages/pro-exam.html
 # Click on any question's "Click to view diagram"
 # Should see the diagram in a modal popup
 ```

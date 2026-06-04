@@ -23,6 +23,7 @@
 
 
 ## ✅ Done
+- [x] Fix leftover claude_certification_exam links — 11 files updated, fix.log created in 6_Semblance
 - [x] Fix SEO — add OG/Twitter/description meta to index.html, fix sitemap.xml and robots.txt to ai_certification_prepare URLs, add 25+ pages to sitemap
 - [x] Update 7_Testing_Known README with certifications earned table and proof the self-learning method works
 - [x] Rebrand site to AI Certification Prep — update titles, footers, GitHub links, and git remote to ai_certification_prepare across all pages
@@ -61,7 +62,7 @@
 - [x] Migrate exam question markdown files to Azure Blob Storage and update references (`d9e1d4c`)
 - [x] Migrate core concept markdown files to Azure Blob Storage and update references (`b2014d7`)
 - [x] File removal for the assets (`00863ff`)
-- [x] Add Generate the audio files upload to azure and add Kokoro audio play button to pro-exam.html > https://rifaterdemsahin.github.io/claude_certification_exam/5_Symbols/pages/pro-exam.html
+- [x] Add Generate the audio files upload to azure and add Kokoro audio play button to pro-exam.html > https://rifaterdemsahin.github.io/ai_certification_prepare/5_Symbols/pages/pro-exam.html
 - [x] Pro exam updates — navigation, styling, and content improvements (`9d9504d`)
 - [x] Add Category selection + 🤖 Generate Template button + 📋 Copy AI Prompt button to analyse_renderer.html new-page creation form
 - [x] Update remember.html: show Azure memory palace images when answer revealed, improved ⬅️/👁️/➡️ nav buttons with icons, 🔊 audio play button scaffold

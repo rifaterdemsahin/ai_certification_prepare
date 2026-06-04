@@ -87,7 +87,7 @@ Scopes: [x] repo
 
 ## Fine-Grained Token Permissions (If Preferred)
 
-### Repository: `claude_certification_exam`
+### Repository: `ai_certification_prepare`
 
 | Permission | Access Level | What It Allows |
 |------------|-------------|----------------|

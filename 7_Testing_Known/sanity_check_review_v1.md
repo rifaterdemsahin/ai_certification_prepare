@@ -11,7 +11,7 @@ Review of the refactored project structure and navigation. This document lists o
 
 ### 2. GitHub Inline Edit Links in Markdown Files
 - **Issue:** Inside `4_Formula/concepts/*.md` and `4_Formula/exam/*.md`, there are edit-button footers with hardcoded URLs pointing to the old folder path:
-  `[Edit this page](https://github.com/rifaterdemsahin/claude_certification_exam/edit/main/formula/concepts/...)`
+  `[Edit this page](https://github.com/rifaterdemsahin/ai_certification_prepare/edit/main/formula/concepts/...)`
 - **Impact:** While the `formula` symbolic link prevents broken requests locally and on Pages, developers trying to click "Edit this page" to make changes directly on GitHub will get a 404 on the GitHub web UI because the directory is now renamed to `4_Formula/`.
 - **Correction:** Update all inline edit links in these markdown files to reference `4_Formula` instead of `formula`.
 

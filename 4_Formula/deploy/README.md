@@ -40,8 +40,8 @@ flowchart LR
 | Vote Worker | https://vote-worker.polished-boat-17b2.workers.dev |
 | Content Worker | https://content-worker.polished-boat-17b2.workers.dev |
 | GitHub Gist (votes) | https://gist.github.com/rifaterdemsahin/2bfb092b05e08669b092f8371ac9c018 |
-| GitHub Repo | https://github.com/rifaterdemsahin/claude_certification_exam |
-| GitHub Pages | https://rifaterdemsahin.github.io/claude_certification_exam |
+| GitHub Repo | https://github.com/rifaterdemsahin/ai_certification_prepare |
+| GitHub Pages | https://rifaterdemsahin.github.io/ai_certification_prepare |
 | OpenRouter Keys | https://openrouter.ai/keys |
 | GitHub Tokens | https://github.com/settings/tokens |
 

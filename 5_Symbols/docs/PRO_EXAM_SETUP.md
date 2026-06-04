@@ -115,8 +115,8 @@ CSS variables available in `:root`:
 ## Deployment
 
 ### Live URL
-- **Main App:** https://rifaterdemsahin.github.io/claude_certification_exam/
-- **Pro Exam Page:** https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+- **Main App:** https://rifaterdemsahin.github.io/ai_certification_prepare/
+- **Pro Exam Page:** https://rifaterdemsahin.github.io/ai_certification_prepare/pages/pro-exam.html
 - **Via Navigation:** Understand menu → 🏆 Pro Exam
 
 ### GitHub Pages Setup

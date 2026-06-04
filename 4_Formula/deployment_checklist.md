@@ -20,8 +20,8 @@
 ## 🚀 Live & Accessible
 
 ### Public URLs
-- **Main Application**: https://rifaterdemsahin.github.io/claude_certification_exam/
-- **Pro Exam Page**: https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+- **Main Application**: https://rifaterdemsahin.github.io/ai_certification_prepare/
+- **Pro Exam Page**: https://rifaterdemsahin.github.io/ai_certification_prepare/pages/pro-exam.html
 - **Via Menu**: Understand → 🏆 Pro Exam
 
 ### Data Source
@@ -125,7 +125,7 @@ export AZURE_STORAGE_CONNECTION_STRING="your-connection-string"
 
 ### Already Deployed To
 - GitHub Pages (automatic via git push)
-- Live at: https://rifaterdemsahin.github.io/claude_certification_exam/
+- Live at: https://rifaterdemsahin.github.io/ai_certification_prepare/
 
 ### Performance Metrics
 - Page load time: ~1.2s (depends on Azure latency)
@@ -268,7 +268,7 @@ export AZURE_STORAGE_CONNECTION_STRING="your-connection-string"
 The Pro Exam page is fully functional, integrated into the navigation, and ready for users to access and use. All core features are working, and optional image generation capabilities are scripted and ready when needed.
 
 ### Quick Access
-- **Page URL**: https://rifaterdemsahin.github.io/claude_certification_exam/pages/pro-exam.html
+- **Page URL**: https://rifaterdemsahin.github.io/ai_certification_prepare/pages/pro-exam.html
 - **Menu**: Home → Understand → 🏆 Pro Exam
 - **Setup Guide**: See `docs/PRO_EXAM_SETUP.md`
 - **Quick Start**: See `pro_exam_quick_start.md`

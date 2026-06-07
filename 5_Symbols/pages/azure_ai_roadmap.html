@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Microsoft Azure AI Engineer Associate (AI-102) — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>Azure AI Roadmap — AI Cert Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪟</text></svg>">
+    <style>
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --border: #334155; --text-primary: #e2e8f0; --text-secondary: #94a3b8; --accent-blue: #38bdf8; --azure: #0078d4; --azure-light: #50b0ff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 16px; background: linear-gradient(135deg, #001830 0%, #0f172a 100%); border-bottom: 1px solid rgba(0,120,212,0.35); margin-bottom: 30px; border-radius: 16px; position: relative; overflow: hidden; }
+        header::before { content: '🪟'; position: absolute; font-size: 8rem; opacity: 0.04; top: -10px; right: 20px; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(135deg, #0078d4, #50b0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        header .subtitle { color: var(--text-secondary); margin-top: 8px; }
+        header .cert-badge { display: inline-block; margin-top: 14px; background: rgba(0,120,212,0.15); border: 1px solid rgba(0,120,212,0.4); color: var(--azure-light); padding: 5px 14px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+        h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px; }
+        .skill-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.2s; }
+        .skill-card:hover { transform: translateY(-3px); border-color: rgba(0,120,212,0.4); }
+        .skill-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .skill-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.85rem; margin: 0; }
+        .skill-card ul { margin: 8px 0 0 18px; color: var(--text-secondary); font-size: 0.83rem; }
+        .skill-card ul li { margin-bottom: 4px; }
+        .progress-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(0,120,212,0.08); color: var(--azure-light); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        blockquote { border-left: 4px solid rgba(0,120,212,0.6); padding: 12px 20px; background: rgba(0,120,212,0.05); border-radius: 0 8px 8px 0; margin: 20px 0; color: var(--text-secondary); font-style: italic; }
+        @media (max-width: 600px) { header h1 { font-size: 1.6rem; } .skill-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+    <div class="container">
+        <header>
+            <h1>Azure AI Roadmap</h1>
+            <p class="subtitle">Microsoft Azure AI Engineer Associate</p>
+            <span class="cert-badge">AI-102 — AI Engineer Associate</span>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Why Azure AI Engineer (AI-102)</h2>
+            <p>Microsoft has the deepest enterprise penetration of any cloud vendor. Azure AI Engineer validates the ability to design and implement AI solutions using Azure Cognitive Services, Azure OpenAI Service, and Azure AI Studio — the fastest-growing AI platform for Fortune 500 deployments.</p>
+            <blockquote>"Azure AI-102 is the practitioner cert for enterprise AI integrators — APIs, bots, search, and the Azure OpenAI ecosystem."</blockquote>
+        </div>
+
+        <div class="section">
+            <h2>🧩 Core Skill Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">🧠</span><h3>Plan & Manage Azure AI Solutions</h3><p>Select the right Azure AI service, manage security (keys, Managed Identity), monitor costs and quotas.</p><ul><li>Azure AI Services provisioning</li><li>Key Vault + Managed Identity</li><li>Diagnostic logging & alerts</li></ul></div>
+                <div class="skill-card"><span class="icon">👁️</span><h3>Computer Vision</h3><p>Azure AI Vision: image analysis, object detection, OCR, face recognition, Custom Vision.</p><ul><li>Azure AI Vision (v4 API)</li><li>Custom Vision training</li><li>Video Indexer</li></ul></div>
+                <div class="skill-card"><span class="icon">📝</span><h3>Natural Language Processing</h3><p>Azure AI Language: text analytics, key phrase extraction, sentiment, entity recognition, CLU.</p><ul><li>Conversational Language Understanding (CLU)</li><li>Custom text classification</li><li>Question Answering (QnA)</li></ul></div>
+                <div class="skill-card"><span class="icon">🤖</span><h3>Generative AI with Azure OpenAI</h3><p>Deploy GPT-4, DALL-E, and embeddings via Azure OpenAI Service; build RAG with Azure AI Search.</p><ul><li>Azure OpenAI Service (models, deployments)</li><li>Prompt engineering & system messages</li><li>RAG with Azure AI Search</li></ul></div>
+                <div class="skill-card"><span class="icon">🔍</span><h3>Knowledge Mining & Search</h3><p>Azure AI Search: indexers, skillsets, semantic ranking, and vector search for knowledge retrieval.</p><ul><li>Cognitive skillsets (enrichment)</li><li>Semantic & vector search</li><li>Integration with OpenAI embeddings</li></ul></div>
+                <div class="skill-card"><span class="icon">🎙️</span><h3>Speech & Document Intelligence</h3><p>Azure AI Speech (STT, TTS, translation) and Azure Document Intelligence (form recognition).</p><ul><li>Custom speech models</li><li>Real-time transcription</li><li>Document Intelligence (receipts, invoices)</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Exam Format</h2>
+            <table>
+                <thead><tr><th>Detail</th><th>Info</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Exam code</strong></td><td>AI-102</td></tr>
+                    <tr><td><strong>Format</strong></td><td>Multiple choice, case studies, labs (performance-based)</td></tr>
+                    <tr><td><strong>Duration</strong></td><td>100 minutes</td></tr>
+                    <tr><td><strong>Passing score</strong></td><td>700 / 1000</td></tr>
+                    <tr><td><strong>Level</strong></td><td>Associate</td></tr>
+                    <tr><td><strong>Validity</strong></td><td>1 year (renewable via renewal assessment)</td></tr>
+                    <tr><td><strong>Prerequisite</strong></td><td>Recommended: AZ-900 Azure Fundamentals</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Study Checklist</h2>
+            <div class="progress-item"><div class="progress-icon">🧠</div><div class="progress-label">Provision and secure Azure AI Services<span>Keys, Managed Identity, Key Vault, VNET integration</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">👁️</div><div class="progress-label">Azure AI Vision — image analysis + OCR<span>Analyse images, detect objects, read text from images</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">📝</div><div class="progress-label">Azure AI Language — NLP features<span>Sentiment, entity extraction, CLU intent classification</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🤖</div><div class="progress-label">Azure OpenAI Service — GPT-4 + RAG<span>Deploy a model, build a RAG app with Azure AI Search</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🔍</div><div class="progress-label">Azure AI Search — vector + semantic<span>Create index, cognitive skillset, vector search with embeddings</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🎙️</div><div class="progress-label">Azure AI Speech + Document Intelligence<span>Real-time transcription, form recognition end-to-end</span></div><span class="badge-todo">To Do</span></div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Roadmap Position</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Certification</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Anthropic Claude Developer Certification</td><td style="color:#10b981;">⚡ In Progress</td></tr>
+                    <tr><td>2</td><td>Red Hat EX267 — OpenShift AI Specialist</td><td style="color:#ff6666;">🎯 Next</td></tr>
+                    <tr><td>3</td><td>AWS AI Practitioner / ML Specialty</td><td style="color:#ff9900;">📅 Planned</td></tr>
+                    <tr><td>4</td><td>Google Cloud Professional ML Engineer</td><td style="color:#7baeff;">📅 Planned</td></tr>
+                    <tr style="background:rgba(0,120,212,0.05);"><td>5</td><td><strong>Microsoft Azure AI Engineer (AI-102)</strong></td><td style="color:#50b0ff;">📅 Planned</td></tr>
+                    <tr><td>6</td><td>USAII Certified AI Scientist (CAIS™)</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+    </div>
+</body>
+</html>

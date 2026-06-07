@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AWS Certified AI Practitioner and ML Specialty — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>AWS AI Roadmap — AI Cert Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☁️</text></svg>">
+    <style>
+        :root {
+            --bg-primary: #0f172a; --bg-secondary: #1e293b; --border: #334155;
+            --text-primary: #e2e8f0; --text-secondary: #94a3b8;
+            --accent-blue: #38bdf8; --accent-green: #10b981;
+            --aws: #ff9900; --aws-dark: #232f3e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 16px; background: linear-gradient(135deg, #1a1200 0%, #0f172a 100%); border-bottom: 1px solid rgba(255,153,0,0.3); margin-bottom: 30px; border-radius: 16px; position: relative; overflow: hidden; }
+        header::before { content: '☁️'; position: absolute; font-size: 8rem; opacity: 0.04; top: -10px; right: 20px; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(135deg, #ff9900, #ffcc44); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        header .subtitle { color: var(--text-secondary); margin-top: 8px; font-size: 1rem; }
+        header .cert-badge { display: inline-block; margin: 6px 4px 0; background: rgba(255,153,0,0.15); border: 1px solid rgba(255,153,0,0.4); color: #ffb833; padding: 5px 14px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+        h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px; }
+        .skill-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.2s; }
+        .skill-card:hover { transform: translateY(-3px); border-color: rgba(255,153,0,0.4); }
+        .skill-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .skill-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.85rem; margin: 0; }
+        .skill-card ul { margin: 8px 0 0 18px; color: var(--text-secondary); font-size: 0.83rem; }
+        .skill-card ul li { margin-bottom: 4px; }
+        .progress-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(255,153,0,0.08); color: #ffb833; font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        blockquote { border-left: 4px solid rgba(255,153,0,0.6); padding: 12px 20px; background: rgba(255,153,0,0.05); border-radius: 0 8px 8px 0; margin: 20px 0; color: var(--text-secondary); font-style: italic; }
+        @media (max-width: 600px) { header h1 { font-size: 1.6rem; } .skill-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+    <div class="container">
+        <header>
+            <h1>AWS AI Roadmap</h1>
+            <p class="subtitle">Amazon Web Services — AI & Machine Learning Certifications</p>
+            <span class="cert-badge">AIF-C01 — AI Practitioner</span>
+            <span class="cert-badge">MLS-C01 — ML Specialty</span>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Why AWS AI Certifications</h2>
+            <p>AWS holds the largest share of the enterprise cloud market. AWS AI/ML certifications prove you can build, deploy, and operate intelligent applications on the world's most widely adopted cloud platform — from beginner AI concepts through expert-level ML engineering.</p>
+            <blockquote>Two tracks: <strong>AI Practitioner</strong> (concepts, services, responsible AI) and <strong>ML Specialty</strong> (hands-on model building, feature engineering, MLOps on SageMaker).</blockquote>
+        </div>
+
+        <div class="section">
+            <h2>🧩 AI Practitioner (AIF-C01) — Core Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">🤖</span><h3>AI & ML Fundamentals</h3><p>Core concepts: supervised/unsupervised learning, neural networks, LLMs, generative AI basics.</p><ul><li>Training vs inference</li><li>Model evaluation metrics</li><li>Foundation models</li></ul></div>
+                <div class="skill-card"><span class="icon">☁️</span><h3>AWS AI/ML Services</h3><p>Breadth of managed services: Rekognition, Comprehend, Textract, Polly, Translate, Lex, Kendra.</p><ul><li>Choose right service per use-case</li><li>API-level integration</li><li>Pricing models</li></ul></div>
+                <div class="skill-card"><span class="icon">🧠</span><h3>Generative AI on AWS</h3><p>Amazon Bedrock, foundation model selection, prompt engineering, RAG patterns, agents.</p><ul><li>Bedrock model catalogue</li><li>Knowledge bases (RAG)</li><li>Bedrock Agents</li></ul></div>
+                <div class="skill-card"><span class="icon">🛡️</span><h3>Responsible AI</h3><p>Bias, fairness, explainability, and AWS governance tools like SageMaker Clarify.</p><ul><li>Model bias detection</li><li>SHAP explainability</li><li>AI governance frameworks</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🧩 ML Specialty (MLS-C01) — Core Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">📦</span><h3>Data Engineering</h3><p>S3 data lakes, Glue ETL, feature stores, data pipelines for ML at scale.</p><ul><li>SageMaker Feature Store</li><li>AWS Glue & Athena</li><li>Kinesis for streaming ML</li></ul></div>
+                <div class="skill-card"><span class="icon">🔍</span><h3>Exploratory Data Analysis</h3><p>Statistical analysis, data cleaning, visualisation, and feature engineering techniques.</p><ul><li>SageMaker Data Wrangler</li><li>Feature selection & encoding</li><li>Handling imbalanced datasets</li></ul></div>
+                <div class="skill-card"><span class="icon">🏋️</span><h3>Modelling</h3><p>Built-in SageMaker algorithms, custom training jobs, hyperparameter tuning.</p><ul><li>XGBoost, Linear Learner, DeepAR</li><li>SageMaker Experiments</li><li>Automatic Model Tuning (AMT)</li></ul></div>
+                <div class="skill-card"><span class="icon">🚀</span><h3>ML Implementation & Operations</h3><p>Model deployment, A/B testing, monitoring drift, and MLOps pipelines.</p><ul><li>SageMaker Endpoints</li><li>Model Monitor</li><li>SageMaker Pipelines (MLOps)</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Exam Format</h2>
+            <table>
+                <thead><tr><th>Detail</th><th>AI Practitioner (AIF-C01)</th><th>ML Specialty (MLS-C01)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Format</strong></td><td>Multiple choice / multi-select</td><td>Multiple choice / multi-select</td></tr>
+                    <tr><td><strong>Duration</strong></td><td>2 hours</td><td>3 hours</td></tr>
+                    <tr><td><strong>Questions</strong></td><td>65</td><td>65</td></tr>
+                    <tr><td><strong>Passing score</strong></td><td>700 / 1000</td><td>750 / 1000</td></tr>
+                    <tr><td><strong>Level</strong></td><td>Foundational</td><td>Specialty (advanced)</td></tr>
+                    <tr><td><strong>Validity</strong></td><td>3 years</td><td>3 years</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Study Checklist</h2>
+            <div class="progress-item"><div class="progress-icon">🤖</div><div class="progress-label">AI/ML fundamentals & terminology<span>Supervised, unsupervised, reinforcement, generative AI concepts</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">☁️</div><div class="progress-label">Map AWS AI services to use-cases<span>Rekognition, Comprehend, Textract, Polly, Translate, Lex, Kendra</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🧠</div><div class="progress-label">Amazon Bedrock hands-on<span>Invoke foundation models, build a RAG knowledge base, create an agent</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🛡️</div><div class="progress-label">Responsible AI & governance<span>SageMaker Clarify, bias metrics, model cards</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">📦</div><div class="progress-label">SageMaker end-to-end pipeline<span>Data Wrangler → Training → Tuning → Endpoint → Monitor</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🚀</div><div class="progress-label">MLOps with SageMaker Pipelines<span>CI/CD for models, model registry, A/B endpoint testing</span></div><span class="badge-todo">To Do</span></div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Roadmap Position</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Certification</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Anthropic Claude Developer Certification</td><td style="color:#10b981;">⚡ In Progress</td></tr>
+                    <tr><td>2</td><td>Red Hat EX267 — OpenShift AI Specialist</td><td style="color:#ff6666;">🎯 Next</td></tr>
+                    <tr style="background:rgba(255,153,0,0.05);"><td>3</td><td><strong>AWS AI Practitioner / ML Specialty</strong></td><td style="color:#ff9900;">📅 Planned</td></tr>
+                    <tr><td>4</td><td>Google Cloud Professional ML Engineer</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                    <tr><td>5</td><td>Microsoft Azure AI Engineer (AI-102)</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                    <tr><td>6</td><td>USAII Certified AI Scientist (CAIS™)</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+    </div>
+</body>
+</html>

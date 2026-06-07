@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="USAII Certified AI Scientist (CAIS™) — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>USAII AI Roadmap — AI Cert Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    <style>
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --border: #334155; --text-primary: #e2e8f0; --text-secondary: #94a3b8; --accent-blue: #38bdf8; --usaii: #a855f7; --usaii-light: #c084fc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 16px; background: linear-gradient(135deg, #1a0030 0%, #0f172a 100%); border-bottom: 1px solid rgba(168,85,247,0.3); margin-bottom: 30px; border-radius: 16px; position: relative; overflow: hidden; }
+        header::before { content: '🛡️'; position: absolute; font-size: 8rem; opacity: 0.04; top: -10px; right: 20px; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(135deg, #a855f7, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        header .subtitle { color: var(--text-secondary); margin-top: 8px; }
+        header .cert-badge { display: inline-block; margin-top: 14px; background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.4); color: var(--usaii-light); padding: 5px 14px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+        h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px; }
+        .skill-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.2s; }
+        .skill-card:hover { transform: translateY(-3px); border-color: rgba(168,85,247,0.4); }
+        .skill-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .skill-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.85rem; margin: 0; }
+        .skill-card ul { margin: 8px 0 0 18px; color: var(--text-secondary); font-size: 0.83rem; }
+        .skill-card ul li { margin-bottom: 4px; }
+        .progress-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(168,85,247,0.08); color: var(--usaii-light); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        blockquote { border-left: 4px solid rgba(168,85,247,0.6); padding: 12px 20px; background: rgba(168,85,247,0.05); border-radius: 0 8px 8px 0; margin: 20px 0; color: var(--text-secondary); font-style: italic; }
+        @media (max-width: 600px) { header h1 { font-size: 1.6rem; } .skill-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+    <div class="container">
+        <header>
+            <h1>USAII AI Roadmap</h1>
+            <p class="subtitle">United States Artificial Intelligence Institute — Vendor-Neutral Certification</p>
+            <span class="cert-badge">CAIS™ — Certified AI Scientist</span>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Why USAII CAIS™</h2>
+            <p>Unlike cloud-vendor certifications, the USAII CAIS™ is <strong>vendor-neutral</strong> — it validates strategic AI knowledge that spans all platforms, frameworks, and use-cases. It's the credentialing choice for senior AI engineers and architects who need to demonstrate leadership-level AI expertise to enterprise clients and employers.</p>
+            <blockquote>"The capstone credential — proves you understand AI deeply enough to design solutions independently of any single vendor's tooling."</blockquote>
+        </div>
+
+        <div class="section">
+            <h2>🧩 Core Knowledge Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">🧬</span><h3>AI & ML Foundations</h3><p>Deep theoretical understanding of ML algorithms, neural networks, and statistical learning across all paradigms.</p><ul><li>Supervised, unsupervised, RL</li><li>Neural network architectures</li><li>Bayesian methods & statistics</li></ul></div>
+                <div class="skill-card"><span class="icon">🔬</span><h3>Deep Learning</h3><p>CNNs, RNNs, transformers, attention mechanisms, and the architecture behind modern LLMs and vision models.</p><ul><li>Transformer architecture (BERT, GPT)</li><li>Transfer learning & fine-tuning</li><li>Generative models (VAE, GAN, diffusion)</li></ul></div>
+                <div class="skill-card"><span class="icon">🏭</span><h3>AI in Production</h3><p>MLOps principles, model lifecycle management, data drift, retraining strategies, and production monitoring.</p><ul><li>CI/CD for ML pipelines</li><li>Feature stores & data versioning</li><li>Model performance monitoring</li></ul></div>
+                <div class="skill-card"><span class="icon">🛡️</span><h3>AI Ethics & Governance</h3><p>Responsible AI frameworks, bias mitigation, fairness, privacy (differential privacy, federated learning), and regulation.</p><ul><li>EU AI Act & regulatory landscape</li><li>Algorithmic fairness metrics</li><li>AI risk management frameworks</li></ul></div>
+                <div class="skill-card"><span class="icon">💼</span><h3>Enterprise AI Strategy</h3><p>Translating AI capabilities into business value: ROI measurement, build vs buy, change management, AI literacy.</p><ul><li>AI business case development</li><li>Total cost of ownership</li><li>Organisational AI maturity</li></ul></div>
+                <div class="skill-card"><span class="icon">🔭</span><h3>Emerging AI Trends</h3><p>Agentic AI, multimodal models, AI safety, autonomous systems, and frontier research directions.</p><ul><li>LLM agents & tool use</li><li>Multimodal AI (vision + language)</li><li>AI safety & alignment</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Exam Format</h2>
+            <table>
+                <thead><tr><th>Detail</th><th>Info</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Credential</strong></td><td>CAIS™ — Certified AI Scientist</td></tr>
+                    <tr><td><strong>Format</strong></td><td>Multiple choice + project/portfolio assessment</td></tr>
+                    <tr><td><strong>Level</strong></td><td>Advanced / Expert</td></tr>
+                    <tr><td><strong>Vendor</strong></td><td>USAII (vendor-neutral)</td></tr>
+                    <tr><td><strong>Validity</strong></td><td>3 years</td></tr>
+                    <tr><td><strong>Recommended for</strong></td><td>Senior engineers, AI architects, technical leads</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Study Checklist</h2>
+            <div class="progress-item"><div class="progress-icon">🧬</div><div class="progress-label">ML algorithm theory<span>Linear/logistic regression, SVMs, decision trees, ensembles, k-means</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🔬</div><div class="progress-label">Transformer architecture deep-dive<span>Attention mechanism, BERT pre-training, GPT autoregression</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🏭</div><div class="progress-label">MLOps principles<span>Data versioning (DVC), model registry, drift detection, retraining pipelines</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🛡️</div><div class="progress-label">AI ethics & regulatory landscape<span>EU AI Act risk tiers, fairness metrics, differential privacy</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">💼</div><div class="progress-label">Enterprise AI strategy<span>AI ROI frameworks, build vs buy, AI maturity models</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🔭</div><div class="progress-label">Agentic AI & frontier trends<span>Tool use, multi-agent systems, multimodal models, AI safety</span></div><span class="badge-todo">To Do</span></div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Roadmap Position</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Certification</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Anthropic Claude Developer Certification</td><td style="color:#10b981;">⚡ In Progress</td></tr>
+                    <tr><td>2</td><td>Red Hat EX267 — OpenShift AI Specialist</td><td style="color:#ff6666;">🎯 Next</td></tr>
+                    <tr><td>3</td><td>AWS AI Practitioner / ML Specialty</td><td style="color:#ff9900;">📅 Planned</td></tr>
+                    <tr><td>4</td><td>Google Cloud Professional ML Engineer</td><td style="color:#7baeff;">📅 Planned</td></tr>
+                    <tr><td>5</td><td>Microsoft Azure AI Engineer (AI-102)</td><td style="color:#50b0ff;">📅 Planned</td></tr>
+                    <tr style="background:rgba(168,85,247,0.05);"><td>6</td><td><strong>USAII Certified AI Scientist (CAIS™)</strong></td><td style="color:#c084fc;">📅 Planned</td></tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+    </div>
+</body>
+</html>

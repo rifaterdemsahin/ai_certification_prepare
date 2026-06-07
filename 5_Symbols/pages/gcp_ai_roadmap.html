@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Google Cloud Professional Machine Learning Engineer — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>Google Cloud ML Roadmap — AI Cert Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+    <style>
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --border: #334155; --text-primary: #e2e8f0; --text-secondary: #94a3b8; --accent-blue: #38bdf8; --gcp: #4285f4; --gcp-green: #34a853; --gcp-red: #ea4335; --gcp-yellow: #fbbc05; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 16px; background: linear-gradient(135deg, #001133 0%, #0f172a 100%); border-bottom: 1px solid rgba(66,133,244,0.3); margin-bottom: 30px; border-radius: 16px; position: relative; overflow: hidden; }
+        header::before { content: '🌐'; position: absolute; font-size: 8rem; opacity: 0.04; top: -10px; right: 20px; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        header .subtitle { color: var(--text-secondary); margin-top: 8px; }
+        header .cert-badge { display: inline-block; margin-top: 14px; background: rgba(66,133,244,0.15); border: 1px solid rgba(66,133,244,0.4); color: #7baeff; padding: 5px 14px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+        h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px; }
+        .skill-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.2s; }
+        .skill-card:hover { transform: translateY(-3px); border-color: rgba(66,133,244,0.4); }
+        .skill-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .skill-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.85rem; margin: 0; }
+        .skill-card ul { margin: 8px 0 0 18px; color: var(--text-secondary); font-size: 0.83rem; }
+        .skill-card ul li { margin-bottom: 4px; }
+        .progress-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(66,133,244,0.08); color: #7baeff; font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        blockquote { border-left: 4px solid rgba(66,133,244,0.6); padding: 12px 20px; background: rgba(66,133,244,0.05); border-radius: 0 8px 8px 0; margin: 20px 0; color: var(--text-secondary); font-style: italic; }
+        @media (max-width: 600px) { header h1 { font-size: 1.6rem; } .skill-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+    <div class="container">
+        <header>
+            <h1>Google Cloud ML Roadmap</h1>
+            <p class="subtitle">Professional Machine Learning Engineer Certification</p>
+            <span class="cert-badge">Professional ML Engineer</span>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Why Google Cloud ML Engineer</h2>
+            <p>Google invented TensorFlow, leads in TPU hardware, and runs one of the world's largest AI research organisations (DeepMind, Google Brain). The Professional ML Engineer cert validates expert-level ability to design, build, and productionise ML models on Google Cloud's Vertex AI platform.</p>
+            <blockquote>"The most technically demanding cloud ML certification — it expects you to know the full ML lifecycle, not just click a managed service."</blockquote>
+        </div>
+
+        <div class="section">
+            <h2>🧩 Core Skill Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">🗂️</span><h3>Frame ML Problems</h3><p>Translate business requirements into ML problem definitions: classification, regression, ranking, generation.</p><ul><li>Problem framing & success metrics</li><li>Data readiness assessment</li><li>Build vs buy decisions</li></ul></div>
+                <div class="skill-card"><span class="icon">📊</span><h3>Architect ML Solutions</h3><p>Design scalable, reliable ML systems on Google Cloud using Vertex AI, BigQuery ML, and data pipelines.</p><ul><li>Vertex AI Architecture</li><li>BigQuery ML for SQL-native models</li><li>Feature Store design</li></ul></div>
+                <div class="skill-card"><span class="icon">🏋️</span><h3>Prepare & Process Data</h3><p>Data ingestion, validation, transformation, and feature engineering at scale using Dataflow and Dataprep.</p><ul><li>Cloud Dataflow (Apache Beam)</li><li>TFX data validation</li><li>Vertex AI Feature Store</li></ul></div>
+                <div class="skill-card"><span class="icon">🧪</span><h3>Develop ML Models</h3><p>Train custom models with TensorFlow/PyTorch on Vertex AI Training; tune hyperparameters at scale.</p><ul><li>Vertex AI Training (custom jobs)</li><li>Hyperparameter tuning (Vizier)</li><li>AutoML vs custom training trade-offs</li></ul></div>
+                <div class="skill-card"><span class="icon">🚀</span><h3>Deploy & Serve Models</h3><p>Deploy models to production endpoints, manage versions, and optimise for latency and throughput.</p><ul><li>Vertex AI Endpoints</li><li>TF Serving & ONNX export</li><li>Online vs batch prediction</li></ul></div>
+                <div class="skill-card"><span class="icon">🔁</span><h3>Automate & Monitor MLOps</h3><p>Build CI/CD ML pipelines, track experiments, detect drift, and retrain automatically with Vertex AI Pipelines.</p><ul><li>Vertex AI Pipelines (Kubeflow)</li><li>Model monitoring & drift detection</li><li>CT/CD for ML systems</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Exam Format</h2>
+            <table>
+                <thead><tr><th>Detail</th><th>Info</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Format</strong></td><td>Multiple choice / multi-select</td></tr>
+                    <tr><td><strong>Duration</strong></td><td>2 hours</td></tr>
+                    <tr><td><strong>Questions</strong></td><td>~50–60</td></tr>
+                    <tr><td><strong>Passing score</strong></td><td>Not published (scaled score)</td></tr>
+                    <tr><td><strong>Level</strong></td><td>Professional (advanced)</td></tr>
+                    <tr><td><strong>Validity</strong></td><td>2 years</td></tr>
+                    <tr><td><strong>Recommended experience</strong></td><td>3+ years industry experience, 1+ year on GCP</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Study Checklist</h2>
+            <div class="progress-item"><div class="progress-icon">🗂️</div><div class="progress-label">ML problem framing<span>Map business goals → ML objective, choose correct problem type</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">📊</div><div class="progress-label">Vertex AI Architecture<span>End-to-end Vertex AI: datasets, experiments, training, registry, endpoints</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">📦</div><div class="progress-label">BigQuery ML<span>Train and evaluate models directly in SQL using BigQuery ML</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🏋️</div><div class="progress-label">TensorFlow + Vertex Training<span>Custom training job, distributed training, hyperparameter tuning</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🔁</div><div class="progress-label">Vertex AI Pipelines (Kubeflow)<span>Build and schedule a full MLOps pipeline with CT/CD</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🛡️</div><div class="progress-label">Model monitoring & explainability<span>Vertex Explainable AI, drift detection, retraining triggers</span></div><span class="badge-todo">To Do</span></div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Roadmap Position</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Certification</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>Anthropic Claude Developer Certification</td><td style="color:#10b981;">⚡ In Progress</td></tr>
+                    <tr><td>2</td><td>Red Hat EX267 — OpenShift AI Specialist</td><td style="color:#ff6666;">🎯 Next</td></tr>
+                    <tr><td>3</td><td>AWS AI Practitioner / ML Specialty</td><td style="color:#ff9900;">📅 Planned</td></tr>
+                    <tr style="background:rgba(66,133,244,0.05);"><td>4</td><td><strong>Google Cloud Professional ML Engineer</strong></td><td style="color:#7baeff;">📅 Planned</td></tr>
+                    <tr><td>5</td><td>Microsoft Azure AI Engineer (AI-102)</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                    <tr><td>6</td><td>USAII Certified AI Scientist (CAIS™)</td><td style="color:var(--text-secondary);">📅 Planned</td></tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+    </div>
+</body>
+</html>

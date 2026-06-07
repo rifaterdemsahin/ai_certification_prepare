@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Anthropic Claude Developer Certification — skill roadmap, learning objectives, and exam preparation guide.">
+    <title>Claude Developer Roadmap — AI Cert Prep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2020/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    <style>
+        :root { --bg-primary: #0f172a; --bg-secondary: #1e293b; --border: #334155; --text-primary: #e2e8f0; --text-secondary: #94a3b8; --accent-blue: #38bdf8; --accent-green: #10b981; --claude: #d97706; --claude-light: #fbbf24; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 16px; background: linear-gradient(135deg, #1a0d00 0%, #0f172a 100%); border-bottom: 1px solid rgba(217,119,6,0.35); margin-bottom: 30px; border-radius: 16px; position: relative; overflow: hidden; }
+        header::before { content: '🤖'; position: absolute; font-size: 8rem; opacity: 0.04; top: -10px; right: 20px; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(135deg, #d97706, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; }
+        header .subtitle { color: var(--text-secondary); margin-top: 8px; }
+        header .cert-badge { display: inline-block; margin: 6px 4px 0; padding: 5px 14px; border-radius: 9999px; font-size: 0.82rem; font-weight: 600; }
+        .badge-active { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4); color: var(--accent-green); }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin-bottom: 30px; }
+        h2 { color: var(--accent-blue); margin-bottom: 20px; font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        p { margin-bottom: 14px; color: var(--text-secondary); }
+        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; margin-top: 10px; }
+        .skill-card { background: rgba(0,0,0,0.25); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, border-color 0.2s; }
+        .skill-card:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.4); }
+        .skill-card .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+        .skill-card h3 { color: var(--text-primary); font-size: 1rem; margin-bottom: 8px; }
+        .skill-card .weight { font-size: 0.75rem; color: var(--claude-light); font-weight: 600; background: rgba(217,119,6,0.15); border: 1px solid rgba(217,119,6,0.3); padding: 2px 8px; border-radius: 9999px; display: inline-block; margin-bottom: 8px; }
+        .skill-card p { font-size: 0.85rem; margin: 0; }
+        .skill-card ul { margin: 8px 0 0 18px; color: var(--text-secondary); font-size: 0.83rem; }
+        .skill-card ul li { margin-bottom: 4px; }
+        .progress-item { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(51,65,85,0.5); }
+        .progress-item:last-child { border-bottom: none; }
+        .progress-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; background: rgba(148,163,184,0.1); border: 1px solid var(--border); }
+        .progress-label { flex: 1; color: var(--text-primary); font-size: 0.95rem; }
+        .progress-label span { display: block; color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px; }
+        .badge-todo { background: rgba(148,163,184,0.1); color: var(--text-secondary); padding: 3px 10px; border-radius: 9999px; font-size: 0.75rem; border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--border); }
+        th { background: rgba(217,119,6,0.08); color: var(--claude-light); font-weight: 600; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        blockquote { border-left: 4px solid rgba(217,119,6,0.6); padding: 12px 20px; background: rgba(217,119,6,0.05); border-radius: 0 8px 8px 0; margin: 20px 0; color: var(--text-secondary); font-style: italic; }
+        .cta-link { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.35); color: var(--accent-green); padding: 10px 22px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.2s; margin-top: 10px; }
+        .cta-link:hover { background: rgba(16,185,129,0.2); }
+        @media (max-width: 600px) { header h1 { font-size: 1.6rem; } .skill-grid { grid-template-columns: 1fr; } table { display: block; overflow-x: auto; } }
+    </style>
+</head>
+<body>
+    <script src="../js/nav.js"></script>
+    <div class="container">
+        <header>
+            <h1>Claude Developer Roadmap</h1>
+            <p class="subtitle">Anthropic Claude Developer Certification — Stage 1 of the AI cert journey</p>
+            <span class="cert-badge badge-active">⚡ Currently In Progress</span>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Why Start with Claude Developer</h2>
+            <p>The Claude Developer Certification is the most hands-on, code-heavy AI certification available today. It forces you to understand how frontier LLMs actually work — agentic loops, tool design, context management, and prompt engineering — rather than cloud service configuration. This foundational depth makes every subsequent certification easier.</p>
+            <blockquote>"Build agents, design tools, manage context. The Claude cert is where the AI certification journey begins — and where genuine understanding of modern AI is forged."</blockquote>
+            <a href="../../index.html" class="cta-link">📚 Study Now — Go to Dashboard</a>
+        </div>
+
+        <div class="section">
+            <h2>🧩 5 Exam Domains</h2>
+            <div class="skill-grid">
+                <div class="skill-card"><span class="icon">🏗️</span><span class="weight">27% — Heaviest</span><h3>Agentic Architecture & Orchestration</h3><p>Design single and multi-agent systems, manage state across turns, build orchestration and routing patterns.</p><ul><li>Agent loops & state machines</li><li>Multi-agent orchestration (subagents)</li><li>Human-in-the-loop checkpoints</li></ul></div>
+                <div class="skill-card"><span class="icon">🔌</span><span class="weight">18%</span><h3>Tool Design & MCP Integration</h3><p>Write custom tools, connect MCP servers, define tool schemas, handle errors and retries.</p><ul><li>Tool schema design (JSON)</li><li>MCP server architecture</li><li>Tool chaining & parallel calls</li></ul></div>
+                <div class="skill-card"><span class="icon">🖥️</span><span class="weight">20%</span><h3>Claude Code Configuration & Workflows</h3><p>CLI configuration, CLAUDE.md, slash commands, hooks, IDE integration, git workflows.</p><ul><li>CLAUDE.md project instructions</li><li>Hooks & automation</li><li>Large codebase initialisation</li></ul></div>
+                <div class="skill-card"><span class="icon">📝</span><span class="weight">20%</span><h3>Prompt Engineering & Structured Output</h3><p>XML-structured prompts, system instructions, few-shot learning, chain-of-thought, structured outputs.</p><ul><li>XML tagging conventions</li><li>Few-shot optimisation</li><li>JSON/structured output schemas</li></ul></div>
+                <div class="skill-card"><span class="icon">💾</span><span class="weight">15%</span><h3>Context Management & Reliability</h3><p>Token budgets, prompt caching, context compression, cost control, and reliability patterns.</p><ul><li>Cache breakpoint placement</li><li>Context window strategies</li><li>Cost-efficiency trade-offs</li></ul></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📋 Exam Format</h2>
+            <table>
+                <thead><tr><th>Detail</th><th>Info</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Issuer</strong></td><td>Anthropic</td></tr>
+                    <tr><td><strong>Format</strong></td><td>Multiple choice + scenario-based questions</td></tr>
+                    <tr><td><strong>Domains</strong></td><td>5 competency areas (see above)</td></tr>
+                    <tr><td><strong>Level</strong></td><td>Intermediate to Expert</td></tr>
+                    <tr><td><strong>Study tools</strong></td><td>This app — flashcards, pro exam, memory cards, audio, multiplayer</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>✅ Study Checklist</h2>
+            <div class="progress-item"><div class="progress-icon">🏗️</div><div class="progress-label">Agentic architecture patterns<span>Agent loops, subagents, orchestration, routing, human-in-the-loop</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🔌</div><div class="progress-label">Tool & MCP design<span>Write a tool schema, build an MCP server, chain tools</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🖥️</div><div class="progress-label">Claude Code & CLAUDE.md<span>Configure project instructions, hooks, slash commands</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">📝</div><div class="progress-label">Prompt engineering<span>XML structure, few-shot, chain-of-thought, structured output</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">💾</div><div class="progress-label">Context & caching<span>Prompt caching strategy, context compression, token budgeting</span></div><span class="badge-todo">To Do</span></div>
+            <div class="progress-item"><div class="progress-icon">🎯</div><div class="progress-label">Score 85%+ on practice exam<span>Use pro-exam.html — repeat until consistently above target</span></div><span class="badge-todo">To Do</span></div>
+        </div>
+
+        <div class="section">
+            <h2>🗺️ Roadmap Position</h2>
+            <table>
+                <thead><tr><th>Stage</th><th>Certification</th><th>Status</th></tr></thead>
+                <tbody>
+                    <tr style="background:rgba(217,119,6,0.05);"><td>1</td><td><strong>Anthropic Claude Developer Certification</strong></td><td style="color:#10b981;">⚡ In Progress</td></tr>
+                    <tr><td>2</td><td>Red Hat EX267 — OpenShift AI Specialist</td><td style="color:#ff6666;">🎯 Next</td></tr>
+                    <tr><td>3</td><td>AWS AI Practitioner / ML Specialty</td><td style="color:#ff9900;">📅 Planned</td></tr>
+                    <tr><td>4</td><td>Google Cloud Professional ML Engineer</td><td style="color:#7baeff;">📅 Planned</td></tr>
+                    <tr><td>5</td><td>Microsoft Azure AI Engineer (AI-102)</td><td style="color:#50b0ff;">📅 Planned</td></tr>
+                    <tr><td>6</td><td>USAII Certified AI Scientist (CAIS™)</td><td style="color:#c084fc;">📅 Planned</td></tr>
+                </tbody>
+            </table>
+            <a href="evaluate_certificates.html" style="color:var(--accent-blue);text-decoration:none;font-size:0.9rem;">← View full certificate evaluation page</a>
+        </div>
+    </div>
+</body>
+</html>

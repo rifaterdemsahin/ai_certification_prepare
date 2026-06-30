@@ -6,6 +6,8 @@ An interactive study guide for the **Claude Developer Certification** exam with 
 
 **[Study App - GitHub Pages](https://rifaterdemsahin.github.io/ai_certification_prepare/)**
 
+*Part of Study Guide For Claude AI Architect Certification*
+
 ## 📋 Features
 
 - **100 Exam Questions** covering all 5 core competencies
